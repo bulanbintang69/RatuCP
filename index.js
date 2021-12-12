@@ -126,12 +126,7 @@ bot.start(async(ctx)=>{
                         }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
                             parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: `${type}`}]
-                                ]
-                            }
+                            disable_web_page_preview: true
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
