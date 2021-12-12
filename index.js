@@ -130,7 +130,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: `${res2.type}`, url: `${res2.type}`}]
+                                        [{text: res2.type, url: `google.com`}]
                                     ]
                                 }    
                             });
@@ -140,7 +140,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: `${res2.type}`, url: `${res2.type}`}]
+                                    [{text: res2.type, url: `google.com`}]
                                 ]
                             }
                         });
