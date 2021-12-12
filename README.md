@@ -71,7 +71,7 @@ You can delete files 4 ways.</br>
 ~ Delete all files Send to bot.</br>
 <code>/clear</code>. This will permanently delete all files sent to the bot.</br>
 
-<h2>Send a message to the user</h2>
+<h2>Send a message to the user.</h2>
 
 <code>/broadcast</code>. You can broadcast text messages to your users, messages will be sent from the last user joined to the first joined user to reduce spam. Try not to send too many messages at once if you have a large number of users.
 
