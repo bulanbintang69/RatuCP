@@ -94,17 +94,11 @@ bot.start(async(ctx)=>{
                 if(!profile || profile.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                         parse_mode:'HTML',
-                        disable_web_page_preview: true,
-                        reply_markup:{
-                            inline_keyboard:inKey
-                        }
+                        disable_web_page_preview: true
                     })
                     ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
                         parse_mode:'HTML',
-                        disable_web_page_preview: true,
-                        reply_markup:{
-                            inline_keyboard:inKey
-                        }
+                        disable_web_page_preview: true
                     })
             }else{
                 let query2 = query;
@@ -165,17 +159,11 @@ bot.start(async(ctx)=>{
                             if(!profile2 || profile2.total_count == 0)
                                 return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                     parse_mode:'HTML',
-                                    disable_web_page_preview: true,
-                                    reply_markup:{
-                                        inline_keyboard:inKey2
-                                    }
+                                    disable_web_page_preview: true
                                 })
                                 ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                     parse_mode:'HTML',
-                                    disable_web_page_preview: true,
-                                    reply_markup:{
-                                        inline_keyboard:inKey2
-                                    }
+                                    disable_web_page_preview: true
                                 })
                         }
                     })
@@ -193,17 +181,11 @@ bot.start(async(ctx)=>{
                                     if(!profile3 || profile3.total_count == 0)
                                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                                             parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            reply_markup:{
-                                                inline_keyboard:inKey
-                                            }
+                                            disable_web_page_preview: true
                                         })
                                         ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
                                             parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            reply_markup:{
-                                                inline_keyboard:inKey
-                                            }
+                                            disable_web_page_preview: true
                                         })
                                 }
                             })
