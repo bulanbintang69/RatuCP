@@ -116,10 +116,24 @@ bot.start(async(ctx)=>{
                     if(res2.type=='video'){
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithVideo(res2.file_id);
+                            return ctx.replyWithVideo(res2.file_id,{
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: res2.type,callback_data:res2.type}]
+                                    ]
+                                }
+                            });
                         }
                         ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
-                            parse_mode:'HTML'
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: res2.type,callback_data:res2.type}]
+                                ]
+                            }
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
@@ -130,9 +144,9 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type}]
+                                        [{text: res2.type,callback_data:res2.type}]
                                     ]
-                                }    
+                                }
                             });
                         }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
@@ -140,7 +154,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: res2.type}]
+                                    [{text: res2.type,callback_data:res2.type}]
                                 ]
                             }
                         });
@@ -148,11 +162,25 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='document'){
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithDocument(res2.file_id);
+                            return ctx.replyWithDocument(res2.file_id,{
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: res2.type,callback_data:res2.type}]
+                                    ]
+                                }
+                            });
                         }
                         ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
-                            parse_mode:'HTML'
-                        })
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: res2.type,callback_data:res2.type}]
+                                ]
+                            }
+                        });
                             setTimeout(captionFunction2, 1000)
                     }
                 }catch(error){
@@ -226,29 +254,71 @@ bot.start(async(ctx)=>{
                                         if(res2.type=='video'){
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithVideo(res2.file_id);
+                                                return ctx.replyWithVideo(res2.file_id,{
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:[
+                                                            [{text: res2.type,callback_data:res2.type}]
+                                                        ]
+                                                    }
+                                                });
                                             }
                                             ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
-                                                parse_mode:'HTML'
+                                                parse_mode:'HTML',
+                                                disable_web_page_preview: true,
+                                                reply_markup:{
+                                                    inline_keyboard:[
+                                                        [{text: res2.type,callback_data:res2.type}]
+                                                    ]
+                                                }
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='photo'){
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithPhoto(res2.file_id);
+                                                return ctx.replyWithPhoto(res2.file_id,{
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:[
+                                                            [{text: res2.type,callback_data:res2.type}]
+                                                        ]
+                                                    }
+                                                });
                                             }
                                             ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
-                                                parse_mode:'HTML'
+                                                parse_mode:'HTML',
+                                                disable_web_page_preview: true,
+                                                reply_markup:{
+                                                    inline_keyboard:[
+                                                        [{text: res2.type,callback_data:res2.type}]
+                                                    ]
+                                                }
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='document'){
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithDocument(res2.file_id);
+                                                return ctx.replyWithDocument(res2.file_id,{
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:[
+                                                            [{text: res2.type,callback_data:res2.type}]
+                                                        ]
+                                                    }
+                                                });
                                             }
                                             ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
-                                                parse_mode:'HTML'
-                                            })
+                                                parse_mode:'HTML',
+                                                disable_web_page_preview: true,
+                                                reply_markup:{
+                                                    inline_keyboard:[
+                                                        [{text: res2.type,callback_data:res2.type}]
+                                                    ]
+                                                }
+                                            });
                                                 setTimeout(captionFunction2, 1000)
                                         }
                                     }
