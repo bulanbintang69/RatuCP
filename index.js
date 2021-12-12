@@ -125,11 +125,24 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='photo'){
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithPhoto(res2.file_id);
+                            return ctx.replyWithPhoto(res2.file_id,{
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: `${type}`}]
+                                    ]
+                                }
+                            });
                         }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
                             parse_mode:'HTML',
-                            disable_web_page_preview: true
+                            disable_web_page_preview: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `${type}`}]
+                                ]
+                            }
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
