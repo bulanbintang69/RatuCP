@@ -1663,6 +1663,7 @@ bot.on('photo', async(ctx, next) => {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
+                                disable_notification: true,
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
@@ -1673,6 +1674,7 @@ bot.on('photo', async(ctx, next) => {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
+                                disable_notification: true,
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
@@ -1700,6 +1702,7 @@ bot.on('photo', async(ctx, next) => {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
+                                disable_notification: true,
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
@@ -1710,6 +1713,7 @@ bot.on('photo', async(ctx, next) => {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
+                                disable_notification: true,
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
