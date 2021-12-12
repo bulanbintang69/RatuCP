@@ -106,8 +106,8 @@ module.exports={
     },
 
     //removing file with file_id
-    removeFile:(fileId)=>{
-        db.get().collection(collection.FILE_COLLECTION).removeOne({file_id:fileId})
+    removeFile:(unique_Id)=>{
+        db.get().collection(collection.FILE_COLLECTION).removeOne({uniqueId:unique_Id})
     },
 
     //removing file with mediaId
