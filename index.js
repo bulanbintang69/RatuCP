@@ -130,7 +130,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: `halo`}]
+                                        [{text: `halo`, url: `google.com`}]
                                     ]
                                 }    
                             });
@@ -140,7 +140,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: `halo`}]
+                                    [{text: `halo`, url: `google.com`}]
                                 ]
                             }
                         });
