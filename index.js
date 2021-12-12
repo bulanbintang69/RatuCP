@@ -87,7 +87,7 @@ bot.start(async(ctx)=>{
             first_name:ctx.from.first_name,
             userId:ctx.from.id
         }
-        if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+        if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -96,7 +96,7 @@ bot.start(async(ctx)=>{
                         parse_mode:'HTML',
                         disable_web_page_preview: true
                     })
-                    ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                    ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
                         parse_mode:'HTML',
                         disable_web_page_preview: true
                     })
