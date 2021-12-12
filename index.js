@@ -201,8 +201,8 @@ bot.start(async(ctx)=>{
                     await saver.checkBan(`${ctx.from.id}`).then((res) => {
                         //console.log(res);
                         if(res == true) {
-                            ctx.deleteMessage()
                             if(ctx.chat.type == 'private') {
+                                ctx.deleteMessage()
                                 ctx.reply(`${messagebanned(ctx)}`)
                             }
                         }else{
@@ -225,8 +225,8 @@ bot.start(async(ctx)=>{
                             await saver.checkBan(`${ctx.from.id}`).then((res) => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.deleteMessage()
                                     if(ctx.chat.type == 'private') {
+                                        ctx.deleteMessage()
                                         ctx.reply(`${messagebanned(ctx)}`)
                                     }
                                 }else{
@@ -256,6 +256,7 @@ bot.start(async(ctx)=>{
                                     //console.log(res);
                                     if(res == true) {
                                         if(ctx.chat.type == 'private') {
+                                            ctx.deleteMessage()
                                             ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
