@@ -129,7 +129,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: `Sender`, url: `t.me/c/${ctx.message.chat.id}/${ctx.message.message_id}`}]
+                                    [{text: `${type}`}]
                                 ]
                             }
                         });
