@@ -132,7 +132,7 @@ bot.start(async(ctx)=>{
                                     inline_keyboard:[
                                         [{text: `${res2.type}`}]
                                     ]
-                                }
+                                }    
                             });
                         }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
