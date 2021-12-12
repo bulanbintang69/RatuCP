@@ -1141,7 +1141,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1185,7 +1185,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1414,7 +1414,7 @@ bot.on('video', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${video.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1458,7 +1458,7 @@ bot.on('video', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${video.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1687,7 +1687,7 @@ bot.on('photo', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
@@ -1731,7 +1731,7 @@ bot.on('photo', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                    saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
