@@ -118,7 +118,7 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithVideo(res2.file_id,{caption: `#file${res2.uniqueId}`,
+                            return ctx.replyWithVideo(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -128,7 +128,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId}`,
+                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -142,7 +142,7 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId}`,
+                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -152,7 +152,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId}`,
+                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -166,7 +166,7 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithDocument(res2.file_id,{caption: `#file${res2.uniqueId}`,
+                            return ctx.replyWithDocument(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -176,7 +176,7 @@ bot.start(async(ctx)=>{
                             }
                         });
                         }
-                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId}`,
+                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -265,7 +265,7 @@ bot.start(async(ctx)=>{
                                             ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithVideo(res2.file_id,{
+                                                return ctx.replyWithVideo(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -275,7 +275,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
+                                            ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -289,7 +289,7 @@ bot.start(async(ctx)=>{
                                             ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithPhoto(res2.file_id,{
+                                                return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -299,7 +299,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
+                                            ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -313,17 +313,17 @@ bot.start(async(ctx)=>{
                                             ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithDocument(res2.file_id,{
-                                                    parse_mode:'HTML',
-                                                    disable_web_page_preview: true,
-                                                    reply_markup:{
-                                                        inline_keyboard:[
-                                                            [{text: res2.type, callback_data:res2.type}]
-                                                        ]
-                                                    }
-                                                });
+                                                return ctx.replyWithDocument(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                                                parse_mode:'HTML',
+                                                disable_web_page_preview: true,
+                                                reply_markup:{
+                                                    inline_keyboard:[
+                                                        [{text: res2.type, callback_data:res2.type}]
+                                                    ]
+                                                }
+                                            });
                                             }
-                                            ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
+                                            ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
