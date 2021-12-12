@@ -1002,7 +1002,7 @@ bot.on('document', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(document.file_name == undefined){
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1039,7 +1039,7 @@ bot.on('document', async(ctx, next) => {
             }
         }else{
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1141,7 +1141,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1185,7 +1185,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${document.file_unique_id}`)
@@ -1275,7 +1275,7 @@ bot.on('video', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(video.file_name == undefined){
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                await saver.checkFile(`${video.file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1312,7 +1312,7 @@ bot.on('video', async(ctx, next) => {
             }
         }else{
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                await saver.checkFile(`${video.file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1414,7 +1414,7 @@ bot.on('video', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${video.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1458,7 +1458,7 @@ bot.on('video', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${video.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${video.file_unique_id}`)
@@ -1548,7 +1548,7 @@ bot.on('photo', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
@@ -1585,7 +1585,7 @@ bot.on('photo', async(ctx, next) => {
             }
         }else{
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
@@ -1687,7 +1687,7 @@ bot.on('photo', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
@@ -1731,7 +1731,7 @@ bot.on('photo', async(ctx, next) => {
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
                                             ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
