@@ -55,6 +55,9 @@ function username(ctx){
 function fromid(ctx){
     return ctx.from.id ? `[${ctx.from.id}]` : "";
 }
+function captionbuild(ctx){
+    return `${process.env.CAPTIONLINK}`;
+}
 function welcomejoin(ctx){
     return `${process.env.WELCOMEJOINBOT}\n\n${today(ctx)}`;
 }
