@@ -93,6 +93,7 @@ bot.start(async(ctx)=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
+                ctx.deleteMessage()
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
@@ -114,6 +115,7 @@ bot.start(async(ctx)=>{
                         })
                     }
                     if(res2.type=='video'){
+                        ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithVideo(res2.file_id,{
@@ -161,6 +163,7 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
+                        ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithDocument(res2.file_id,{
@@ -198,10 +201,12 @@ bot.start(async(ctx)=>{
                     await saver.checkBan(`${ctx.from.id}`).then((res) => {
                         //console.log(res);
                         if(res == true) {
+                            ctx.deleteMessage()
                             if(ctx.chat.type == 'private') {
                                 ctx.reply(`${messagebanned(ctx)}`)
                             }
                         }else{
+                            ctx.deleteMessage()
                             if(!profile2 || profile2.total_count == 0)
                                 return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                     parse_mode:'HTML',
@@ -220,10 +225,12 @@ bot.start(async(ctx)=>{
                             await saver.checkBan(`${ctx.from.id}`).then((res) => {
                                 //console.log(res);
                                 if(res == true) {
+                                    ctx.deleteMessage()
                                     if(ctx.chat.type == 'private') {
                                         ctx.reply(`${messagebanned(ctx)}`)
                                     }
                                 }else{
+                                    ctx.deleteMessage()
                                     if(!profile3 || profile3.total_count == 0)
                                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                                             parse_mode:'HTML',
@@ -253,6 +260,7 @@ bot.start(async(ctx)=>{
                                         }
                                     }else{
                                         if(res2.type=='video'){
+                                            ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithVideo(res2.file_id,{
@@ -276,6 +284,7 @@ bot.start(async(ctx)=>{
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='photo'){
+                                            ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithPhoto(res2.file_id,{
@@ -299,6 +308,7 @@ bot.start(async(ctx)=>{
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='document'){
+                                            ctx.deleteMessage()
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithDocument(res2.file_id,{
