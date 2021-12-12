@@ -78,6 +78,14 @@ module.exports={
 
     //searching and finding file id from database
 
+    getFile1:(query1)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection(collection.FILE_COLLECTION).find({mediaId:query1}).toArray().then((res1)=>{
+                resolve(res1)
+            })
+        })
+    },
+
     getFile2:(query2)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:query2}).then((res2)=>{
@@ -98,8 +106,13 @@ module.exports={
     },
 
     //removing file with file_id
-    removeFile:(unique_Id)=>{
-        db.get().collection(collection.FILE_COLLECTION).removeOne({uniqueId:unique_Id})
+    removeFile:(fileId)=>{
+        db.get().collection(collection.FILE_COLLECTION).removeOne({file_id:fileId})
+    },
+
+    //removing file with mediaId
+    removeFileMedia:(media)=>{
+        db.get().collection(collection.FILE_COLLECTION).remove({mediaId:media})
     },
 
     //ban user with user ID
