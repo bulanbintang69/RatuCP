@@ -75,8 +75,6 @@ bot.start(async(ctx)=>{
             return resolve("Result");
         }, 2_000);
     });
-    await next();
-
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
