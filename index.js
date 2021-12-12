@@ -1011,7 +1011,7 @@ bot.on('document', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1021,7 +1021,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1048,7 +1048,7 @@ bot.on('document', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1058,7 +1058,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1150,7 +1150,7 @@ bot.on('document', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1160,7 +1160,7 @@ bot.on('document', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1194,7 +1194,7 @@ bot.on('document', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1204,7 +1204,7 @@ bot.on('document', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#document\n#file${document.file_unique_id} #size${document.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1284,7 +1284,7 @@ bot.on('video', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1294,7 +1294,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1321,7 +1321,7 @@ bot.on('video', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1331,7 +1331,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1423,7 +1423,7 @@ bot.on('video', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1433,7 +1433,7 @@ bot.on('video', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1467,7 +1467,7 @@ bot.on('video', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1477,7 +1477,7 @@ bot.on('video', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#video\n#file${video.file_unique_id} #size${video.file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1557,7 +1557,7 @@ bot.on('photo', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1567,7 +1567,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1594,7 +1594,7 @@ bot.on('photo', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1604,7 +1604,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1696,7 +1696,7 @@ bot.on('photo', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1706,7 +1706,7 @@ bot.on('photo', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1740,7 +1740,7 @@ bot.on('photo', async(ctx, next) => {
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1750,7 +1750,7 @@ bot.on('photo', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} B\n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#photo\n#file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>Post from:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
