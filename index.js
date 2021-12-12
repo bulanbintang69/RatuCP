@@ -137,6 +137,7 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
+                        ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithPhoto(res2.file_id,{
