@@ -188,6 +188,7 @@ bot.start(async(ctx)=>{
                             setTimeout(captionFunction2, 1000)
                     }
                 }catch(error){
+                    ctx.deleteMessage()
                     ctx.reply(`Media not found or has been removed`)
                 }
             }
@@ -343,6 +344,7 @@ bot.start(async(ctx)=>{
                                             ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
+                                        ctx.deleteMessage()
                                         ctx.reply(`Media not found or has been removed`)
                                     }
                                 })
@@ -351,6 +353,7 @@ bot.start(async(ctx)=>{
                     }
                 }
             catch(error){
+                ctx.deleteMessage()
                 ctx.reply(`${messagebotnoaddgroup(ctx)}`)
             }
         }
