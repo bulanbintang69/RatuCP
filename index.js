@@ -749,8 +749,7 @@ bot.command('getid',async(ctx)=>{
             return resolve("Result");
         }, 2_000);
     });
-    await next();
-      
+  
     if(ctx.chat.type == 'private') {
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
         await saver.checkBan(`${ctx.from.id}`).then((res) => {
