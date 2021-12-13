@@ -1669,7 +1669,7 @@ bot.on('photo', async(ctx, next) => {
                 const res2 = await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${res2.random}`)
+                        ctx.reply(`File already exists. #file${res.random}`)
                     }else{
                         saver.saveFile(fileDetails1)
                         ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails1.random}`,{
@@ -1708,7 +1708,7 @@ bot.on('photo', async(ctx, next) => {
                 const res2 = await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${res2.random}`)
+                        ctx.reply(`File already exists. #file${res.random}`)
                     }else{
                         saver.saveFile(fileDetails2)
                         ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails2.random}`,{
@@ -1813,7 +1813,7 @@ bot.on('photo', async(ctx, next) => {
                                 const res2 = saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                     //console.log(res);
                                     if(res == true) {
-                                        ctx.reply(`File already exists. #file${res2.random}`)
+                                        ctx.reply(`File already exists. #file${res.random}`)
                                     }else{
                                         saver.saveFile(fileDetails1)
                                         ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails1.random}`,{
@@ -1859,7 +1859,7 @@ bot.on('photo', async(ctx, next) => {
                                 const res2 = saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                     //console.log(res);
                                     if(res == true) {
-                                        ctx.reply(`File already exists. #file${res2.random}`)
+                                        ctx.reply(`File already exists. #file${res.random}`)
                                     }else{
                                         saver.saveFile(fileDetails2)
                                         ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails2.random}`,{
