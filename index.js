@@ -170,14 +170,14 @@ bot.start(async(ctx)=>{
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: res2.type, callback_data: `none`}]
-                                ]
-                            }
-                        });
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: res2.type, callback_data: `none`}]
+                                    ]
+                                }
+                            });
                         }
                         ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
