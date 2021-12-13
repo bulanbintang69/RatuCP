@@ -140,7 +140,7 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='photo'){
                         ctx.deleteMessage()
                         if(!res2.caption) {
-                            let link = `https://t.me/${process.env.BOTUSERNAME}?start=${res2.uniqueId}`;
+                            let link = `${ctx.message_id}`;
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                 parse_mode:'HTML',
