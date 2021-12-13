@@ -93,14 +93,6 @@ module.exports={
         })
     },
 
-    getFile3:(query3)=>{
-        return new Promise(async(resolve,reject)=>{
-            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:query3}).then((res3)=>{
-                resolve(res3)
-            })
-        })
-    },
-
     //getting file as array for inline query
 
     getfileInline:(query)=>{
