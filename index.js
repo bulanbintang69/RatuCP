@@ -849,10 +849,10 @@ bot.command('send',async(ctx)=>{
 })
 //END
 
-bot.command(['bye', 'halo'].at(ctx) => {
+bot.command(['bye', 'halo'], (ctx) => {
     var pesan = ctx.reply('apa?');
     console.log(pesan);
-)}
+})
 
 //check account
 bot.command('getid',async(ctx)=>{
