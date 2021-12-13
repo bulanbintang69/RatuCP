@@ -133,7 +133,8 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: res2.type, callback_data: `none`}]
+                                    [{text: res2.type, callback_data: `none`}],
+                                    [{text: `sender`, url: `https://t.me/c/${ctx.message.chat.id}/${ctx.message.update_id}`}]
                                 ]
                             }
                         });
