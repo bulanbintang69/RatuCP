@@ -117,7 +117,7 @@ bot.start(async(ctx)=>{
                     if(res2.type=='video'){
 
                     let group = sendMessage()
-                    console.log(group)
+                    console.log(group);
 
                     let msgId = group.result.message_id
                     let chatId = group.result.chat.id.toString()
