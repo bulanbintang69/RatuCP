@@ -75,15 +75,6 @@ module.exports={
         })
     },
 
-    //update files to database
-    updateID:(updateFile)=>{
-        return new Promise(async(resolve,reject)=>{
-            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:updateFile}).then((res)=>{
-                console.log('updated ID database');
-            })
-        })
-    },
-
     //searching and finding file id from database
 
     getFile1:(query1)=>{
