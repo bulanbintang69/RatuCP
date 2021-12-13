@@ -141,8 +141,8 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='photo'){
                         ctx.deleteMessage()
                         if(!res2.caption) {
-                            setTimeout(captionFunction2, 1000)
                             if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
+                                setTimeout(captionFunction2, 1000)
                                 const message_id = `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`
                                 if(ctx.chat.type == 'private') {
                                     return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
@@ -150,7 +150,7 @@ bot.start(async(ctx)=>{
                                         disable_web_page_preview: true,
                                         reply_markup:{
                                             inline_keyboard:[
-                                                [{text: res2.type, url: `${message_id}`}]
+                                                [{text: res2.type, url: message_id}]
                                             ]
                                         }
                                     });
