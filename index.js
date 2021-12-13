@@ -116,7 +116,7 @@ bot.start(async(ctx)=>{
                     }
                     if(res2.type=='video'){
 
-                    const urls = `https://t.me/c/${ctx.message.chat.id}/${ctx.message.message_id}`
+                    const urls = `https://t.me/c/${ctx.message.chat.id}/${ctx.message.update_id}`
 
                         ctx.deleteMessage()
                         if(!res2.caption) {
