@@ -116,13 +116,8 @@ bot.start(async(ctx)=>{
                     }
                     if(res2.type=='video'){
 
-                    let group = await bot.telegram.sendMessage(ctx.message.chat.id)
+                    const urls = `https://t.me/c/${ctx.chat.username}/${ctx.update_id}`
 
-                    let msgId = group.result.message_id
-                    let chatId = group.result.chat.id.toString()
-
-                    let urls = 'https://t.me/c/' + chatId.replace('-100', '') + '/' + msgId
-                    
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
