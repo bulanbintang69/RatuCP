@@ -78,7 +78,6 @@ bot.start(async(ctx)=>{
             return resolve("Result");
         }, 2_000);
     });
-    if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
         //console.log(msgArray.length);
@@ -147,7 +146,10 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, callback_data: `none`}]
+                                        [
+                                            {text: res2.type, callback_data: `none`},
+                                            {text: `sender`, url: `http://t.me/c/${ctx.chat.id}/${ctx.message_id}`}
+                                        ]
                                     ]
                                 }
                             });
@@ -359,7 +361,6 @@ bot.start(async(ctx)=>{
         }
         //saving user details to the database
         saver.saveUser(user)
-    }
 })
 
 //TEST BOT

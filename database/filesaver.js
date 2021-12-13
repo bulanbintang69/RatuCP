@@ -49,7 +49,6 @@ module.exports={
         })
     },
 
-
     getBan:()=>{
         return new Promise(async(resolve,reject)=>{
             db.get().collection(collection.BANNED_COLLECTION).find().toArray().then((res)=>{
@@ -73,6 +72,15 @@ module.exports={
         db.get().collection(collection.FILE_COLLECTION).createIndex({file_name:"text"})
         db.get().collection(collection.FILE_COLLECTION).insertOne(fileDetails).then((res)=>{
             console.log('file saved');
+        })
+    },
+
+    //update files to database
+    updateID:(updateFile)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:updateFile}).then((res)=>{
+                console.log('updated ID database');
+            })
         })
     },
 
