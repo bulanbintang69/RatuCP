@@ -116,7 +116,7 @@ bot.start(async(ctx)=>{
                     }
                     if(res2.type=='video'){
 
-                    let group = bot.telegram.sendMessage(channelId,'halo')
+                    let group = bot.telegram.sendMessage(channelId)
                     console.log(group);
 
                     let msgId = group.result.message_id
@@ -133,7 +133,7 @@ bot.start(async(ctx)=>{
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: res2.type, callback_data: `none`}],
-                                        [{text: `sender`, url: urls}]
+                                        [{text: `sender`, url: `${urls}`}]
                                     ]
                                 }
                             });
@@ -144,7 +144,7 @@ bot.start(async(ctx)=>{
                             reply_markup:{
                                 inline_keyboard:[
                                     [{text: res2.type, callback_data: `none`}],
-                                    [{text: `sender`, url: urls}]
+                                    [{text: `sender`, url: `${urls}`}]
                                 ]
                             }
                         });
