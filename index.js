@@ -116,9 +116,10 @@ bot.start(async(ctx)=>{
                     }
                     if(res2.type=='video'){
                         ctx.deleteMessage()
+                        let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithVideo(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                            return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -128,7 +129,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -140,9 +141,10 @@ bot.start(async(ctx)=>{
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
                         ctx.deleteMessage()
+                        let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -152,7 +154,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -164,9 +166,10 @@ bot.start(async(ctx)=>{
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
                         ctx.deleteMessage()
+                        let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithDocument(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                            return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -176,7 +179,7 @@ bot.start(async(ctx)=>{
                             }
                         });
                         }
-                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -263,9 +266,10 @@ bot.start(async(ctx)=>{
                                     }else{
                                         if(res2.type=='video'){
                                             ctx.deleteMessage()
+                                            let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithVideo(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                                                return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -275,7 +279,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                                            ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -287,9 +291,10 @@ bot.start(async(ctx)=>{
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='photo'){
                                             ctx.deleteMessage()
+                                            let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                                                return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -299,7 +304,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                                            ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -311,9 +316,10 @@ bot.start(async(ctx)=>{
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='document'){
                                             ctx.deleteMessage()
+                                            let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithDocument(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                                                return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -323,7 +329,7 @@ bot.start(async(ctx)=>{
                                                 }
                                             });
                                             }
-                                            ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
+                                            ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -1103,18 +1109,19 @@ bot.on('document', async(ctx, next) => {
         if(document.file_name == undefined){
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${document.file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails1)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${document.file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1125,7 +1132,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1142,18 +1149,19 @@ bot.on('document', async(ctx, next) => {
         }else{
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${document.file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails2)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${document.file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1164,7 +1172,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1241,6 +1249,7 @@ bot.on('document', async(ctx, next) => {
                     if(document.file_name == undefined){
                         if(ctx.chat.type == 'private'){
                             await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                let result = `${document.file_unique_id}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
@@ -1248,16 +1257,16 @@ bot.on('document', async(ctx, next) => {
                                     saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
-                                            ctx.reply(`File already exists. #file${document.file_unique_id}`)
+                                            ctx.reply(`File already exists. #file${result}`)
                                         }else{
                                             saver.saveFile(fileDetails1)
-                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${document.file_unique_id}`,{
+                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                                 parse_mode: 'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1268,7 +1277,7 @@ bot.on('document', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1287,6 +1296,7 @@ bot.on('document', async(ctx, next) => {
                     }else{
                         if(ctx.chat.type == 'private'){
                             await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                let result = `${document.file_unique_id}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
                                     ctx.reply(`${messagebanned(ctx)}`)
@@ -1294,16 +1304,16 @@ bot.on('document', async(ctx, next) => {
                                     saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
                                         if(res == true) {
-                                            ctx.reply(`File already exists. #file${document.file_unique_id}`)
+                                            ctx.reply(`File already exists. #file${result}`)
                                         }else{
                                             saver.saveFile(fileDetails2)
-                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${document.file_unique_id}`,{
+                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                                 parse_mode: 'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1314,7 +1324,7 @@ bot.on('document', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1384,18 +1394,19 @@ bot.on('video', async(ctx, next) => {
         if(video.file_name == undefined){
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                    let result = `${video.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${video.file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails1)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${video.file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1406,7 +1417,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1423,18 +1434,19 @@ bot.on('video', async(ctx, next) => {
         }else{
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                    let result = `${video.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${video.file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails2)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${video.file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1445,7 +1457,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1527,18 +1539,19 @@ bot.on('video', async(ctx, next) => {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                        let result = `${video.file_unique_id}`.replace(/-/g, '_');
                                         //console.log(res);
                                         if(res == true) {
-                                            ctx.reply(`File already exists. #file${video.file_unique_id}`)
+                                            ctx.reply(`File already exists. #file${result}`)
                                         }else{
                                             saver.saveFile(fileDetails1)
-                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${video.file_unique_id}`,{
+                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                                 parse_mode: 'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1549,7 +1562,7 @@ bot.on('video', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1573,18 +1586,19 @@ bot.on('video', async(ctx, next) => {
                                     ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                        let result = `${video.file_unique_id}`.replace(/-/g, '_');
                                         //console.log(res);
                                         if(res == true) {
-                                            ctx.reply(`File already exists. #file${video.file_unique_id}`)
+                                            ctx.reply(`File already exists. #file${result}`)
                                         }else{
                                             saver.saveFile(fileDetails2)
-                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${video.file_unique_id}`,{
+                                            ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                                 parse_mode: 'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                             if(ctx.message.caption == undefined)
-                                                return ctx.reply(`#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                return ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1595,7 +1609,7 @@ bot.on('video', async(ctx, next) => {
                                                         ]
                                                     }
                                                 })
-                                                ctx.reply(`${ctx.message.caption}\n\n#video #file${video.file_unique_id} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                                ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                     chat_id: process.env.LOG_CHANNEL,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -1806,6 +1820,7 @@ bot.on('photo', async(ctx, next) => {
                 if(photo[1].file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                            let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
                                 ctx.reply(`${messagebanned(ctx)}`)
@@ -1857,6 +1872,7 @@ bot.on('photo', async(ctx, next) => {
                                 ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                    let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                                     //console.log(res);
                                     if(res == true) {
                                         ctx.reply(`File already exists. #file${result}`)
