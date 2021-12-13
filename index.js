@@ -147,7 +147,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, callback_data:res2.type}]
+                                        [{text: res2.type, url: `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`}]
                                     ]
                                 }
                             });
