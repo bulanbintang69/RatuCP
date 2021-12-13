@@ -121,8 +121,7 @@ bot.start(async(ctx)=>{
                     let msgId = group.result.message_id
                     let chatId = group.result.chat.id.toString()
 
-                    let urls = 'https://t.me/c/' + chatId.replace('-100', '') + '/' + msgId
-
+                    let urls = `https://t.me/c/${chatId}/${msgId}`
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
