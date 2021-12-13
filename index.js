@@ -882,7 +882,8 @@ bot.command('rem', (ctx) => {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
         msgArray.shift()
-        let text = msgArray.join(' ')
+        let text2 = msgArray.join(' ')
+        let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             saver.removeFile(text)
