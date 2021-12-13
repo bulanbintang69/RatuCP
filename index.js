@@ -143,14 +143,14 @@ bot.start(async(ctx)=>{
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                                message_bot = `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`
+                                const message_bot = `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`
                             }
                             return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, url: `${message_bot}`}]
+                                        [{text: res2.type, url: message_bot}]
                                     ]
                                 }
                             });
