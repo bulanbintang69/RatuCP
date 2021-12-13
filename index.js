@@ -142,7 +142,7 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                                var message_group = `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`
+                                let message_group = `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`
                                 setTimeout(captionFunction2, 1000)
                                 if(ctx.chat.type == 'private') {
                                     return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
