@@ -1715,7 +1715,7 @@ bot.on('photo', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            result = ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return result = ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
