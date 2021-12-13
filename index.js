@@ -141,20 +141,16 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='photo'){
                         ctx.deleteMessage()
                         if(!res2.caption) {
-                            if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                                setTimeout(captionFunction2, 1000)
-                                if(ctx.chat.type == 'private') {
-                                    return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: res2.type, url: `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`}]
-                                            ]
-                                        }
-                                    });
+                            setTimeout(captionFunction2, 1000)
+                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: res2.type, url: `https://t.me/c/${ctx.chat.id}/${ctx.update_id}`}]
+                                    ]
                                 }
-                            }
+                            });
                         }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
