@@ -78,6 +78,7 @@ bot.start(async(ctx)=>{
             return resolve("Result");
         }, 2_000);
     });
+    if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
         //console.log(msgArray.length);
@@ -138,24 +139,19 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
-                        if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                         ctx.deleteMessage()
                         if(!res2.caption) {
-                            let link = `${ctx.message_id}`;
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithPhoto(res2.file_id,{caption: `#file${res2.uniqueId} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [
-                                            {text: res2.type, callback_data: `none`},
-                                            {text: `sender`, url: `http://t.me/c/${ctx.chat.id}/${link}`}
-                                        ]
+                                        [{text: res2.type, callback_data: `none`}]
                                     ]
                                 }
                             });
-                        }}
+                        }
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -363,6 +359,7 @@ bot.start(async(ctx)=>{
         }
         //saving user details to the database
         saver.saveUser(user)
+    }
 })
 
 //TEST BOT
