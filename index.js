@@ -115,6 +115,14 @@ bot.start(async(ctx)=>{
                         })
                     }
                     if(res2.type=='video'){
+
+                    let group = sendMessage()
+
+                    let msgId = group.result.message_id
+                    let chatId = group.result.chat.id.toString()
+
+                    let urls = 'https://t.me/c/' + chatId.replace('-100', '') + '/' + msgId
+
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
@@ -124,7 +132,7 @@ bot.start(async(ctx)=>{
                                 reply_markup:{
                                     inline_keyboard:[
                                         [{text: res2.type, callback_data: `none`}],
-                                        [{text: `sender`, url: `https://t.me/c/${ctx.message.chat.id}/${ctx.message.update_id}`}]
+                                        [{text: `sender`, url: urls}]
                                     ]
                                 }
                             });
@@ -135,7 +143,7 @@ bot.start(async(ctx)=>{
                             reply_markup:{
                                 inline_keyboard:[
                                     [{text: res2.type, callback_data: `none`}],
-                                    [{text: `sender`, url: `https://t.me/c/${ctx.message.chat.id}/${ctx.message.update_id}`}]
+                                    [{text: `sender`, url: urls}]
                                 ]
                             }
                         });
