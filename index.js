@@ -1124,7 +1124,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            var result = ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1135,6 +1135,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(result)
                     }
                 })
             }
@@ -1163,7 +1164,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            var result = ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1174,6 +1175,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(result)
                     }
                 })
             }
