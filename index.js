@@ -1113,7 +1113,7 @@ bot.on('document', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            var result = ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1124,7 +1124,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            var result = ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1135,7 +1135,6 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(result);
                     }
                 })
             }
@@ -1153,7 +1152,7 @@ bot.on('document', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            var result = ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1164,7 +1163,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            var result = ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#document #file${document.file_unique_id} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1175,7 +1174,6 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(result);
                     }
                 })
             }
@@ -1666,18 +1664,19 @@ bot.on('photo', async(ctx, next) => {
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                    let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails1)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${photo[1].file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1688,7 +1687,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1705,18 +1704,19 @@ bot.on('photo', async(ctx, next) => {
         }else{
             if(ctx.chat.type == 'private'){
                 await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                    let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
+                        ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails2)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${photo[1].file_unique_id}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1727,7 +1727,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1812,16 +1812,16 @@ bot.on('photo', async(ctx, next) => {
                                 saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                     //console.log(res);
                                     if(res == true) {
-                                        ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
+                                        ctx.reply(`File already exists. #file${result}`)
                                     }else{
                                         saver.saveFile(fileDetails1)
-                                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${photo[1].file_unique_id}`,{
+                                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
                                         if(ctx.message.caption == undefined)
-                                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -1832,7 +1832,7 @@ bot.on('photo', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -1858,16 +1858,16 @@ bot.on('photo', async(ctx, next) => {
                                 saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                     //console.log(res);
                                     if(res == true) {
-                                        ctx.reply(`File already exists. #file${photo[1].file_unique_id}`)
+                                        ctx.reply(`File already exists. #file${result}`)
                                     }else{
                                         saver.saveFile(fileDetails2)
-                                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${photo[1].file_unique_id}`,{
+                                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
                                         if(ctx.message.caption == undefined)
-                                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -1878,7 +1878,7 @@ bot.on('photo', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
