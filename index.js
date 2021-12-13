@@ -849,11 +849,6 @@ bot.command('send',async(ctx)=>{
 })
 //END
 
-bot.command(['bye', 'halo'], (ctx) => {
-    var pesan = ctx.reply('apa?');
-    console.log(pesan);
-})
-
 //check account
 bot.command('getid',async(ctx)=>{
     await new Promise((resolve, reject) =>{
@@ -1644,7 +1639,6 @@ bot.on('photo', async(ctx, next) => {
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
 
-        const random2 = Math.random() * (100000000000000000) + 1
         if(photo[1].file_name == undefined){
             fileDetails1 = {
                 file_name: today2(ctx),
@@ -1653,7 +1647,6 @@ bot.on('photo', async(ctx, next) => {
                 caption: ctx.message.caption,
                 file_size: photo[1].file_size,
                 uniqueId: photo[1].file_unique_id,
-                random: random2,
                 type: 'photo'
             }
         }else{
@@ -1667,7 +1660,6 @@ bot.on('photo', async(ctx, next) => {
                 caption: ctx.message.caption,
                 file_size: photo[1].file_size,
                 uniqueId: photo[1].file_unique_id,
-                random: random2,
                 type: 'photo'
             }
         }
