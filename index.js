@@ -138,6 +138,7 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
+                        if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             let link = `${ctx.message_id}`;
@@ -154,7 +155,7 @@ bot.start(async(ctx)=>{
                                     ]
                                 }
                             });
-                        }
+                        }}
                         ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${res2.uniqueId} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
