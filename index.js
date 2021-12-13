@@ -116,7 +116,7 @@ bot.start(async(ctx)=>{
                     }
                     if(res2.type=='video'){
 
-                    let group = sendMessage()
+                    let group = bot.telegram.sendMessage()
                     console.log(group);
 
                     let msgId = group.result.message_id
