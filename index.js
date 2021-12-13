@@ -1135,7 +1135,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(result)
+                            console.log(result);
                     }
                 })
             }
@@ -1175,7 +1175,7 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(result)
+                            console.log(result);
                     }
                 })
             }
