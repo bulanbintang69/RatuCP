@@ -1672,7 +1672,7 @@ bot.on('photo', async(ctx, next) => {
                         ctx.reply(`File already exists. #file${fileDetails1.random}`)
                     }else{
                         saver.saveFile(fileDetails1)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails2.random}`,{
+                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails1.random}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
@@ -1813,7 +1813,7 @@ bot.on('photo', async(ctx, next) => {
                                 saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
                                     //console.log(res);
                                     if(res == true) {
-                                        ctx.reply(`File already exists. #file${fileDetails2.random}`)
+                                        ctx.reply(`File already exists. #file${fileDetails1.random}`)
                                     }else{
                                         saver.saveFile(fileDetails1)
                                         ctx.reply(`✔️ Thank you for sending.\nSearch #file${fileDetails1.random}`,{
