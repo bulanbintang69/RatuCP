@@ -115,9 +115,6 @@ bot.start(async(ctx)=>{
                         })
                     }
                     if(res2.type=='video'){
-
-                    const urls = `https://t.me/c/${ctx.message.chat.id}/${ctx.message.message_id}`
-
                         ctx.deleteMessage()
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
@@ -126,8 +123,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, callback_data: `none`}],
-                                        [{text: `sender`, url: `${urls}`}]
+                                        [{text: res2.type, callback_data: `none`}]
                                     ]
                                 }
                             });
@@ -137,8 +133,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: res2.type, callback_data: `none`}],
-                                    [{text: `sender`, url: `${urls}`}]
+                                    [{text: res2.type, callback_data: `none`}]
                                 ]
                             }
                         });
@@ -1680,7 +1675,7 @@ bot.on('photo', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return result = ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1691,7 +1686,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            result = ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1702,6 +1697,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
+                        console.log(result);
                     }
                 })
             }
@@ -1719,7 +1715,7 @@ bot.on('photo', async(ctx, next) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            return result = ctx.reply(`#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1730,7 +1726,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            result = ctx.reply(`${ctx.message.caption}\n\n#photo #file${photo[1].file_unique_id} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1741,6 +1737,8 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
+
+                        console.log(result);
                     }
                 })
             }

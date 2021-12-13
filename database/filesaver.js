@@ -60,9 +60,16 @@ module.exports={
 
     //updating user database by removing blocked users details from the database
 
+
     updateUser:(userId)=>{
         db.get().collection(collection.USER_COLLECTION).deleteOne({userId:userId}).then((res)=>{
             console.log('updated user database');
+        })
+    },
+
+    updateUser:(userId)=>{
+        db.get().collection(collection.FILE_COLLECTION).updateOne({userId:userId}).then((res)=>{
+            console.log('updated message id database');
         })
     },
 
