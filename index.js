@@ -1877,11 +1877,11 @@ bot.on('photo', async(ctx, next) => {
                             })
                             if(ctx.chat.type == 'private') {
                                 photo = ctx.message.photo
-                                var vidtext = photo[1].file_name;
+                                var exstension = photo[1].file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
-                                var doctext = vidtext.replace(regex, '');
+                                var photext = exstension.replace(regex, '');
                                 fileDetails2 = {
-                                    file_name: doctext,
+                                    file_name: photext,
                                     userId:ctx.from.id,
                                     file_id: photo[1].file_id,
                                     caption: ctx.message.caption,
@@ -1907,11 +1907,11 @@ bot.on('photo', async(ctx, next) => {
                         })
                         if(ctx.chat.type == 'private') {
                             photo = ctx.message.photo
-                            var vidtext = photo[1].file_name;
+                            var exstension = photo[1].file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
-                            var doctext = vidtext.replace(regex, '');
+                            var photext = exstension.replace(regex, '');
                             fileDetails2 = {
-                                file_name: doctext,
+                                file_name: photext,
                                 userId:ctx.from.id,
                                 file_id: photo[1].file_id,
                                 caption: ctx.message.caption,
@@ -1937,7 +1937,7 @@ bot.on('photo', async(ctx, next) => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            ctx.reply(`${messagebanned(ctx)}`)
+                            await ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
@@ -1960,7 +1960,7 @@ bot.on('photo', async(ctx, next) => {
                             let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
@@ -2036,7 +2036,7 @@ bot.on('photo', async(ctx, next) => {
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
@@ -2063,11 +2063,11 @@ bot.on('photo', async(ctx, next) => {
                                             })
                                             if(ctx.chat.type == 'private') {
                                                 photo = ctx.message.photo
-                                                var vidtext = photo[1].file_name;
+                                                var exstension = photo[1].file_name;
                                                 var regex = /\.[A-Za-z0-9]+$/gm
-                                                var doctext = vidtext.replace(regex, '');
+                                                var photext = exstension.replace(regex, '');
                                                 fileDetails2 = {
-                                                    file_name: doctext,
+                                                    file_name: photext,
                                                     userId:ctx.from.id,
                                                     file_id: photo[1].file_id,
                                                     caption: ctx.message.caption,
@@ -2093,11 +2093,11 @@ bot.on('photo', async(ctx, next) => {
                                         })
                                         if(ctx.chat.type == 'private') {
                                             photo = ctx.message.photo
-                                            var vidtext = photo[1].file_name;
+                                            var exstension = photo[1].file_name;
                                             var regex = /\.[A-Za-z0-9]+$/gm
-                                            var doctext = vidtext.replace(regex, '');
+                                            var photext = exstension.replace(regex, '');
                                             fileDetails2 = {
-                                                file_name: doctext,
+                                                file_name: photext,
                                                 userId:ctx.from.id,
                                                 file_id: photo[1].file_id,
                                                 caption: ctx.message.caption,
