@@ -92,14 +92,14 @@ bot.start(async(ctx)=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
-                ctx.deleteMessage()
+                await ctx.deleteMessage()
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
-                    return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
+                    return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                         parse_mode:'HTML',
                         disable_web_page_preview: true
                     })
-                    ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                    await ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
                         parse_mode:'HTML',
                         disable_web_page_preview: true
                     })
@@ -109,18 +109,18 @@ bot.start(async(ctx)=>{
                     const res2 = await saver.getFile2(query2)
                 
                     function captionFunction2() {
-                        ctx.reply(`${captionbuild(ctx)}`,{
+                        await ctx.reply(`${captionbuild(ctx)}`,{
                             parse_mode:'HTML'
                         })
                     }
                     if(res2.type=='video'){
-                        ctx.deleteMessage()
+                        await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
 
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -130,7 +130,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                        await ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -141,13 +141,13 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
-                        ctx.deleteMessage()
+                        await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                         
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -157,7 +157,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                        await ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -168,13 +168,13 @@ bot.start(async(ctx)=>{
                         });
                             setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
-                        ctx.deleteMessage()
+                        await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                         
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -184,7 +184,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                        await ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -196,8 +196,8 @@ bot.start(async(ctx)=>{
                             setTimeout(captionFunction2, 1000)
                     }
                 }catch(error){
-                    ctx.deleteMessage()
-                    ctx.reply(`Media not found or has been removed`)
+                    await ctx.deleteMessage()
+                    await ctx.reply(`Media not found or has been removed`)
                 }
             }
         }else{
@@ -207,21 +207,21 @@ bot.start(async(ctx)=>{
                 //console.log(member);
                 if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                     const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
                             if(ctx.chat.type == 'private') {
-                                ctx.deleteMessage()
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.deleteMessage()
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }
                         }else{
                             ctx.deleteMessage()
                             if(!profile2 || profile2.total_count == 0)
-                                return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true
                                 })
-                                ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true
                                 })
@@ -231,21 +231,21 @@ bot.start(async(ctx)=>{
                     //welcoming message on /start and ifthere is a query available we can send files
                     if(length == 1){
                         const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                            await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                            await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
                                     if(ctx.chat.type == 'private') {
-                                        ctx.deleteMessage()
-                                        ctx.reply(`${messagebanned(ctx)}`)
+                                        await ctx.deleteMessage()
+                                        await ctx.reply(`${messagebanned(ctx)}`)
                                     }
                                 }else{
-                                    ctx.deleteMessage()
+                                    await ctx.deleteMessage()
                                     if(!profile3 || profile3.total_count == 0)
-                                        return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
+                                        return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true
                                         })
-                                        ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                                        await ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true
                                         })
@@ -261,22 +261,22 @@ bot.start(async(ctx)=>{
                                         parse_mode:'HTML'
                                     })
                                 }
-                                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                     //console.log(res);
                                     if(res == true) {
                                         if(ctx.chat.type == 'private') {
-                                            ctx.deleteMessage()
-                                            ctx.reply(`${messagebanned(ctx)}`)
+                                            await ctx.deleteMessage()
+                                            await ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
                                         if(res2.type=='video'){
-                                            ctx.deleteMessage()
+                                            await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                return await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -286,7 +286,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                                            await ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -297,13 +297,13 @@ bot.start(async(ctx)=>{
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='photo'){
-                                            ctx.deleteMessage()
+                                            await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                return await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -313,7 +313,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                                            await ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -324,23 +324,23 @@ bot.start(async(ctx)=>{
                                             });
                                                 setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='document'){
-                                            ctx.deleteMessage()
+                                            await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
-                                                parse_mode:'HTML',
-                                                disable_web_page_preview: true,
-                                                reply_markup:{
-                                                    inline_keyboard:[
-                                                        [{text: res2.type, callback_data: `none`},{text: `sender`, url: `${urls}`}]
-                                                    ]
-                                                }
-                                            });
+                                                return await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:[
+                                                            [{text: res2.type, callback_data: `none`},{text: `sender`, url: `${urls}`}]
+                                                        ]
+                                                    }
+                                                });
                                             }
-                                            ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
+                                            await ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption} \n\n#file${result} #size${res2.file_size}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -354,15 +354,15 @@ bot.start(async(ctx)=>{
                                     }
                                 })
                             }catch(error){
-                                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                     //console.log(res);
                                     if(res == true) {
                                         if(ctx.chat.type == 'private') {
-                                            ctx.reply(`${messagebanned(ctx)}`)
+                                            await ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
-                                        ctx.deleteMessage()
-                                        ctx.reply(`Media not found or has been removed`)
+                                        await ctx.deleteMessage()
+                                        await ctx.reply(`Media not found or has been removed`)
                                     }
                                 })
                             }
@@ -370,12 +370,12 @@ bot.start(async(ctx)=>{
                     }
                 }
             catch(error){
-                ctx.deleteMessage()
-                ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                await ctx.deleteMessage()
+                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
             }
         }
         //saving user details to the database
-        saver.saveUser(user)
+        await saver.saveUser(user)
     }
 })
 
@@ -1240,20 +1240,20 @@ bot.on('document', async(ctx, next) => {
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            ctx.reply(`${messagebanned(ctx)}`)
+                            await ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
                         if(!profile2 || profile2.total_count == 0)
-                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                            return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
-                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                            await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
@@ -1593,20 +1593,20 @@ bot.on('video', async(ctx, next) => {
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            ctx.reply(`${messagebanned(ctx)}`)
+                            await ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
                         if(!profile2 || profile2.total_count == 0)
-                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                            return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
-                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                            await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
@@ -1946,20 +1946,20 @@ bot.on('photo', async(ctx, next) => {
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            ctx.reply(`${messagebanned(ctx)}`)
+                            await ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
                         if(!profile2 || profile2.total_count == 0)
-                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                            return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
-                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                            await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
