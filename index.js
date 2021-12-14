@@ -1678,20 +1678,20 @@ bot.on('photo', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
-                await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then((async res) => {
                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${result}`)
+                        await ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails1)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
+                        await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                        if(ctx.message.caption == undefined){
+                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1702,7 +1702,10 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            console.log(data1);
+                            return;
+                        }
+                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1713,25 +1716,26 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(data2);
                     }
                 })
             }
         }else{
             if(ctx.chat.type == 'private'){
-                await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then((async res) => {
                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${result}`)
+                        await ctx.reply(`File already exists. #file${result}`)
                     }else{
                         saver.saveFile(fileDetails2)
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
+                        await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        if(ctx.message.caption == undefined)
-                            return ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                        if(ctx.message.caption == undefined){
+                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1742,7 +1746,10 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            console.log(data1);
+                            return;
+                        }
+                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1753,6 +1760,7 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(data2);
                     }
                 })
             }
