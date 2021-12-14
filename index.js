@@ -1718,7 +1718,7 @@ bot.on('photo', async(ctx, next) => {
                             })
                             console.log(data2);
                     }
-                }
+                )
             }
         }else{
             if(ctx.chat.type == 'private'){
@@ -1762,7 +1762,7 @@ bot.on('photo', async(ctx, next) => {
                             })
                             console.log(data2);
                     }
-                }
+                )
             }
         }
     }else{
