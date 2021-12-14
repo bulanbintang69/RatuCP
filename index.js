@@ -1780,6 +1780,10 @@ bot.on('photo', async(ctx, next) => {
     });
     await next();
   
+    if(ctx.chat.type == 'private') {
+        photo = ctx.message.photo
+    }
+
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
@@ -1954,6 +1958,10 @@ bot.on('photo', async(ctx, next) => {
                     }
                 })
             }else{
+                if(ctx.chat.type == 'private') {
+                    photo = ctx.message.photo
+                }
+                
                 if(photo[1].file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
