@@ -1152,7 +1152,7 @@ bot.on('document', async(ctx, next) => {
                                 caption: ctx.message.caption,
                                 file_size: document.file_size,
                                 uniqueId: document.file_unique_id,
-                                messageId: data2.message.message_id,
+                                messageId: data2.message_id,
                                 type: 'document'
                             }
                             saver.saveFile(fileDetails1)
@@ -1505,7 +1505,7 @@ bot.on('video', async(ctx, next) => {
                                 caption: ctx.message.caption,
                                 file_size: video.file_size,
                                 uniqueId: video.file_unique_id,
-                                messageId: data2.message.message_id,
+                                messageId: data2.message_id,
                                 type: 'video'
                             }
                             saver.saveFile(fileDetails1)
