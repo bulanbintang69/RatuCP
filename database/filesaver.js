@@ -69,9 +69,16 @@ module.exports={
 
     //saving files to database
 
-    saveFile:(fileDetails)=>{
+    saveFile:(fileDetails1)=>{
         db.get().collection(collection.FILE_COLLECTION).createIndex({file_name:"text"})
-        db.get().collection(collection.FILE_COLLECTION).insertOne(fileDetails).then((res)=>{
+        db.get().collection(collection.FILE_COLLECTION).insertOne(fileDetails1).then((res)=>{
+            console.log('file saved');
+        })
+    },
+
+    saveFile2:(fileDetails2)=>{
+        db.get().collection(collection.FILE_COLLECTION).createIndex({file_name:"text"})
+        db.get().collection(collection.FILE_COLLECTION).insertOne(fileDetails2).then((res)=>{
             console.log('file saved');
         })
     },

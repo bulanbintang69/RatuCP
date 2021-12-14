@@ -1835,8 +1835,8 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
+                                saver.saveFile(fileDetails1)
                             }
-                            saver.saveFile(fileDetails1)
                             return;
                         }
                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1861,8 +1861,8 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message.message_id,
                                 type: 'photo'
                             }
+                            saver.saveFile(fileDetails1)
                         }
-                        saver.saveFile(fileDetails1)
                     }
                 })
             }
@@ -1905,8 +1905,8 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
+                                saver.saveFile2(fileDetails2)
                             }
-                            saver.saveFile(fileDetails2)
                             return;
                         }
                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1934,8 +1934,8 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
+                            saver.saveFile2(fileDetails2)
                         }
-                        saver.saveFile(fileDetails2)
                     }
                 })
             }
@@ -2014,8 +2014,8 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
+                                                saver.saveFile(fileDetails1)
                                             }
-                                            saver.saveFile(fileDetails1)
                                             return;
                                         }
                                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -2040,8 +2040,8 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
+                                            saver.saveFile(fileDetails1)
                                         }
-                                        saver.saveFile(fileDetails1)
                                     }
                                 })
                             }
@@ -2091,8 +2091,8 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
+                                                saver.saveFile2(fileDetails2)
                                             }
-                                            saver.saveFile(fileDetails2)
                                             return;
                                         }
                                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -2120,8 +2120,8 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
+                                            saver.saveFile2(fileDetails2)
                                         }
-                                        saver.saveFile(fileDetails2)
                                     }
                                 })
                             }
