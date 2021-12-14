@@ -118,8 +118,7 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                        
-                        let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
