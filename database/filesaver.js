@@ -67,12 +67,6 @@ module.exports={
         })
     },
 
-    updateUser:(userId)=>{
-        db.get().collection(collection.FILE_COLLECTION).updateOne({userId:userId}).then((res)=>{
-            console.log('updated message id database');
-        })
-    },
-
     //saving files to database
 
     saveFile:(fileDetails)=>{
