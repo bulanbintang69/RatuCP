@@ -1891,7 +1891,7 @@ bot.on('photo', async(ctx, next) => {
                                     caption: ctx.message.caption,
                                     file_size: photo[1].file_size,
                                     uniqueId: photo[1].file_unique_id,
-                                    messageId: data1.ctx.message.message_id,
+                                    messageId: data1.ctx.message_id,
                                     type: 'photo'
                                 }
                                 await saver.saveFile(fileDetails2)
@@ -1921,7 +1921,7 @@ bot.on('photo', async(ctx, next) => {
                                 caption: ctx.message.caption,
                                 file_size: photo[1].file_size,
                                 uniqueId: photo[1].file_unique_id,
-                                messageId: data2.message.message_id,
+                                messageId: data2.message_id,
                                 type: 'photo'
                             }
                             await saver.saveFile(fileDetails2)
@@ -2002,7 +2002,7 @@ bot.on('photo', async(ctx, next) => {
                                                     caption: ctx.message.caption,
                                                     file_size: photo[1].file_size,
                                                     uniqueId: photo[1].file_unique_id,
-                                                    messageId: data1.ctx.message.message_id,
+                                                    messageId: data1.ctx.message_id,
                                                     type: 'photo'
                                                 }
                                                 await saver.saveFile(fileDetails1)
@@ -2029,7 +2029,7 @@ bot.on('photo', async(ctx, next) => {
                                                 caption: ctx.message.caption,
                                                 file_size: photo[1].file_size,
                                                 uniqueId: photo[1].file_unique_id,
-                                                messageId: data2.ctx.message.message_id,
+                                                messageId: data2.ctx.message_id,
                                                 type: 'photo'
                                             }
                                             await saver.saveFile(fileDetails1)
@@ -2081,7 +2081,7 @@ bot.on('photo', async(ctx, next) => {
                                                     caption: ctx.message.caption,
                                                     file_size: photo[1].file_size,
                                                     uniqueId: photo[1].file_unique_id,
-                                                    messageId: data1.ctx.message.message_id,
+                                                    messageId: data1.ctx.message_id,
                                                     type: 'photo'
                                                 }
                                                 await saver.saveFile(fileDetails2)
@@ -2111,7 +2111,7 @@ bot.on('photo', async(ctx, next) => {
                                                 caption: ctx.message.caption,
                                                 file_size: photo[1].file_size,
                                                 uniqueId: photo[1].file_unique_id,
-                                                messageId: data2.ctx.message.message_id,
+                                                messageId: data2.ctx.message_id,
                                                 type: 'photo'
                                             }
                                             await saver.saveFile(fileDetails2)
