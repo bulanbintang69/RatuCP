@@ -1678,7 +1678,7 @@ bot.on('photo', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
-                await saver.checkFile(`${photo[1].file_unique_id}`).then((async, res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then(async, res => {
                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1718,11 +1718,11 @@ bot.on('photo', async(ctx, next) => {
                             })
                             console.log(data2);
                     }
-                })
+                }
             }
         }else{
             if(ctx.chat.type == 'private'){
-                await saver.checkFile(`${photo[1].file_unique_id}`).then((async, res) => {
+                await saver.checkFile(`${photo[1].file_unique_id}`).then(async, res => {
                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1762,7 +1762,7 @@ bot.on('photo', async(ctx, next) => {
                             })
                             console.log(data2);
                     }
-                })
+                }
             }
         }
     }else{
