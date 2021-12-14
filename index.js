@@ -109,7 +109,7 @@ bot.start(async(ctx)=>{
                     const res2 = await saver.getFile2(query2)
                 
                     function captionFunction2() {
-                        await ctx.reply(`${captionbuild(ctx)}`,{
+                        ctx.reply(`${captionbuild(ctx)}`,{
                             parse_mode:'HTML'
                         })
                     }
