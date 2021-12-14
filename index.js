@@ -1075,35 +1075,6 @@ bot.on('document', async(ctx, next) => {
         }, 2_000);
     });
     await next();
-
-    if(ctx.chat.type == 'private') {
-        document = ctx.message.document
-
-        if(document.file_name == undefined){
-            fileDetails1 = {
-                file_name: today2(ctx),
-                userId:ctx.from.id,
-                file_id: document.file_id,
-                caption: ctx.message.caption,
-                file_size: document.file_size,
-                uniqueId: document.file_unique_id,
-                type: 'document'
-            }
-        }else{
-            var exstension = document.file_name;
-            var regex = /\.[A-Za-z0-9]+$/gm
-            var doctext = exstension.replace(regex, '');
-            fileDetails2 = {
-                file_name: doctext,
-                userId:ctx.from.id,
-                file_id: document.file_id,
-                caption: ctx.message.caption,
-                file_size: document.file_size,
-                uniqueId: document.file_unique_id,
-                type: 'document'
-            }
-        }
-    }
   
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(document.file_name == undefined){
@@ -1114,7 +1085,6 @@ bot.on('document', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails1)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1132,7 +1102,20 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                document = ctx.message.document
+                                fileDetails1 = {
+                                    file_name: today2(ctx),
+                                    userId:ctx.from.id,
+                                    file_id: document.file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: document.file_size,
+                                    uniqueId: document.file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'document'
+                                }
+                                await saver.saveFile(fileDetails1)
+                            }
                             return;
                         }
                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1146,7 +1129,20 @@ bot.on('document', async(ctx, next) => {
                                 ]
                             }
                         })
-                        console.log(data2);
+                        if(ctx.chat.type == 'private') {
+                            document = ctx.message.document
+                            fileDetails1 = {
+                                file_name: today2(ctx),
+                                userId:ctx.from.id,
+                                file_id: document.file_id,
+                                caption: ctx.message.caption,
+                                file_size: document.file_size,
+                                uniqueId: document.file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'document'
+                            }
+                            await saver.saveFile(fileDetails1)
+                        }
                     }
                 })
             }
@@ -1158,7 +1154,6 @@ bot.on('document', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails2)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1176,21 +1171,53 @@ bot.on('document', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                document = ctx.message.document
+                                var exstension = document.file_name;
+                                var regex = /\.[A-Za-z0-9]+$/gm
+                                var doctext = exstension.replace(regex, '');
+                                fileDetails2 = {
+                                    file_name: doctext,
+                                    userId:ctx.from.id,
+                                    file_id: document.file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: document.file_size,
+                                    uniqueId: document.file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'document'
+                                }
+                                await saver.saveFile(fileDetails2)
+                            }
                             return;
                         }
-                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
-                                    ]
-                                }
-                            })
-                            console.log(data2);
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            chat_id: process.env.LOG_CHANNEL,
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            disable_notification: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
+                                ]
+                            }
+                        })
+                        if(ctx.chat.type == 'private') {
+                            document = ctx.message.document
+                            var exstension = document.file_name;
+                            var regex = /\.[A-Za-z0-9]+$/gm
+                            var doctext = exstension.replace(regex, '');
+                            fileDetails2 = {
+                                file_name: doctext,
+                                userId:ctx.from.id,
+                                file_id: document.file_id,
+                                caption: ctx.message.caption,
+                                file_size: document.file_size,
+                                uniqueId: document.file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'document'
+                            }
+                            await saver.saveFile(fileDetails2)
+                        }
                     }
                 })
             }
@@ -1223,38 +1250,6 @@ bot.on('document', async(ctx, next) => {
                     }
                 })
             }else{
-                if(ctx.chat.type == 'private') {
-                    video = ctx.message.video
-
-                    if(ctx.chat.type == 'private') {
-                        photo = ctx.message.video
-                        if(document.file_name == undefined){
-                            fileDetails1 = {
-                                file_name: today2(ctx),
-                                userId:ctx.from.id,
-                                file_id: document.file_id,
-                                caption: ctx.message.caption,
-                                file_size: document.file_size,
-                                uniqueId: document.file_unique_id,
-                                type: 'document'
-                            }
-                        }else{
-                            var exstension = document.file_name;
-                            var regex = /\.[A-Za-z0-9]+$/gm
-                            var doctext = exstension.replace(regex, '');
-                            fileDetails2 = {
-                                file_name: doctext,
-                                userId:ctx.from.id,
-                                file_id: document.file_id,
-                                caption: ctx.message.caption,
-                                file_size: document.file_size,
-                                uniqueId: document.file_unique_id,
-                                type: 'document'
-                            }
-                        }
-                    }
-                }
-
                 if(document.file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -1269,7 +1264,6 @@ bot.on('document', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails1)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1287,7 +1281,20 @@ bot.on('document', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                document = ctx.message.document
+                                                fileDetails1 = {
+                                                    file_name: today2(ctx),
+                                                    userId:ctx.from.id,
+                                                    file_id: document.file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: document.file_size,
+                                                    uniqueId: document.file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'document'
+                                                }
+                                                await saver.saveFile(fileDetails1)
+                                            }
                                             return;
                                         }
                                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1301,7 +1308,20 @@ bot.on('document', async(ctx, next) => {
                                                 ]
                                             }
                                         })
-                                        console.log(data2);
+                                        if(ctx.chat.type == 'private') {
+                                            document = ctx.message.document
+                                            fileDetails1 = {
+                                                file_name: today2(ctx),
+                                                userId:ctx.from.id,
+                                                file_id: document.file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: document.file_size,
+                                                uniqueId: document.file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'document'
+                                            }
+                                            await saver.saveFile(fileDetails1)
+                                        }
                                     }
                                 })
                             }
@@ -1320,7 +1340,6 @@ bot.on('document', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails2)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1338,21 +1357,51 @@ bot.on('document', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                var exstension = document.file_name;
+                                                var regex = /\.[A-Za-z0-9]+$/gm
+                                                var doctext = exstension.replace(regex, '');
+                                                fileDetails2 = {
+                                                    file_name: doctext,
+                                                    userId:ctx.from.id,
+                                                    file_id: document.file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: document.file_size,
+                                                    uniqueId: document.file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'document'
+                                                }
+                                                await saver.saveFile(fileDetails2)
+                                            }
                                             return;
                                         }
-                                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                                chat_id: process.env.LOG_CHANNEL,
-                                                parse_mode:'HTML',
-                                                disable_web_page_preview: true,
-                                                disable_notification: true,
-                                                reply_markup:{
-                                                    inline_keyboard:[
-                                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
-                                                    ]
-                                                }
-                                            })
-                                            console.log(data2);
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
+                                                ]
+                                            }
+                                        })
+                                        if(ctx.chat.type == 'private') {
+                                            var exstension = document.file_name;
+                                            var regex = /\.[A-Za-z0-9]+$/gm
+                                            var doctext = exstension.replace(regex, '');
+                                            fileDetails2 = {
+                                                file_name: doctext,
+                                                userId:ctx.from.id,
+                                                file_id: document.file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: document.file_size,
+                                                uniqueId: document.file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'document'
+                                            }
+                                            await saver.saveFile(fileDetails2)
+                                        }
                                     }
                                 })
                             }
@@ -1377,35 +1426,6 @@ bot.on('video', async(ctx, next) => {
         }, 2_000);
     });
     await next();
-
-    if(ctx.chat.type == 'private') {
-        video = ctx.message.video
-
-        if(video.file_name == undefined){
-            fileDetails1 = {
-                file_name: today2(ctx),
-                userId:ctx.from.id,
-                file_id: video.file_id,
-                caption: ctx.message.caption,
-                file_size: video.file_size,
-                uniqueId: video.file_unique_id,
-                type: 'video'
-            }
-        }else{
-            var exstension = video.file_name;
-            var regex = /\.[A-Za-z0-9]+$/gm
-            var vidtext = exstension.replace(regex, '');
-            fileDetails2 = {
-                file_name: vidtext,
-                userId:ctx.from.id,
-                file_id: video.file_id,
-                caption: ctx.message.caption,
-                file_size: video.file_size,
-                uniqueId: video.file_unique_id,
-                type: 'video'
-            }
-        }
-    }
   
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(video.file_name == undefined){
@@ -1416,7 +1436,6 @@ bot.on('video', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails1)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1434,7 +1453,20 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                video = ctx.message.video
+                                fileDetails1 = {
+                                    file_name: today2(ctx),
+                                    userId:ctx.from.id,
+                                    file_id: video.file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: video.file_size,
+                                    uniqueId: video.file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'video'
+                                }
+                                await saver.saveFile(fileDetails1)
+                            }
                             return;
                         }
                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1448,7 +1480,20 @@ bot.on('video', async(ctx, next) => {
                                 ]
                             }
                         })
-                        console.log(data2);
+                        if(ctx.chat.type == 'private') {
+                            video = ctx.message.video
+                            fileDetails1 = {
+                                file_name: today2(ctx),
+                                userId:ctx.from.id,
+                                file_id: video.file_id,
+                                caption: ctx.message.caption,
+                                file_size: video.file_size,
+                                uniqueId: video.file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'video'
+                            }
+                            await saver.saveFile(fileDetails1)
+                        }
                     }
                 })
             }
@@ -1460,7 +1505,6 @@ bot.on('video', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails2)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1478,21 +1522,53 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                video = ctx.message.video
+                                var vidtext = video.file_name;
+                                var regex = /\.[A-Za-z0-9]+$/gm
+                                var doctext = vidtext.replace(regex, '');
+                                fileDetails2 = {
+                                    file_name: doctext,
+                                    userId:ctx.from.id,
+                                    file_id: video.file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: video.file_size,
+                                    uniqueId: video.file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'video'
+                                }
+                                await saver.saveFile(fileDetails2)
+                            }
                             return;
                         }
-                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`}]
-                                    ]
-                                }
-                            })
-                            console.log(data2);
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            chat_id: process.env.LOG_CHANNEL,
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            disable_notification: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`}]
+                                ]
+                            }
+                        })
+                        if(ctx.chat.type == 'private') {
+                            video = ctx.message.video
+                            var vidtext = video.file_name;
+                            var regex = /\.[A-Za-z0-9]+$/gm
+                            var doctext = vidtext.replace(regex, '');
+                            fileDetails2 = {
+                                file_name: doctext,
+                                userId:ctx.from.id,
+                                file_id: video.file_id,
+                                caption: ctx.message.caption,
+                                file_size: video.file_size,
+                                uniqueId: video.file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'video'
+                            }
+                            await saver.saveFile(fileDetails2)
+                        }
                     }
                 })
             }
@@ -1525,38 +1601,6 @@ bot.on('video', async(ctx, next) => {
                     }
                 })
             }else{
-                if(ctx.chat.type == 'private') {
-                    video = ctx.message.video
-
-                    if(ctx.chat.type == 'private') {
-                        photo = ctx.message.video
-                        if(video.file_name == undefined){
-                            fileDetails1 = {
-                                file_name: today2(ctx),
-                                userId:ctx.from.id,
-                                file_id: video.file_id,
-                                caption: ctx.message.caption,
-                                file_size: video.file_size,
-                                uniqueId: video.file_unique_id,
-                                type: 'video'
-                            }
-                        }else{
-                            var exstension = video.file_name;
-                            var regex = /\.[A-Za-z0-9]+$/gm
-                            var vidtext = exstension.replace(regex, '');
-                            fileDetails2 = {
-                                file_name: vidtext,
-                                userId:ctx.from.id,
-                                file_id: video.file_id,
-                                caption: ctx.message.caption,
-                                file_size: video.file_size,
-                                uniqueId: video.file_unique_id,
-                                type: 'video'
-                            }
-                        }
-                    }
-                }
-
                 if(video.file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -1571,7 +1615,6 @@ bot.on('video', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails1)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1589,7 +1632,20 @@ bot.on('video', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                video = ctx.message.video
+                                                fileDetails1 = {
+                                                    file_name: today2(ctx),
+                                                    userId:ctx.from.id,
+                                                    file_id: video.file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: video.file_size,
+                                                    uniqueId: video.file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'video'
+                                                }
+                                                await saver.saveFile(fileDetails1)
+                                            }
                                             return;
                                         }
                                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1603,7 +1659,20 @@ bot.on('video', async(ctx, next) => {
                                                 ]
                                             }
                                         })
-                                        console.log(data2);
+                                        if(ctx.chat.type == 'private') {
+                                            video = ctx.message.video
+                                            fileDetails1 = {
+                                                file_name: today2(ctx),
+                                                userId:ctx.from.id,
+                                                file_id: video.file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: video.file_size,
+                                                uniqueId: video.file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'video'
+                                            }
+                                            await saver.saveFile(fileDetails1)
+                                        }
                                     }
                                 })
                             }
@@ -1622,7 +1691,6 @@ bot.on('video', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails2)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1640,21 +1708,53 @@ bot.on('video', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                video = ctx.message.video
+                                                var vidtext = video.file_name;
+                                                var regex = /\.[A-Za-z0-9]+$/gm
+                                                var doctext = vidtext.replace(regex, '');
+                                                fileDetails2 = {
+                                                    file_name: doctext,
+                                                    userId:ctx.from.id,
+                                                    file_id: video.file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: video.file_size,
+                                                    uniqueId: video.file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'video'
+                                                }
+                                                await saver.saveFile(fileDetails2)
+                                            }
                                             return;
                                         }
-                                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                                chat_id: process.env.LOG_CHANNEL,
-                                                parse_mode:'HTML',
-                                                disable_web_page_preview: true,
-                                                disable_notification: true,
-                                                reply_markup:{
-                                                    inline_keyboard:[
-                                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`}]
-                                                    ]
-                                                }
-                                            })
-                                            console.log(data2);
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`}]
+                                                ]
+                                            }
+                                        })
+                                        if(ctx.chat.type == 'private') {
+                                            video = ctx.message.video
+                                            var vidtext = video.file_name;
+                                            var regex = /\.[A-Za-z0-9]+$/gm
+                                            var doctext = vidtext.replace(regex, '');
+                                            fileDetails2 = {
+                                                file_name: doctext,
+                                                userId:ctx.from.id,
+                                                file_id: video.file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: video.file_size,
+                                                uniqueId: video.file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'video'
+                                            }
+                                            await saver.saveFile(fileDetails2)
+                                        }
                                     }
                                 })
                             }
@@ -1679,35 +1779,6 @@ bot.on('photo', async(ctx, next) => {
         }, 2_000);
     });
     await next();
-
-    if(ctx.chat.type == 'private') {
-        photo = ctx.message.photo
-
-        if(photo[1].file_name == undefined){
-            fileDetails1 = {
-                file_name: today2(ctx),
-                userId:ctx.from.id,
-                file_id: photo[1].file_id,
-                caption: ctx.message.caption,
-                file_size: photo[1].file_size,
-                uniqueId: photo[1].file_unique_id,
-                type: 'photo'
-            }
-        }else{
-            var exstension = photo[1].file_name;
-            var regex = /\.[A-Za-z0-9]+$/gm
-            var photext = exstension.replace(regex, '');
-            fileDetails2 = {
-                file_name: photext,
-                userId:ctx.from.id,
-                file_id: photo[1].file_id,
-                caption: ctx.message.caption,
-                file_size: photo[1].file_size,
-                uniqueId: photo[1].file_unique_id,
-                type: 'photo'
-            }
-        }
-    }
   
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
@@ -1718,7 +1789,6 @@ bot.on('photo', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails1)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1736,7 +1806,20 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                photo = ctx.message.photo
+                                fileDetails1 = {
+                                    file_name: today2(ctx),
+                                    userId:ctx.from.id,
+                                    file_id: photo[1].file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: photo[1].file_size,
+                                    uniqueId: photo[1].file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'photo'
+                                }
+                                await saver.saveFile(fileDetails1)
+                            }
                             return;
                         }
                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1750,7 +1833,20 @@ bot.on('photo', async(ctx, next) => {
                                 ]
                             }
                         })
-                        console.log(data2);
+                        if(ctx.chat.type == 'private') {
+                            photo = ctx.message.photo
+                            fileDetails1 = {
+                                file_name: today2(ctx),
+                                userId:ctx.from.id,
+                                file_id: photo[1].file_id,
+                                caption: ctx.message.caption,
+                                file_size: photo[1].file_size,
+                                uniqueId: photo[1].file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'photo'
+                            }
+                            await saver.saveFile(fileDetails1)
+                        }
                     }
                 })
             }
@@ -1762,7 +1858,6 @@ bot.on('photo', async(ctx, next) => {
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        saver.saveFile(fileDetails2)
                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -1780,21 +1875,53 @@ bot.on('photo', async(ctx, next) => {
                                     ]
                                 }
                             })
-                            console.log(data1);
+                            if(ctx.chat.type == 'private') {
+                                photo = ctx.message.photo
+                                var vidtext = photo[1].file_name;
+                                var regex = /\.[A-Za-z0-9]+$/gm
+                                var doctext = vidtext.replace(regex, '');
+                                fileDetails2 = {
+                                    file_name: doctext,
+                                    userId:ctx.from.id,
+                                    file_id: photo[1].file_id,
+                                    caption: ctx.message.caption,
+                                    file_size: photo[1].file_size,
+                                    uniqueId: photo[1].file_unique_id,
+                                    messageId: data1.message.message_id,
+                                    type: 'photo'
+                                }
+                                await saver.saveFile(fileDetails2)
+                            }
                             return;
                         }
-                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
-                                    ]
-                                }
-                            })
-                            console.log(data2);
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            chat_id: process.env.LOG_CHANNEL,
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            disable_notification: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
+                                ]
+                            }
+                        })
+                        if(ctx.chat.type == 'private') {
+                            photo = ctx.message.photo
+                            var vidtext = photo[1].file_name;
+                            var regex = /\.[A-Za-z0-9]+$/gm
+                            var doctext = vidtext.replace(regex, '');
+                            fileDetails2 = {
+                                file_name: doctext,
+                                userId:ctx.from.id,
+                                file_id: photo[1].file_id,
+                                caption: ctx.message.caption,
+                                file_size: photo[1].file_size,
+                                uniqueId: photo[1].file_unique_id,
+                                messageId: data2.message.message_id,
+                                type: 'photo'
+                            }
+                            await saver.saveFile(fileDetails2)
+                        }
                     }
                 })
             }
@@ -1827,38 +1954,6 @@ bot.on('photo', async(ctx, next) => {
                     }
                 })
             }else{
-                if(ctx.chat.type == 'private') {
-                    photo = ctx.message.photo
-
-                    if(ctx.chat.type == 'private') {
-                        photo = ctx.message.photo
-                        if(photo[1].file_name == undefined){
-                            fileDetails1 = {
-                                file_name: today2(ctx),
-                                userId:ctx.from.id,
-                                file_id: photo[1].file_id,
-                                caption: ctx.message.caption,
-                                file_size: photo[1].file_size,
-                                uniqueId: photo[1].file_unique_id,
-                                type: 'photo'
-                            }
-                        }else{
-                            var exstension = photo[1].file_name;
-                            var regex = /\.[A-Za-z0-9]+$/gm
-                            var photext = exstension.replace(regex, '');
-                            fileDetails2 = {
-                                file_name: photext,
-                                userId:ctx.from.id,
-                                file_id: photo[1].file_id,
-                                caption: ctx.message.caption,
-                                file_size: photo[1].file_size,
-                                uniqueId: photo[1].file_unique_id,
-                                type: 'photo'
-                            }
-                        }
-                    }
-                }
-
                 if(photo[1].file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -1873,7 +1968,6 @@ bot.on('photo', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails1)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1891,7 +1985,20 @@ bot.on('photo', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                photo = ctx.message.photo
+                                                fileDetails1 = {
+                                                    file_name: today2(ctx),
+                                                    userId:ctx.from.id,
+                                                    file_id: photo[1].file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: photo[1].file_size,
+                                                    uniqueId: photo[1].file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'photo'
+                                                }
+                                                await saver.saveFile(fileDetails1)
+                                            }
                                             return;
                                         }
                                         const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
@@ -1905,7 +2012,20 @@ bot.on('photo', async(ctx, next) => {
                                                 ]
                                             }
                                         })
-                                        console.log(data2);
+                                        if(ctx.chat.type == 'private') {
+                                            photo = ctx.message.photo
+                                            fileDetails1 = {
+                                                file_name: today2(ctx),
+                                                userId:ctx.from.id,
+                                                file_id: photo[1].file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: photo[1].file_size,
+                                                uniqueId: photo[1].file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'photo'
+                                            }
+                                            await saver.saveFile(fileDetails1)
+                                        }
                                     }
                                 })
                             }
@@ -1924,7 +2044,6 @@ bot.on('photo', async(ctx, next) => {
                                     if(res == true) {
                                         await ctx.reply(`File already exists. #file${result}`)
                                     }else{
-                                        saver.saveFile(fileDetails2)
                                         await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                                             parse_mode: 'HTML',
                                             disable_web_page_preview: true,
@@ -1942,21 +2061,53 @@ bot.on('photo', async(ctx, next) => {
                                                     ]
                                                 }
                                             })
-                                            console.log(data1);
+                                            if(ctx.chat.type == 'private') {
+                                                photo = ctx.message.photo
+                                                var vidtext = photo[1].file_name;
+                                                var regex = /\.[A-Za-z0-9]+$/gm
+                                                var doctext = vidtext.replace(regex, '');
+                                                fileDetails2 = {
+                                                    file_name: doctext,
+                                                    userId:ctx.from.id,
+                                                    file_id: photo[1].file_id,
+                                                    caption: ctx.message.caption,
+                                                    file_size: photo[1].file_size,
+                                                    uniqueId: photo[1].file_unique_id,
+                                                    messageId: data1.message.message_id,
+                                                    type: 'photo'
+                                                }
+                                                await saver.saveFile(fileDetails2)
+                                            }
                                             return;
                                         }
-                                            const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
-                                                chat_id: process.env.LOG_CHANNEL,
-                                                parse_mode:'HTML',
-                                                disable_web_page_preview: true,
-                                                disable_notification: true,
-                                                reply_markup:{
-                                                    inline_keyboard:[
-                                                        [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
-                                                    ]
-                                                }
-                                            })
-                                            console.log(data2);
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View file`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`}]
+                                                ]
+                                            }
+                                        })
+                                        if(ctx.chat.type == 'private') {
+                                            photo = ctx.message.photo
+                                            var vidtext = photo[1].file_name;
+                                            var regex = /\.[A-Za-z0-9]+$/gm
+                                            var doctext = vidtext.replace(regex, '');
+                                            fileDetails2 = {
+                                                file_name: doctext,
+                                                userId:ctx.from.id,
+                                                file_id: photo[1].file_id,
+                                                caption: ctx.message.caption,
+                                                file_size: photo[1].file_size,
+                                                uniqueId: photo[1].file_unique_id,
+                                                messageId: data2.message.message_id,
+                                                type: 'photo'
+                                            }
+                                            await saver.saveFile(fileDetails2)
+                                        }
                                     }
                                 })
                             }
