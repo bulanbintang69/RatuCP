@@ -118,6 +118,8 @@ bot.start(async(ctx)=>{
                         ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                        
+                        let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -143,6 +145,8 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='photo'){
                         ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
+                        let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                        
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -150,7 +154,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, callback_data: `none`}]
+                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                     ]
                                 }
                             });
@@ -160,7 +164,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: res2.type, callback_data: `none`}]
+                                    [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                 ]
                             }
                         });
@@ -168,6 +172,8 @@ bot.start(async(ctx)=>{
                     }else if(res2.type=='document'){
                         ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
+                        let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                        
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
                             return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -175,7 +181,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: res2.type, callback_data: `none`}]
+                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                     ]
                                 }
                             });
@@ -185,7 +191,7 @@ bot.start(async(ctx)=>{
                             disable_web_page_preview: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: res2.type, callback_data: `none`}]
+                                    [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                 ]
                             }
                         });
@@ -268,6 +274,8 @@ bot.start(async(ctx)=>{
                                         if(res2.type=='video'){
                                             ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
+                                            let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                                            
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -275,7 +283,7 @@ bot.start(async(ctx)=>{
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
                                                         inline_keyboard:[
-                                                            [{text: res2.type, callback_data: `none`}]
+                                                            [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                         ]
                                                     }
                                                 });
@@ -285,7 +293,7 @@ bot.start(async(ctx)=>{
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
                                                     inline_keyboard:[
-                                                        [{text: res2.type, callback_data: `none`}]
+                                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                     ]
                                                 }
                                             });
@@ -293,6 +301,8 @@ bot.start(async(ctx)=>{
                                         }else if(res2.type=='photo'){
                                             ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
+                                            let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                                            
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -300,7 +310,7 @@ bot.start(async(ctx)=>{
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
                                                         inline_keyboard:[
-                                                            [{text: res2.type, callback_data: `none`}]
+                                                            [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                         ]
                                                     }
                                                 });
@@ -310,7 +320,7 @@ bot.start(async(ctx)=>{
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
                                                     inline_keyboard:[
-                                                        [{text: res2.type, callback_data: `none`}]
+                                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                     ]
                                                 }
                                             });
@@ -318,6 +328,8 @@ bot.start(async(ctx)=>{
                                         }else if(res2.type=='document'){
                                             ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
+                                            let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
+                                            
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
                                                 return ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
@@ -325,7 +337,7 @@ bot.start(async(ctx)=>{
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
                                                     inline_keyboard:[
-                                                        [{text: res2.type, callback_data: `none`}]
+                                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                     ]
                                                 }
                                             });
@@ -335,7 +347,7 @@ bot.start(async(ctx)=>{
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
                                                     inline_keyboard:[
-                                                        [{text: res2.type, callback_data: `none`}]
+                                                        [{text: res2.type, callback_data: `none`},{text: res2.type, url: `${urls}`}]
                                                     ]
                                                 }
                                             });
