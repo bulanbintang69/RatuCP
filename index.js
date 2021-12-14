@@ -1858,7 +1858,7 @@ bot.on('photo', async(ctx, next) => {
                                 caption: ctx.message.caption,
                                 file_size: photo[1].file_size,
                                 uniqueId: photo[1].file_unique_id,
-                                messageId: data2.message.message_id,
+                                messageId: data2.message_id,
                                 type: 'photo'
                             }
                             saver.saveFile(fileDetails1)
