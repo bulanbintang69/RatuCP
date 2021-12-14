@@ -1128,7 +1128,7 @@ bot.on('document', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'document'
                                 }
-                                saver.saveFile(fileDetails1)
+                                await saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1154,7 +1154,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'document'
                             }
-                            saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1198,7 +1198,7 @@ bot.on('document', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'document'
                                 }
-                                saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails2)
                             }
                             return;
                         }
@@ -1227,7 +1227,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'document'
                             }
-                            saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails2)
                         }
                     }
                 })
@@ -1307,7 +1307,7 @@ bot.on('document', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'document'
                                                 }
-                                                saver.saveFile(fileDetails1)
+                                                await saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -1333,7 +1333,7 @@ bot.on('document', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'document'
                                             }
-                                            saver.saveFile(fileDetails1)
+                                            await saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -1384,7 +1384,7 @@ bot.on('document', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'document'
                                                 }
-                                                saver.saveFile2(fileDetails2)
+                                                await saver.saveFile2(fileDetails2)
                                             }
                                             return;
                                         }
@@ -1413,7 +1413,7 @@ bot.on('document', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'document'
                                             }
-                                            saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails2)
                                         }
                                     }
                                 })
@@ -1481,7 +1481,7 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                saver.saveFile(fileDetails1)
+                                await saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1507,7 +1507,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1551,7 +1551,7 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails2)
                             }
                             return;
                         }
@@ -1580,7 +1580,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails2)
                         }
                     }
                 })
@@ -1660,7 +1660,7 @@ bot.on('video', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'video'
                                                 }
-                                                saver.saveFile(fileDetails1)
+                                                await saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -1686,7 +1686,7 @@ bot.on('video', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'video'
                                             }
-                                            saver.saveFile(fileDetails1)
+                                            await saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -1737,7 +1737,7 @@ bot.on('video', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'video'
                                                 }
-                                                saver.saveFile2(fileDetails2)
+                                                await saver.saveFile2(fileDetails2)
                                             }
                                             return;
                                         }
@@ -1766,7 +1766,7 @@ bot.on('video', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'video'
                                             }
-                                            saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails2)
                                         }
                                     }
                                 })
@@ -1834,7 +1834,7 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
-                                saver.saveFile(fileDetails1)
+                                await saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1860,7 +1860,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
-                            saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1904,7 +1904,7 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
-                                saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails2)
                             }
                             return;
                         }
@@ -1933,7 +1933,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
-                            saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails2)
                         }
                     }
                 })
@@ -2013,7 +2013,7 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
-                                                saver.saveFile(fileDetails1)
+                                                await saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -2039,7 +2039,7 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
-                                            saver.saveFile(fileDetails1)
+                                            await saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -2090,7 +2090,7 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
-                                                saver.saveFile2(fileDetails2)
+                                                await saver.saveFile2(fileDetails2)
                                             }
                                             return;
                                         }
@@ -2119,7 +2119,7 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
-                                            saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails2)
                                         }
                                     }
                                 })
