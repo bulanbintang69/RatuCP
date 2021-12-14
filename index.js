@@ -1090,6 +1090,7 @@ bot.on('document', async(ctx, next) => {
   
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
+        capt = ctx.message.caption
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1123,7 +1124,7 @@ bot.on('document', async(ctx, next) => {
                                     file_name: today2(ctx),
                                     userId:ctx.from.id,
                                     file_id: document.file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: document.file_size,
                                     uniqueId: document.file_unique_id,
                                     messageId: data1.message_id,
@@ -1150,7 +1151,7 @@ bot.on('document', async(ctx, next) => {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: document.file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: document.file_size,
                                 uniqueId: document.file_unique_id,
                                 messageId: data2.message.message_id,
@@ -1194,7 +1195,7 @@ bot.on('document', async(ctx, next) => {
                                     file_name: doctext,
                                     userId:ctx.from.id,
                                     file_id: document.file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: document.file_size,
                                     uniqueId: document.file_unique_id,
                                     messageId: data1.message_id,
@@ -1223,7 +1224,7 @@ bot.on('document', async(ctx, next) => {
                                 file_name: doctext,
                                 userId:ctx.from.id,
                                 file_id: document.file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: document.file_size,
                                 uniqueId: document.file_unique_id,
                                 messageId: data2.message_id,
@@ -1265,6 +1266,7 @@ bot.on('document', async(ctx, next) => {
             }else{
                 if(ctx.chat.type == 'private') {
                     document = ctx.message.document
+                    capt = ctx.message.caption
                 }
                 
                 if(document.file_name == undefined){
@@ -1303,7 +1305,7 @@ bot.on('document', async(ctx, next) => {
                                                     file_name: today2(ctx),
                                                     userId:ctx.from.id,
                                                     file_id: document.file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: document.file_size,
                                                     uniqueId: document.file_unique_id,
                                                     messageId: data1.message_id,
@@ -1329,7 +1331,7 @@ bot.on('document', async(ctx, next) => {
                                                 file_name: today2(ctx),
                                                 userId:ctx.from.id,
                                                 file_id: document.file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: document.file_size,
                                                 uniqueId: document.file_unique_id,
                                                 messageId: data2.message_id,
@@ -1380,7 +1382,7 @@ bot.on('document', async(ctx, next) => {
                                                     file_name: doctext,
                                                     userId:ctx.from.id,
                                                     file_id: document.file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: document.file_size,
                                                     uniqueId: document.file_unique_id,
                                                     messageId: data1.message_id,
@@ -1409,7 +1411,7 @@ bot.on('document', async(ctx, next) => {
                                                 file_name: doctext,
                                                 userId:ctx.from.id,
                                                 file_id: document.file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: document.file_size,
                                                 uniqueId: document.file_unique_id,
                                                 messageId: data2.message_id,
@@ -1444,6 +1446,7 @@ bot.on('video', async(ctx, next) => {
   
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
+        capt = ctx.message.caption
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1478,7 +1481,7 @@ bot.on('video', async(ctx, next) => {
                                     file_name: today2(ctx),
                                     userId:ctx.from.id,
                                     file_id: video.file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: video.file_size,
                                     uniqueId: video.file_unique_id,
                                     messageId: data1.message_id,
@@ -1505,7 +1508,7 @@ bot.on('video', async(ctx, next) => {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: video.file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: video.file_size,
                                 uniqueId: video.file_unique_id,
                                 messageId: data2.message.message_id,
@@ -1550,7 +1553,7 @@ bot.on('video', async(ctx, next) => {
                                     file_name: vidtext,
                                     userId:ctx.from.id,
                                     file_id: video.file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: video.file_size,
                                     uniqueId: video.file_unique_id,
                                     messageId: data1.message_id,
@@ -1580,7 +1583,7 @@ bot.on('video', async(ctx, next) => {
                                 file_name: vidtext,
                                 userId:ctx.from.id,
                                 file_id: video.file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: video.file_size,
                                 uniqueId: video.file_unique_id,
                                 messageId: data2.message_id,
@@ -1622,6 +1625,7 @@ bot.on('video', async(ctx, next) => {
             }else{
                 if(ctx.chat.type == 'private') {
                     video = ctx.message.video
+                    capt = ctx.message.caption
                 }
                 
                 if(video.file_name == undefined){
@@ -1661,7 +1665,7 @@ bot.on('video', async(ctx, next) => {
                                                     file_name: today2(ctx),
                                                     userId:ctx.from.id,
                                                     file_id: video.file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: video.file_size,
                                                     uniqueId: video.file_unique_id,
                                                     messageId: data1.message_id,
@@ -1688,7 +1692,7 @@ bot.on('video', async(ctx, next) => {
                                                 file_name: today2(ctx),
                                                 userId:ctx.from.id,
                                                 file_id: video.file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: video.file_size,
                                                 uniqueId: video.file_unique_id,
                                                 messageId: data2.message_id,
@@ -1740,7 +1744,7 @@ bot.on('video', async(ctx, next) => {
                                                     file_name: vidtext,
                                                     userId:ctx.from.id,
                                                     file_id: video.file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: video.file_size,
                                                     uniqueId: video.file_unique_id,
                                                     messageId: data1.message_id,
@@ -1770,7 +1774,7 @@ bot.on('video', async(ctx, next) => {
                                                 file_name: vidtext,
                                                 userId:ctx.from.id,
                                                 file_id: video.file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: video.file_size,
                                                 uniqueId: video.file_unique_id,
                                                 messageId: data2.message_id,
@@ -1805,6 +1809,7 @@ bot.on('photo', async(ctx, next) => {
   
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
+        capt = ctx.message.caption
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1838,7 +1843,7 @@ bot.on('photo', async(ctx, next) => {
                                     file_name: today2(ctx),
                                     userId:ctx.from.id,
                                     file_id: photo[1].file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: photo[1].file_size,
                                     uniqueId: photo[1].file_unique_id,
                                     messageId: data1.message_id,
@@ -1865,7 +1870,7 @@ bot.on('photo', async(ctx, next) => {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: photo[1].file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: photo[1].file_size,
                                 uniqueId: photo[1].file_unique_id,
                                 messageId: data2.message.message_id,
@@ -1909,7 +1914,7 @@ bot.on('photo', async(ctx, next) => {
                                     file_name: photext,
                                     userId:ctx.from.id,
                                     file_id: photo[1].file_id,
-                                    caption: ctx.message.caption,
+                                    caption: capt,
                                     file_size: photo[1].file_size,
                                     uniqueId: photo[1].file_unique_id,
                                     messageId: data1.message_id,
@@ -1938,7 +1943,7 @@ bot.on('photo', async(ctx, next) => {
                                 file_name: photext,
                                 userId:ctx.from.id,
                                 file_id: photo[1].file_id,
-                                caption: ctx.message.caption,
+                                caption: capt,
                                 file_size: photo[1].file_size,
                                 uniqueId: photo[1].file_unique_id,
                                 messageId: data2.message_id,
@@ -1980,6 +1985,7 @@ bot.on('photo', async(ctx, next) => {
             }else{
                 if(ctx.chat.type == 'private') {
                     photo = ctx.message.photo
+                    capt = ctx.message.caption
                 }
                 
                 if(photo[1].file_name == undefined){
@@ -2019,7 +2025,7 @@ bot.on('photo', async(ctx, next) => {
                                                     file_name: today2(ctx),
                                                     userId:ctx.from.id,
                                                     file_id: photo[1].file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: photo[1].file_size,
                                                     uniqueId: photo[1].file_unique_id,
                                                     messageId: data1.message_id,
@@ -2046,7 +2052,7 @@ bot.on('photo', async(ctx, next) => {
                                                 file_name: today2(ctx),
                                                 userId:ctx.from.id,
                                                 file_id: photo[1].file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: photo[1].file_size,
                                                 uniqueId: photo[1].file_unique_id,
                                                 messageId: data2.message_id,
@@ -2098,7 +2104,7 @@ bot.on('photo', async(ctx, next) => {
                                                     file_name: photext,
                                                     userId:ctx.from.id,
                                                     file_id: photo[1].file_id,
-                                                    caption: ctx.message.caption,
+                                                    caption: capt,
                                                     file_size: photo[1].file_size,
                                                     uniqueId: photo[1].file_unique_id,
                                                     messageId: data1.message_id,
@@ -2128,7 +2134,7 @@ bot.on('photo', async(ctx, next) => {
                                                 file_name: photext,
                                                 userId:ctx.from.id,
                                                 file_id: photo[1].file_id,
-                                                caption: ctx.message.caption,
+                                                caption: capt,
                                                 file_size: photo[1].file_size,
                                                 uniqueId: photo[1].file_unique_id,
                                                 messageId: data2.message_id,
