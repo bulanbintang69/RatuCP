@@ -52,8 +52,6 @@ You can delete files 4 ways.</br>
 
   ⚫ Delete individual files with file_id.
   
-  ⚫ Delete group files with mediaId.
-  
   ⚫ Delete all files Send by user.
   
   ⚫ Delete all files Send to bot.
