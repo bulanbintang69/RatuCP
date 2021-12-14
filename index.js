@@ -108,8 +108,8 @@ bot.start(async(ctx)=>{
                 try{
                     const res2 = await saver.getFile2(query2)
                 
-                    function captionFunction2() {
-                        ctx.reply(`${captionbuild(ctx)}`,{
+                    async function captionFunction2() {
+                        await ctx.reply(`${captionbuild(ctx)}`,{
                             parse_mode:'HTML'
                         })
                     }
@@ -256,8 +256,8 @@ bot.start(async(ctx)=>{
                             try{
                                 const res2 = await saver.getFile2(query2)
                             
-                                function captionFunction2() {
-                                    ctx.reply(`${captionbuild(ctx)}`,{
+                                async function captionFunction2() {
+                                    await ctx.reply(`${captionbuild(ctx)}`,{
                                         parse_mode:'HTML'
                                     })
                                 }
