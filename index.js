@@ -887,7 +887,7 @@ bot.command('getid',async(ctx)=>{
                         parse_mode:'HTML'
                     })
                 }
-            }.
+            }
         })
     }
 })
