@@ -1937,7 +1937,7 @@ bot.on('photo', async(ctx, next) => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            await ctx.reply(`${messagebanned(ctx)}`)
+                            ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
@@ -1960,7 +1960,7 @@ bot.on('photo', async(ctx, next) => {
                             let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                await ctx.reply(`${messagebanned(ctx)}`)
+                                ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
@@ -2036,7 +2036,7 @@ bot.on('photo', async(ctx, next) => {
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
                             //console.log(res);
                             if(res == true) {
-                                await ctx.reply(`${messagebanned(ctx)}`)
+                                ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
