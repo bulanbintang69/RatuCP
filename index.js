@@ -887,7 +887,7 @@ bot.command('getid',async(ctx)=>{
                         parse_mode:'HTML'
                     })
                 }
-            }
+            }.
         })
     }
 })
@@ -1271,7 +1271,7 @@ bot.on('document', async(ctx, next) => {
                             let result = `${document.file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                     let result = `${document.file_unique_id}`.replace(/-/g, '_');
@@ -1345,7 +1345,7 @@ bot.on('document', async(ctx, next) => {
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                     let result = `${document.file_unique_id}`.replace(/-/g, '_');
@@ -1624,7 +1624,7 @@ bot.on('video', async(ctx, next) => {
                             let result = `${video.file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1698,7 +1698,7 @@ bot.on('video', async(ctx, next) => {
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1977,7 +1977,7 @@ bot.on('photo', async(ctx, next) => {
                             let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
@@ -2051,7 +2051,7 @@ bot.on('photo', async(ctx, next) => {
                         await saver.checkBan(`${ctx.from.id}`).then(async res => {
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`${messagebanned(ctx)}`)
+                                await ctx.reply(`${messagebanned(ctx)}`)
                             }else{
                                 await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                     let result = `${photo[1].file_unique_id}`.replace(/-/g, '_');
