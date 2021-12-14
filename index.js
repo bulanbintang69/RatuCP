@@ -445,33 +445,33 @@ bot.command('kick',async(ctx)=>{
                         if(memberstatus.can_restrict_members == true){                
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
                                 })
                             }
-                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
-                            await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                            await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(async result =>{
                                 //console.log(result)
                             })
                         }
-                        await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                        await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
                                 })
                             }
-                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                                 //console.log(result)
                             })
                         }
@@ -573,7 +573,7 @@ bot.command('ban',async(ctx)=>{
                         await bot.telegram.callApi('banChatMember', {
                         chat_id: ctx.message.chat.id,
                         user_id: ctx.message.reply_to_message.from.id
-                        }).then(result=>{
+                        }).then(async result =>{
                             //console.log(result)
                             let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                             let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
@@ -739,14 +739,14 @@ bot.command('pin',async(ctx)=>{
                         if(memberstatus.can_pin_messages == true){
                             await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
-                            }).then(async result=>{
+                            }).then(async result =>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                             disable_notification: false,
-                        }).then(async result=>{
+                        }).then(async result =>{
                             //console.log(result)
                         })
                     }else{
