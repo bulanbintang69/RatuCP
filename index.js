@@ -382,11 +382,11 @@ bot.start(async(ctx)=>{
 //TEST BOT
 bot.hears(/ping/i,async(ctx)=>{
     if(ctx.chat.type == 'private') {
-        await saver.checkBan(`${ctx.from.id}`).then((res) => {
+        await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
                 if(ctx.chat.type == 'private') {
-                    ctx.reply(`${messagebanned(ctx)}`)
+                    await ctx.reply(`${messagebanned(ctx)}`)
                 }
             }else{
                 let chatId = ctx.message.from.id;
@@ -396,14 +396,14 @@ bot.hears(/ping/i,async(ctx)=>{
                         inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
                     }
                 }
-                return bot.telegram.sendMessage(chatId, 'pong' , opts);
+                return await bot.telegram.sendMessage(chatId, 'pong' , opts);
             }
         })
     }
 })
 
 bot.action('PONG',async(ctx)=>{
-    ctx.deleteMessage()
+    await ctx.deleteMessage()
 })
 
 //GROUP COMMAND
@@ -417,18 +417,18 @@ bot.command('reload',async(ctx)=>{
     }
     if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
         if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
-            ctx.reply('Bot restarted')
-            saver.saveGroup(group)
+            await ctx.reply('Bot restarted')
+            await saver.saveGroup(group)
         }
         if(ctx.from.username == 'GroupAnonymousBot'){
-            ctx.reply('Bot restarted')
-            saver.saveGroup(group)
+            await ctx.reply('Bot restarted')
+            await saver.saveGroup(group)
         }
     }
 })
 
 bot.command('kick',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -484,7 +484,7 @@ bot.command('kick',async(ctx)=>{
 })
 
 bot.command('ban',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -511,13 +511,13 @@ bot.command('ban',async(ctx)=>{
                                 await bot.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
-                                }).then(result=>{
+                                }).then(async result =>{
                                     //console.log(result)
-                                    ctx.reply(`[${userId}] blocked. ${caption2}`,{
+                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
 
@@ -530,15 +530,15 @@ bot.command('ban',async(ctx)=>{
                             await bot.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: ctx.message.reply_to_message.from.id
-                            }).then(result=>{
+                            }).then(async result =>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                                await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
@@ -554,9 +554,9 @@ bot.command('ban',async(ctx)=>{
                             await bot.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: userId
-                            }).then(result=>{
+                            }).then(async result =>{
                                 //console.log(result)
-                                ctx.reply(`[${userId}] blocked. ${caption2}`,{
+                                await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.message_id
                                 })
@@ -577,11 +577,11 @@ bot.command('ban',async(ctx)=>{
                             //console.log(result)
                             let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                             let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                            ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                            await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                          })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
@@ -597,13 +597,13 @@ bot.command('ban',async(ctx)=>{
                                 await bot.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
-                                }).then(result=>{
+                                }).then(async result =>{
                                     //console.log(result)
-                                    ctx.reply(`[${userId}] blocked. ${caption2}`,{
+                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
     
@@ -616,15 +616,15 @@ bot.command('ban',async(ctx)=>{
                             await bot.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: ctx.message.reply_to_message.from.id
-                            }).then(result=>{
+                            }).then(async result =>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                                await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                return awaitbot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }
@@ -636,7 +636,7 @@ bot.command('ban',async(ctx)=>{
 })
 
 bot.command('unban',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -653,64 +653,64 @@ bot.command('unban',async(ctx)=>{
                         if(memberstatus.can_restrict_members == true){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
-                                    ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
+                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                                    return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                                 })
                             }
-                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
+                                await ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                                return await bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
-                            await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                            await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                 //console.log(result)
-                                ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
+                                await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                return bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                                return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                             })
                         }
-                        await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                        await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                             //console.log(result)
                             let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                             let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                            ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
+                            await ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                            return await bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
-                                    ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
+                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                                    return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                                 })
                             }
-                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(async result =>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
+                                await ctx.reply(`${replyUsername} ${replyFromid} not blocked, can re-enter!`,{
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
+                                return await bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                             })
                         }
                     }
@@ -722,7 +722,7 @@ bot.command('unban',async(ctx)=>{
 })
 
 bot.command('pin',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -739,21 +739,21 @@ bot.command('pin',async(ctx)=>{
                         if(memberstatus.can_pin_messages == true){
                             await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
-                            }).then(result=>{
+                            }).then(async result=>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                             disable_notification: false,
-                        }).then(result=>{
+                        }).then(async result=>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
-                            }).then(result=>{
+                            }).then(async result =>{
                                 //console.log(result)
                             })
                         }
@@ -766,7 +766,7 @@ bot.command('pin',async(ctx)=>{
 })
 
 bot.command('unpin',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then( async res=>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -781,17 +781,17 @@ bot.command('unpin',async(ctx)=>{
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
                         if(memberstatus.can_pin_messages == true){
-                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
-                        await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                        await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
-                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                                 //console.log(result)
                             })
                         }
@@ -804,7 +804,7 @@ bot.command('unpin',async(ctx)=>{
 })
 
 bot.command('send',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -824,14 +824,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return bot.telegram.sendMessage(group, `${caption}`)
+                            return await bot.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return bot.telegram.sendMessage(group, `${caption}`,{
+                        return await bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -842,14 +842,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return bot.telegram.sendMessage(group, `${caption}`)
+                            return await bot.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return bot.telegram.sendMessage(group, `${caption}`,{
+                        return await bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -871,19 +871,19 @@ bot.command('getid',async(ctx)=>{
   
     if(ctx.chat.type == 'private') {
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-        await saver.checkBan(`${ctx.from.id}`).then((res) => {
+        await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
                 if(ctx.chat.type == 'private') {
-                    ctx.reply(`${messagebanned(ctx)}`)
+                    await ctx.reply(`${messagebanned(ctx)}`)
                 }
             }else{
                 if(!profile4 || profile4.total_count == 0){
-                    ctx.reply(`<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,{
+                    await ctx.reply(`<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,{
                         parse_mode:'HTML'  
                     })
                 }else{
-                    ctx.replyWithPhoto(profile4.photos[0][0].file_id,{caption: `<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,
+                    await ctx.replyWithPhoto(profile4.photos[0][0].file_id,{caption: `<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,
                         parse_mode:'HTML'
                     })
                 }
@@ -893,7 +893,7 @@ bot.command('getid',async(ctx)=>{
 })
 
 //remove files with file_id
-bot.command('rem', (ctx) => {
+bot.command('rem', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -904,24 +904,24 @@ bot.command('rem', (ctx) => {
         console.log(text);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             saver.removeFile(text)
-            ctx.reply('❌ 1 media deleted successfully')
+            await ctx.reply('❌ 1 media deleted successfully')
         }
     }
 })
 
 //remove whole collection(remove all files)
-bot.command('clear',(ctx)=>{
+bot.command('clear', async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            saver.deleteCollection()
-            ctx.reply('❌ All media deleted successfully')
+            await saver.deleteCollection()
+            await ctx.reply('❌ All media deleted successfully')
         }
     }
 })
 
 //removing all files sent by a user
-bot.command('remall', (ctx) => {
+bot.command('remall', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -931,14 +931,14 @@ bot.command('remall', (ctx) => {
         //console.log(text);
         let id = parseInt(text)
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            saver.removeUserFile(id)
-            ctx.reply('❌ Delete all user media successfully')
+            await saver.removeUserFile(id)
+            await ctx.reply('❌ Delete all user media successfully')
         }
     }
 })
 
 bot.command('sendchat',async(ctx)=>{
-    groupDetails = await saver.getGroup().then((res)=>{
+    groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -955,10 +955,10 @@ bot.command('sendchat',async(ctx)=>{
                     const command = words.shift().slice(1);
                     const userId = words.shift();
                     const caption = words.join(" ");
-                    ctx.reply('Sent!',{
+                    await ctx.reply('Sent!',{
                         reply_to_message_id: ctx.message.message_id
                     })
-                    return bot.telegram.sendMessage(userId, `${caption}`)
+                    return await bot.telegram.sendMessage(userId, `${caption}`)
                 }
             }
         }
@@ -970,11 +970,11 @@ bot.command('sendchat',async(ctx)=>{
                 const command = words.shift().slice(1);
                 const userId = words.shift();
                 const caption = words.join(" ");
-                ctx.reply('Sent!',{
+                await ctx.reply('Sent!',{
                     reply_to_message_id: ctx.message.message_id
                 })
 
-                return bot.telegram.sendMessage(userId, `${caption}`)
+                return await bot.telegram.sendMessage(userId, `${caption}`)
             }
 
             sendchat()
@@ -990,7 +990,7 @@ bot.command('broadcast',async(ctx)=>{
         let msgArray = msg.split(' ')
         msgArray.shift()
         let text = msgArray.join(' ')
-        userDetails = await saver.getUser().then((res)=>{
+        userDetails = await saver.getUser().then(async res =>{
             n = res.length
             userId = []
             for (i = n-1; i >=0; i--) {
@@ -1011,22 +1011,22 @@ bot.command('broadcast',async(ctx)=>{
                           }
                         )
                     } catch (err) {
-                        saver.updateUser(users)
+                        await saver.updateUser(users)
                         totalFail.push(users)
 
                     }
                 }
-                ctx.reply(`✅ <b>Number of active users:</b> ${userId.length - totalFail.length}\n❌ <b>Total failed broadcasts:</b> ${totalFail.length}`,{
+                await ctx.reply(`✅ <b>Number of active users:</b> ${userId.length - totalFail.length}\n❌ <b>Total failed broadcasts:</b> ${totalFail.length}`,{
                     parse_mode:'HTML'
                 })
 
             }
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
                 broadcast(text)
-                ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
+                await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
 
             }else{
-                ctx.reply(`Commands can only be used by Admin.`) 
+                await ctx.reply(`Commands can only be used by Admin.`) 
             }
 
         })
@@ -1034,7 +1034,7 @@ bot.command('broadcast',async(ctx)=>{
 })
 
 //ban user with user id
-bot.command('banchat', (ctx) => {
+bot.command('banchat', async(ctx) => {
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1047,8 +1047,8 @@ bot.command('banchat', (ctx) => {
 
         if(ctx.chat.type == 'private') {
             if(ctx.from.id == process.env.ADMIN|| ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
-                saver.banUser(userId).then((res) => {
-                    ctx.reply('❌ Banned')
+                await saver.banUser(userId).then(async res => {
+                    await ctx.reply('❌ Banned')
                 })
             }
         }
@@ -1057,7 +1057,7 @@ bot.command('banchat', (ctx) => {
 })
 
 //unban user with user id
-bot.command('unbanchat', (ctx) => {
+bot.command('unbanchat', async(ctx) => {
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1070,8 +1070,8 @@ bot.command('unbanchat', (ctx) => {
 
         if(ctx.chat.type == 'private') {
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-                saver.unBan(userId).then((res) => {
-                    ctx.reply('✅ Finished')
+                await saver.unBan(userId).then(async res => {
+                    await ctx.reply('✅ Finished')
                 })
             }
         }
@@ -2138,27 +2138,27 @@ bot.on('photo', async(ctx, next) => {
 })
 
 bot.command('stats',async(ctx)=>{
-    stats = await saver.getUser().then((res)=>{
+    stats = await saver.getUser().then(async res=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
+            await ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
     })
-    stats = await saver.getMedia().then((res)=>{
+    stats = await saver.getMedia().then(async res=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            ctx.reply(`📊 Total media: <b>${res.length}</b>`,{parse_mode:'HTML'})
+            await ctx.reply(`📊 Total media: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
 
     })
-    stats = await saver.getBan().then((res)=>{
+    stats = await saver.getBan().then(async res=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            ctx.reply(`📊 Total users violate: <b>${res.length}</b>`,{parse_mode:'HTML'})
+            await ctx.reply(`📊 Total users violate: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
     })
-    stats = await saver.getGroup().then((res)=>{
+    stats = await saver.getGroup().then(async res=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-            ctx.reply(`📊 Total registered groups: <b>${res.length}</b>`,{parse_mode:'HTML'})
+            await ctx.reply(`📊 Total registered groups: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
     })
