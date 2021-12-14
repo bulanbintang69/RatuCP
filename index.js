@@ -109,7 +109,7 @@ bot.start(async(ctx)=>{
                     const res2 = await saver.getFile2(query2)
                 
                     async function captionFunction2() {
-                        await ctx.reply(`${captionbuild(ctx)}`,{
+                        awaitctx.reply(`${captionbuild(ctx)}`,{
                             parse_mode:'HTML'
                         })
                     }
@@ -257,7 +257,7 @@ bot.start(async(ctx)=>{
                                 const res2 = await saver.getFile2(query2)
                             
                                 async function captionFunction2() {
-                                    await ctx.reply(`${captionbuild(ctx)}`,{
+                                    awaitctx.reply(`${captionbuild(ctx)}`,{
                                         parse_mode:'HTML'
                                     })
                                 }
@@ -417,10 +417,12 @@ bot.command('reload',async(ctx)=>{
     }
     if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
         if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
+            await ctx.deleteMessage()
             await ctx.reply('Bot restarted')
             await saver.saveGroup(group)
         }
         if(ctx.from.username == 'GroupAnonymousBot'){
+            await ctx.deleteMessage()
             await ctx.reply('Bot restarted')
             await saver.saveGroup(group)
         }
@@ -441,7 +443,8 @@ bot.command('kick',async(ctx)=>{
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                    if(memberstatus.status == 'administrator'){    
+                    if(memberstatus.status == 'administrator'){  
+                        await ctx.deleteMessage()  
                         if(memberstatus.can_restrict_members == true){                
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
@@ -454,6 +457,7 @@ bot.command('kick',async(ctx)=>{
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
                             await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(async result =>{
@@ -465,6 +469,7 @@ bot.command('kick',async(ctx)=>{
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
+                            await ctx.deleteMessage()
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
                                 await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(async result =>{
@@ -498,6 +503,7 @@ bot.command('ban',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
+                        await ctx.deleteMessage()
                         if(memberstatus.can_restrict_members == true){
                             if(ctx.message.reply_to_message == undefined){
 
@@ -542,6 +548,7 @@ bot.command('ban',async(ctx)=>{
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
 
                             const str = ctx.message.text;
@@ -585,6 +592,7 @@ bot.command('ban',async(ctx)=>{
                          })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
+                            await ctx.deleteMessage()
                             if(ctx.message.reply_to_message == undefined){
 
                                 const str = ctx.message.text;
@@ -650,6 +658,7 @@ bot.command('unban',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
+                        await ctx.deleteMessage()
                         if(memberstatus.can_restrict_members == true){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
@@ -672,6 +681,7 @@ bot.command('unban',async(ctx)=>{
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
                             await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
@@ -693,6 +703,7 @@ bot.command('unban',async(ctx)=>{
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
+                            await ctx.deleteMessage()
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
                                 await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
@@ -736,6 +747,7 @@ bot.command('pin',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
+                        await ctx.deleteMessage()
                         if(memberstatus.can_pin_messages == true){
                             await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
@@ -744,6 +756,7 @@ bot.command('pin',async(ctx)=>{
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
+                        await ctx.deleteMessage()
                         await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                             disable_notification: false,
                         }).then(async result =>{
@@ -751,6 +764,7 @@ bot.command('pin',async(ctx)=>{
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
+                            await ctx.deleteMessage()
                             await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
                             }).then(async result =>{
@@ -780,17 +794,20 @@ bot.command('unpin',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
+                        await ctx.deleteMessage()
                         if(memberstatus.can_pin_messages == true){
                             await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
+                        await ctx.deleteMessage()
                         await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
+                            await ctx.deleteMessage()
                             await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(async result =>{
                                 //console.log(result)
                             })
@@ -818,6 +835,7 @@ bot.command('send',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
@@ -836,6 +854,7 @@ bot.command('send',async(ctx)=>{
                         })
                     }
                     if(ctx.from.username == 'GroupAnonymousBot'){
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
@@ -870,6 +889,7 @@ bot.command('getid',async(ctx)=>{
     });
   
     if(ctx.chat.type == 'private') {
+        await ctx.deleteMessage()
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
@@ -903,6 +923,7 @@ bot.command('rem', async(ctx) => {
         let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+            await ctx.deleteMessage()
             saver.removeFile(text)
             await ctx.reply('❌ 1 media deleted successfully')
         }
@@ -914,6 +935,7 @@ bot.command('clear', async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+            await ctx.deleteMessage()
             await saver.deleteCollection()
             await ctx.reply('❌ All media deleted successfully')
         }
@@ -931,6 +953,7 @@ bot.command('remall', async(ctx) => {
         //console.log(text);
         let id = parseInt(text)
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+            await ctx.deleteMessage()
             await saver.removeUserFile(id)
             await ctx.reply('❌ Delete all user media successfully')
         }
@@ -950,6 +973,7 @@ bot.command('sendchat',async(ctx)=>{
                 //console.log(memberstatus);
 
                 if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
+                    await ctx.deleteMessage()
                     const str = ctx.message.text;
                     const words = str.split(/ +/g);
                     const command = words.shift().slice(1);
@@ -965,6 +989,7 @@ bot.command('sendchat',async(ctx)=>{
 
         if(ctx.chat.type == 'private') {
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+                await ctx.deleteMessage()
                 const str = ctx.message.text;
                 const words = str.split(/ +/g);
                 const command = words.shift().slice(1);
@@ -1022,10 +1047,12 @@ bot.command('broadcast',async(ctx)=>{
 
             }
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+                await ctx.deleteMessage()
                 broadcast(text)
                 await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
 
             }else{
+                await ctx.deleteMessage()
                 await ctx.reply(`Commands can only be used by Admin.`) 
             }
 
@@ -1047,6 +1074,7 @@ bot.command('banchat', async(ctx) => {
 
         if(ctx.chat.type == 'private') {
             if(ctx.from.id == process.env.ADMIN|| ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
+                await ctx.deleteMessage()
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
                 })
@@ -1070,6 +1098,7 @@ bot.command('unbanchat', async(ctx) => {
 
         if(ctx.chat.type == 'private') {
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+                await ctx.deleteMessage()
                 await saver.unBan(userId).then(async res => {
                     await ctx.reply('✅ Finished')
                 })
