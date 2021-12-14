@@ -1119,7 +1119,6 @@ bot.on('document', async(ctx, next) => {
                                 }
                             })
                             if(ctx.chat.type == 'private') {
-                                document = ctx.message.document
                                 fileDetails1 = {
                                     file_name: today2(ctx),
                                     userId:ctx.from.id,
@@ -1130,7 +1129,7 @@ bot.on('document', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'document'
                                 }
-                                await saver.saveFile(fileDetails1)
+                                saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1157,7 +1156,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message.message_id,
                                 type: 'document'
                             }
-                            await saver.saveFile(fileDetails1)
+                            saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1188,7 +1187,6 @@ bot.on('document', async(ctx, next) => {
                                 }
                             })
                             if(ctx.chat.type == 'private') {
-                                document = ctx.message.document
                                 var exstension = document.file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
                                 var doctext = exstension.replace(regex, '');
@@ -1202,7 +1200,7 @@ bot.on('document', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'document'
                                 }
-                                await saver.saveFile(fileDetails2)
+                                saver.saveFile(fileDetails2)
                             }
                             return;
                         }
@@ -1218,7 +1216,6 @@ bot.on('document', async(ctx, next) => {
                             }
                         })
                         if(ctx.chat.type == 'private') {
-                            document = ctx.message.document
                             var exstension = document.file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
                             var doctext = exstension.replace(regex, '');
@@ -1232,7 +1229,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'document'
                             }
-                            await saver.saveFile(fileDetails2)
+                            saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -1302,7 +1299,6 @@ bot.on('document', async(ctx, next) => {
                                                 }
                                             })
                                             if(ctx.chat.type == 'private') {
-                                                document = ctx.message.document
                                                 fileDetails1 = {
                                                     file_name: today2(ctx),
                                                     userId:ctx.from.id,
@@ -1313,7 +1309,7 @@ bot.on('document', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'document'
                                                 }
-                                                await saver.saveFile(fileDetails1)
+                                                saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -1329,7 +1325,6 @@ bot.on('document', async(ctx, next) => {
                                             }
                                         })
                                         if(ctx.chat.type == 'private') {
-                                            document = ctx.message.document
                                             fileDetails1 = {
                                                 file_name: today2(ctx),
                                                 userId:ctx.from.id,
@@ -1340,7 +1335,7 @@ bot.on('document', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'document'
                                             }
-                                            await saver.saveFile(fileDetails1)
+                                            saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -1378,7 +1373,6 @@ bot.on('document', async(ctx, next) => {
                                                 }
                                             })
                                             if(ctx.chat.type == 'private') {
-                                                document = ctx.message.document
                                                 var exstension = document.file_name;
                                                 var regex = /\.[A-Za-z0-9]+$/gm
                                                 var doctext = exstension.replace(regex, '');
@@ -1392,7 +1386,7 @@ bot.on('document', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'document'
                                                 }
-                                                await saver.saveFile(fileDetails2)
+                                                saver.saveFile(fileDetails2)
                                             }
                                             return;
                                         }
@@ -1408,7 +1402,6 @@ bot.on('document', async(ctx, next) => {
                                             }
                                         })
                                         if(ctx.chat.type == 'private') {
-                                            document = ctx.message.document
                                             var exstension = document.file_name;
                                             var regex = /\.[A-Za-z0-9]+$/gm
                                             var doctext = exstension.replace(regex, '');
@@ -1422,7 +1415,7 @@ bot.on('document', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'document'
                                             }
-                                            await saver.saveFile(fileDetails2)
+                                            saver.saveFile(fileDetails2)
                                         }
                                     }
                                 })
@@ -1491,7 +1484,7 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                await saver.saveFile(fileDetails1)
+                                saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1518,7 +1511,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message.message_id,
                                 type: 'video'
                             }
-                            await saver.saveFile(fileDetails1)
+                            saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1563,7 +1556,7 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                await saver.saveFile(fileDetails2)
+                                saver.saveFile(fileDetails2)
                             }
                             return;
                         }
@@ -1593,7 +1586,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            await saver.saveFile(fileDetails2)
+                            saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -1674,7 +1667,7 @@ bot.on('video', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'video'
                                                 }
-                                                await saver.saveFile(fileDetails1)
+                                                saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -1701,7 +1694,7 @@ bot.on('video', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'video'
                                             }
-                                            await saver.saveFile(fileDetails1)
+                                            saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -1753,7 +1746,7 @@ bot.on('video', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'video'
                                                 }
-                                                await saver.saveFile(fileDetails2)
+                                                saver.saveFile(fileDetails2)
                                             }
                                             return;
                                         }
@@ -1783,7 +1776,7 @@ bot.on('video', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'video'
                                             }
-                                            await saver.saveFile(fileDetails2)
+                                            saver.saveFile(fileDetails2)
                                         }
                                     }
                                 })
@@ -1841,7 +1834,6 @@ bot.on('photo', async(ctx, next) => {
                                 }
                             })
                             if(ctx.chat.type == 'private') {
-                                photo = ctx.message.photo
                                 fileDetails1 = {
                                     file_name: today2(ctx),
                                     userId:ctx.from.id,
@@ -1852,7 +1844,7 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
-                                await saver.saveFile(fileDetails1)
+                                saver.saveFile(fileDetails1)
                             }
                             return;
                         }
@@ -1879,7 +1871,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message.message_id,
                                 type: 'photo'
                             }
-                            await saver.saveFile(fileDetails1)
+                            saver.saveFile(fileDetails1)
                         }
                     }
                 })
@@ -1910,7 +1902,6 @@ bot.on('photo', async(ctx, next) => {
                                 }
                             })
                             if(ctx.chat.type == 'private') {
-                                photo = ctx.message.photo
                                 var exstension = photo[1].file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
                                 var photext = exstension.replace(regex, '');
@@ -1924,7 +1915,7 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
-                                await saver.saveFile(fileDetails2)
+                                saver.saveFile(fileDetails2)
                             }
                             return;
                         }
@@ -1940,7 +1931,6 @@ bot.on('photo', async(ctx, next) => {
                             }
                         })
                         if(ctx.chat.type == 'private') {
-                            photo = ctx.message.photo
                             var exstension = photo[1].file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
                             var photext = exstension.replace(regex, '');
@@ -1954,7 +1944,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
-                            await saver.saveFile(fileDetails2)
+                            saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -2035,7 +2025,7 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
-                                                await saver.saveFile(fileDetails1)
+                                                saver.saveFile(fileDetails1)
                                             }
                                             return;
                                         }
@@ -2062,7 +2052,7 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
-                                            await saver.saveFile(fileDetails1)
+                                            saver.saveFile(fileDetails1)
                                         }
                                     }
                                 })
@@ -2114,7 +2104,7 @@ bot.on('photo', async(ctx, next) => {
                                                     messageId: data1.message_id,
                                                     type: 'photo'
                                                 }
-                                                await saver.saveFile(fileDetails2)
+                                                saver.saveFile(fileDetails2)
                                             }
                                             return;
                                         }
@@ -2144,7 +2134,7 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data2.message_id,
                                                 type: 'photo'
                                             }
-                                            await saver.saveFile(fileDetails2)
+                                            saver.saveFile(fileDetails2)
                                         }
                                     }
                                 })
