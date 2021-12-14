@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 const collection = require('./collection')
+const config = require('../config.js')
 require('dotenv').config()
 
 const state = {
@@ -7,7 +8,7 @@ const state = {
 }
 
 module.exports.connect = function (done) {
-        const url = process.env.DB_URL
+        const url = config.DB_URL
         const dbname = 'RatuMediaFile'
 
     MongoClient.connect(url,{ useUnifiedTopology: true } , (err, data) => {
