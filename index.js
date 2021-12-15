@@ -116,7 +116,7 @@ bot.start(async(ctx)=>{
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                        let type = `${res.type}`;
+                        let type = `${res2.type}`;
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
@@ -145,7 +145,7 @@ bot.start(async(ctx)=>{
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                        let type = `${res.type}`;
+                        let type = `${res2.type}`;
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
@@ -174,7 +174,7 @@ bot.start(async(ctx)=>{
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
                         let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                        let type = `${res.type}`;
+                        let type = `${res2.type}`;
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
@@ -278,7 +278,7 @@ bot.start(async(ctx)=>{
                                             await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                                            let type = `${res.type}`;
+                                            let type = `${res2.type}`;
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
@@ -307,7 +307,7 @@ bot.start(async(ctx)=>{
                                             await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                                            let type = `${res.type}`;
+                                            let type = `${res2.type}`;
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
@@ -336,7 +336,7 @@ bot.start(async(ctx)=>{
                                             await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
                                             let urls = 'https://t.me/c/' + channelId.replace('-100', '') + '/' + res2.messageId
-                                            let type = `${res.type}`;
+                                            let type = `${res2.type}`;
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
