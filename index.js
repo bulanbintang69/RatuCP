@@ -108,7 +108,7 @@ bot.start(async(ctx)=>{
                     const res2 = await saver.getFile2(query2)
                 
                     async function captionFunction2() {
-                        awaitctx.reply(`${captionbuild(ctx)}`,{
+                        await ctx.reply(`${captionbuild(ctx)}`,{
                             parse_mode:'HTML'
                         })
                     }
@@ -126,7 +126,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: `${type2}, callback_data: `none`},{text: `sender`, url: `${urls}`}]
+                                        [{text: `${type2}`, callback_data: `none`},{text: `sender`, url: `${urls}`}]
                                     ]
                                 }
                             });
@@ -288,7 +288,7 @@ bot.start(async(ctx)=>{
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
                                                         inline_keyboard:[
-                                                            [{text: `${type2}, callback_data: `none`},{text: `sender`, url: `${urls}`}]
+                                                            [{text: `${type2}`, callback_data: `none`},{text: `sender`, url: `${urls}`}]
                                                         ]
                                                     }
                                                 });
