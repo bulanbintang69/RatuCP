@@ -1145,6 +1145,7 @@ bot.on('document', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
+                        
                         if(ctx.message.caption == undefined){
                             const data1 = await ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
@@ -1212,8 +1213,16 @@ bot.on('document', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
+                        if(ctx.chat.type == 'private') {
+                            var exstension2 = document.file_name;
+                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                            var doctext2 = exstension2.replace(regex2, '');
+                            filename2 = {
+                                file_name: doctext2
+                            }
+                        }
                         if(ctx.message.caption == undefined){
-                            const data1 = await ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            const data1 = await ctx.reply(`#document #file${result} #size${document.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1242,7 +1251,7 @@ bot.on('document', async(ctx, next) => {
                             }
                             return;
                         }
-                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1398,8 +1407,16 @@ bot.on('document', async(ctx, next) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
+                                        if(ctx.chat.type == 'private') {
+                                            var exstension2 = document.file_name;
+                                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                                            var doctext2 = exstension2.replace(regex2, '');
+                                            filename2 = {
+                                                file_name: doctext2
+                                            }
+                                        }
                                         if(ctx.message.caption == undefined){
-                                            const data1 = await ctx.reply(`#document #file${result} #size${document.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            const data1 = await ctx.reply(`#document #file${result} #size${document.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -1428,7 +1445,7 @@ bot.on('document', async(ctx, next) => {
                                             }
                                             return;
                                         }
-                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#document #file${result} #size${document.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
@@ -1565,8 +1582,16 @@ bot.on('video', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
+                        if(ctx.chat.type == 'private') {
+                            var exstension2 = video.file_name;
+                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                            var vidtext2 = exstension2.replace(regex2, '');
+                            filename2 = {
+                                file_name: vidtext2
+                            }
+                        }
                         if(ctx.message.caption == undefined){
-                            const data1 = await ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            const data1 = await ctx.reply(`#video #file${result} #size${video.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1595,7 +1620,7 @@ bot.on('video', async(ctx, next) => {
                             }
                             return;
                         }
-                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1751,8 +1776,16 @@ bot.on('video', async(ctx, next) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
+                                        if(ctx.chat.type == 'private') {
+                                            var exstension2 = video.file_name;
+                                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                                            var vidtext2 = exstension2.replace(regex2, '');
+                                            filename2 = {
+                                                file_name: vidtext2
+                                            }
+                                        }
                                         if(ctx.message.caption == undefined){
-                                            const data1 = await ctx.reply(`#video #file${result} #size${video.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            const data1 = await ctx.reply(`#video #file${result} #size${video.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -1781,7 +1814,7 @@ bot.on('video', async(ctx, next) => {
                                             }
                                             return;
                                         }
-                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#video #file${result} #size${video.file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
@@ -1918,8 +1951,16 @@ bot.on('photo', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
+                        if(ctx.chat.type == 'private') {
+                            var exstension2 = photo[1].file_name;
+                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                            var photext2 = exstension2.replace(regex2, '');
+                            filename2 = {
+                                file_name: photext2
+                            }
+                        }
                         if(ctx.message.caption == undefined){
-                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1948,7 +1989,7 @@ bot.on('photo', async(ctx, next) => {
                             }
                             return;
                         }
-                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -2104,8 +2145,16 @@ bot.on('photo', async(ctx, next) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
+                                        if(ctx.chat.type == 'private') {
+                                            var exstension2 = photo[1].file_name;
+                                            var regex2 = /\.[A-Za-z0-9]+$/gm
+                                            var photext2 = exstension2.replace(regex2, '');
+                                            filename2 = {
+                                                file_name: photext2
+                                            }
+                                        }
                                         if(ctx.message.caption == undefined){
-                                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                            const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                                 chat_id: process.env.LOG_CHANNEL,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
@@ -2134,7 +2183,7 @@ bot.on('photo', async(ctx, next) => {
                                             }
                                             return;
                                         }
-                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
+                                        const data2 = await ctx.reply(`${ctx.message.caption}\n\n#photo #file${result} #size${photo[1].file_size} \n${filename2.file_name} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
