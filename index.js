@@ -126,7 +126,7 @@ bot.start(async(ctx)=>{
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:[
-                                        [{text: `${type2}`, callback_data: `none`},{text: `sender`, url: `${urls}`}]
+                                        [{text: `${type2}`, callback_data: `none`},{text: `Sender`, url: `${urls}`}]
                                     ]
                                 }
                             });
@@ -288,7 +288,7 @@ bot.start(async(ctx)=>{
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
                                                         inline_keyboard:[
-                                                            [{text: `${type2}`, callback_data: `none`},{text: `sender`, url: `${urls}`}]
+                                                            [{text: `${type2}`, callback_data: `none`},{text: `Sender`, url: `${urls}`}]
                                                         ]
                                                     }
                                                 });
