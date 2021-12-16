@@ -2116,9 +2116,10 @@ bot.on('photo', async(ctx, next) => {
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true
                                         })
-                                }catch(error){
-                                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
                                 }
+                            }catch(error){
+                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            }
                         }
                     }
                 })
