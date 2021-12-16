@@ -1871,10 +1871,10 @@ bot.on('photo', async(ctx, next) => {
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-        if(ctx.chat.type == 'supergroup' && ctx.chat.id != channelId){
+        if(ctx.chat.type == 'group' && ctx.chat.id != channelId){
             await ctx.deleteMessage()
             await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-        }else if(ctx.chat.type == 'supergroup' && ctx.chat.id == channelId){
+        }else if(ctx.chat.type == 'group' && ctx.chat.id == channelId){
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                 if(photo[1].file_name == undefined){
