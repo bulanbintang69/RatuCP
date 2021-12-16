@@ -1317,8 +1317,7 @@ bot.on('document', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        try{
-                            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                             //console.log(member);
                             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
@@ -1334,9 +1333,6 @@ bot.on('document', async(ctx, next) => {
                                         disable_web_page_preview: true
                                     })
                             }
-                        }catch(error){
-                            await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                        }
                     }
                 }
             })
@@ -1735,8 +1731,7 @@ bot.on('video', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        try{
-                            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                             //console.log(member);
                             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
@@ -1752,9 +1747,6 @@ bot.on('video', async(ctx, next) => {
                                         disable_web_page_preview: true
                                     })
                             }
-                        }catch(error){
-                            await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                        }
                     }
                 }
             })
@@ -2153,9 +2145,8 @@ bot.on('photo', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        try{
-                            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                        var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                             //console.log(member);
                             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                                 await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
@@ -2170,9 +2161,6 @@ bot.on('photo', async(ctx, next) => {
                                         disable_web_page_preview: true
                                     })
                             }
-                        }catch(error){
-                            await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                        }
                     }
                 }
             })
