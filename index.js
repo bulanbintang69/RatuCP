@@ -2021,7 +2021,7 @@ bot.on('photo', async(ctx, next) => {
                 })
             }
         }
-        catch(error){
+        }catch(error){
             await ctx.deleteMessage()
             await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
         }
