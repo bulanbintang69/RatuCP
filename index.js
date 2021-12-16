@@ -1871,7 +1871,7 @@ bot.on('photo', async(ctx, next) => {
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-        if(ctx.chat.type == 'supergroup' && ctx.chat.id !== channelId){
+        if(ctx.chat.type == 'supergroup' && ctx.chat.id != channelId){
             await ctx.deleteMessage()
             await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
         }else if(ctx.chat.type == 'supergroup' && ctx.chat.id == channelId){
