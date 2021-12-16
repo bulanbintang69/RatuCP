@@ -1317,22 +1317,15 @@ bot.on('document', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
-                            //console.log(member);
-                            if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }else{
-                                if(!profile2 || profile2.total_count == 0)
-                                    return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                                    await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                            }
+                        if(!profile2 || profile2.total_count == 0)
+                             return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
+                             await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
                     }
                 }
             })
@@ -1731,22 +1724,15 @@ bot.on('video', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
-                            //console.log(member);
-                            if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }else{
-                                if(!profile2 || profile2.total_count == 0)
-                                    return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                                    await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                            }
+                        if(!profile2 || profile2.total_count == 0)
+                             return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
+                             await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
                     }
                 }
             })
@@ -2145,22 +2131,15 @@ bot.on('photo', async(ctx, next) => {
                     }
                 }else{
                     if(ctx.chat.type == 'private') {
-                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                        var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
-                            //console.log(member);
-                            if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }else{
-                                if(!profile2 || profile2.total_count == 0)
-                                    return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                                    await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true
-                                    })
-                            }
+                        if(!profile2 || profile2.total_count == 0)
+                             return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
+                             await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                  parse_mode:'HTML',
+                                  disable_web_page_preview: true
+                             })
                     }
                 }
             })
