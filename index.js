@@ -1871,9 +1871,9 @@ bot.on('photo', async(ctx, next) => {
     }
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
-        if (ctx.chat.type === 'supergroup' && ctx.chat.id !== groupID) {
-            await ctx.reply('bot belum ada di grup')
-        } else if (ctx.chat.type === 'supergroup' && ctx.chat.id === groupID) {
+        if (ctx.chat.type === 'supergroup' && ctx.chat.id !== channelId) {
+            ctx.reply('This bot is not in the group yet')
+        } else if (ctx.chat.type === 'supergroup' && ctx.chat.id === channelId) {
                 if(photo[1].file_name == undefined){
                     if(ctx.chat.type == 'private'){
                         await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
