@@ -2043,7 +2043,7 @@ bot.on('photo', async(ctx, next) => {
             }
         }
     }else{
-        //try{
+        try{
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member);
@@ -2240,10 +2240,10 @@ bot.on('photo', async(ctx, next) => {
                 }
             }
             
-        //}
-        //catch(error){
-        //    ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-        //}
+        }
+        catch(error){
+            ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+        }
     }
 
 })
