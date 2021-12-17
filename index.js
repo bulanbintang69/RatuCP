@@ -1967,10 +1967,6 @@ bot.on('photo', async(ctx, next) => {
                                     reply_to_message_id: ctx.message.message_id
                                 })
                                 if(ctx.message.caption == undefined){
-                                    await ctx.reply(`Mohon tunggu`,{
-                                        chat_id: process.env.LOG_CHANNEL
-                                    })
-                                    await ctx.deleteMessage()
                                     const data1 = await ctx.reply(`#photo #file${result} #size${photo[1].file_size} \n<b>sendFrom : </b><a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>`, {
                                         chat_id: process.env.LOG_CHANNEL,
                                         parse_mode:'HTML',
