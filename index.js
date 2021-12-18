@@ -832,7 +832,7 @@ bot.command('unpin',async(ctx)=>{
 })
 
 bot.command('send',async(ctx)=>{
-    groupDetails = await saver.getGroup().then(async res =>{
+    groupDetails = await saver.getGroup().then((res) =>{
         n = res.length
         groupId = []
         for (i = n-1; i >=0; i--) {
@@ -853,14 +853,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return await bot.telegram.sendMessage(group, `${caption}`)
+                            return bot.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return await bot.telegram.sendMessage(group, `${caption}`,{
+                        return bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -872,14 +872,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return await bot.telegram.sendMessage(group, `${caption}`)
+                            return bot.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return await bot.telegram.sendMessage(group, `${caption}`,{
+                        return bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
