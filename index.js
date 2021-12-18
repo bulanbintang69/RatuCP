@@ -846,7 +846,7 @@ bot.command('send',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
-                        
+                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
@@ -860,7 +860,7 @@ bot.command('send',async(ctx)=>{
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return await ctx.reply(group, `${caption}`,{
+                        return await bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -879,7 +879,7 @@ bot.command('send',async(ctx)=>{
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return await ctx.reply(group, `${caption}`,{
+                        return await bot.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
