@@ -525,14 +525,14 @@ bot.command('ban',async(ctx)=>{
                                 const caption = words.join(" ");
                                 const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
 
-                                await bot.telegram.callApi('banChatMember', {
+                                return await bot.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
                                 }).then(async result =>{
                                     //console.log(result)
-                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
+                                    return await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                         parse_mode: 'HTML'
-                                        //reply_to_message_id: ctx.message.message_id
+                                        reply_to_message_id: ctx.message.message_id
                                     })
                                     return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                                 })
@@ -551,7 +551,7 @@ bot.command('ban',async(ctx)=>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                                return await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
@@ -574,7 +574,7 @@ bot.command('ban',async(ctx)=>{
                             user_id: userId
                             }).then(async result =>{
                                 //console.log(result)
-                                await ctx.reply(`[${userId}] blocked. ${caption2}`,{
+                                return await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.message_id
                                 })
@@ -595,7 +595,7 @@ bot.command('ban',async(ctx)=>{
                             //console.log(result)
                             let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                             let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                            await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                            return await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
@@ -639,11 +639,11 @@ bot.command('ban',async(ctx)=>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
+                                return await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return awaitbot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }
