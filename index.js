@@ -531,7 +531,7 @@ bot.command('ban',async(ctx)=>{
                                    //console.log(result)
                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                        parse_mode: 'HTML',
-                                       reply_to_message_id: ctx.message.message_id
+                                       //reply_to_message_id: ctx.message.message_id
                                    })
                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
                                })
@@ -575,7 +575,7 @@ bot.command('ban',async(ctx)=>{
                                 //console.log(result)
                                 await ctx.reply(`[${userId}] blocked. ${caption2}`,{
                                     parse_mode: 'HTML',
-                                    reply_to_message_id: ctx.message.message_id
+                                    //reply_to_message_id: ctx.message.message_id
                                 })
                                 return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
                             })
