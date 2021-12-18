@@ -541,6 +541,7 @@ bot.command('ban',async(ctx)=>{
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
                             const command = words.shift().slice(1);
+                            const userId = words.shift();
                             const caption = words.join(" ");
                             const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
 
@@ -585,6 +586,7 @@ bot.command('ban',async(ctx)=>{
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
+                        const userId = words.shift();
                         const caption = words.join(" ");
                         const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
 
@@ -629,6 +631,7 @@ bot.command('ban',async(ctx)=>{
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
                             const command = words.shift().slice(1);
+                            const userId = words.shift();
                             const caption = words.join(" ");
                             const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
     
