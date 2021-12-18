@@ -534,9 +534,7 @@ bot.command('ban',async(ctx)=>{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                        parse_mode: 'HTML'
-                                    )
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
 
@@ -558,9 +556,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                    parse_mode: 'HTML'
-                                })
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
@@ -607,11 +603,8 @@ bot.command('ban',async(ctx)=>{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                parse_mode: 'HTML'
-                            })
+                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                          })
-                      }
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             await ctx.deleteMessage()
@@ -633,8 +626,7 @@ bot.command('ban',async(ctx)=>{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                    parse_mode: 'HTML'
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
     
@@ -656,9 +648,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                    parse_mode: 'HTML'
-                                })
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }
