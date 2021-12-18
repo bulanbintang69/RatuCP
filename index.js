@@ -499,116 +499,7 @@ bot.command('kick',async(ctx)=>{
     })
 })
 
-bot.command('ban',async(ctx)=>{
-    groupDetails = await saver.getGroup().then(async res => {
-        n = res.length
-        groupId = []
-        for (i = n-1; i >=0; i--) {
-            groupId.push(res[i].groupId)
-        }
-        async function ban() {
-            for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
-                //console.log(memberstatus);
-
-                if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                    if(memberstatus.status == 'administrator'){
-                        await ctx.deleteMessage()
-                        if(memberstatus.can_restrict_members == true){
-                            if(ctx.message.reply_to_message == undefined){
-
-                                const str = ctx.message.text;
-                                const words = str.split(/ +/g);
-                                const command = words.shift().slice(1);
-                                const userId = words.shift();
-                                const caption = words.join(" ");
-                                const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
-
-                                await bot.telegram.callApi('banChatMember', {
-                                chat_id: ctx.message.chat.id,
-                                user_id: userId
-                                }).then(async result =>{
-                                    //console.log(result)
-                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                        parse_mode: 'HTML',
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
-                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
-                                })
-                            }
-
-                            const str = ctx.message.text;
-                            const words = str.split(/ +/g);
-                            const command = words.shift().slice(1);
-                            const userId = words.shift();
-                            const caption = words.join(" ");
-                            const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
-
-                            await bot.telegram.callApi('banChatMember', {
-                            chat_id: ctx.message.chat.id,
-                            user_id: ctx.message.reply_to_message.from.id
-                            }).then(async result =>{
-                                //console.log(result)
-                                let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
-                                let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                                await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
-                                    parse_mode: 'HTML',
-                                    reply_to_message_id: ctx.message.reply_to_message.message_id
-                                })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
-                            })
-                        }
-                    }else if(memberstatus.status == 'creator'){
-                        await ctx.deleteMessage()
-                        if(ctx.message.reply_to_message == undefined){
-
-                            const str = ctx.message.text;
-                            const words = str.split(/ +/g);
-                            const command = words.shift().slice(1);
-                            const userId = words.shift();
-                            const caption = words.join(" ");
-                            const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
-
-                            await bot.telegram.callApi('banChatMember', {
-                            chat_id: ctx.message.chat.id,
-                            user_id: userId
-                            }).then(async result =>{
-                                //console.log(result)
-                                await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                    parse_mode: 'HTML',
-                                    reply_to_message_id: ctx.message.message_id
-                                })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`,{
-                                    parse_mode: 'HTML'
-                                })
-                            })
-                        }
-
-                        const str = ctx.message.text;
-                        const words = str.split(/ +/g);
-                        const command = words.shift().slice(1);
-                        const userId = words.shift();
-                        const caption = words.join(" ");
-                        const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
-
-                        await bot.telegram.callApi('banChatMember', {
-                        chat_id: ctx.message.chat.id,
-                        user_id: ctx.message.reply_to_message.from.id
-                        }).then(async result =>{
-                            //console.log(result)
-                            let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
-                            let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
-                            await ctx.reply(`${replyUsername} ${replyFromid} blocked. ${caption2}`,{
-                                parse_mode: 'HTML',
-                                reply_to_message_id: ctx.message.reply_to_message.message_id
-                            })
-                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
-                         })
-                    }else{
-                        if(ctx.from.username == 'GroupAnonymousBot'){
-                            await ctx.deleteMessage()
-                            if(ctx.message.reply_to_message == undefined){
+if(ctx.message.reply_to_message == undefined){
 
                                 const str = ctx.message.text;
                                 const words = str.split(/ +/g);
@@ -648,16 +539,8 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
                             })
-                        }
-                    }
-                }
-            }
-        }
-        ban()
-    })
-})
 
 bot.command('unban',async(ctx)=>{
     groupDetails = await saver.getGroup().then(async res => {
