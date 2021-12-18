@@ -525,13 +525,13 @@ bot.command('ban',async(ctx)=>{
                                 const caption = words.join(" ");
                                 const caption2 = caption ? `\n<b>Because:</b> ${caption}` : "";
 
-                                return await bot.telegram.callApi('banChatMember', {
+                                await bot.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
                                 }).then(async result =>{
                                     //console.log(result)
                                     await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                        parse_mode: 'HTML'
+                                        parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
                                     return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
@@ -599,7 +599,7 @@ bot.command('ban',async(ctx)=>{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return wait bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
                          })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
