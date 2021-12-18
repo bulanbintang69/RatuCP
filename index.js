@@ -845,8 +845,7 @@ bot.command('send',async(ctx)=>{
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
-                    if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
-                        await ctx.deleteMessage()
+                    if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){                        
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
