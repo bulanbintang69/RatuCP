@@ -860,8 +860,7 @@ bot.command('send',async(ctx)=>{
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        await ctx.reply(group, `${caption}`,{
-                            parse_mode: 'HTML',
+                        return await ctx.reply(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -880,8 +879,7 @@ bot.command('send',async(ctx)=>{
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        await ctx.reply(group, `${caption}`,{
-                            parse_mode: 'HTML',
+                        return await ctx.reply(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
