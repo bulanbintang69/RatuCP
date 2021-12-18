@@ -846,7 +846,6 @@ bot.command('send',async(ctx)=>{
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
-                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
@@ -865,7 +864,6 @@ bot.command('send',async(ctx)=>{
                         })
                     }
                     if(ctx.from.username == 'GroupAnonymousBot'){
-                        await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
                             const str = ctx.message.text;
                             const words = str.split(/ +/g);
