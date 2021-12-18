@@ -121,7 +121,7 @@ bot.start(async(ctx)=>{
                         
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -131,7 +131,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                        await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -150,7 +150,7 @@ bot.start(async(ctx)=>{
                         
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -160,7 +160,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                        await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -179,7 +179,7 @@ bot.start(async(ctx)=>{
                         
                         if(!res2.caption) {
                             setTimeout(captionFunction2, 1000)
-                            return await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                            return await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -189,7 +189,7 @@ bot.start(async(ctx)=>{
                                 }
                             });
                         }
-                        await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                        await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             reply_markup:{
@@ -283,7 +283,7 @@ bot.start(async(ctx)=>{
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                return await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -293,7 +293,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            await ctx.replyWithVideo(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                                            await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -312,7 +312,7 @@ bot.start(async(ctx)=>{
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                return await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -322,7 +322,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            await ctx.replyWithPhoto(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                                            await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
@@ -341,7 +341,7 @@ bot.start(async(ctx)=>{
                                             
                                             if(!res2.caption) {
                                                 setTimeout(captionFunction2, 1000)
-                                                return await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size}`,
+                                                return await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
                                                     reply_markup:{
@@ -351,7 +351,7 @@ bot.start(async(ctx)=>{
                                                     }
                                                 });
                                             }
-                                            await ctx.replyWithDocument(res2.file_id,{caption: `#file${result} #size${res2.file_size} \n\n${res2.caption}`,
+                                            await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result} \n\n${res2.caption}`,
                                                 parse_mode:'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_markup:{
