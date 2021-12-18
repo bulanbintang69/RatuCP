@@ -879,7 +879,8 @@ bot.command('send',async(ctx)=>{
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return await bot.telegram.sendMessage(group, `${caption}`,{
+                        await ctx.reply(group, `${caption}`,{
+                            parse_mode: 'HTML',
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
