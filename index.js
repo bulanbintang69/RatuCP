@@ -530,10 +530,11 @@ bot.command('ban',async(ctx)=>{
                                }).then(async result =>{
                                    //console.log(result)
                                    await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                       parse_mode: 'HTML',
-                                       //reply_to_message_id: ctx.message.message_id
+                                       parse_mode: 'HTML'
                                    })
-                                   return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                                   return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                       parse_mode: 'HTML'
+                                   })
                                })
                             }
     
@@ -555,7 +556,9 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                    parse_mode: 'HTML'
+                                })
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
@@ -574,10 +577,11 @@ bot.command('ban',async(ctx)=>{
                             }).then(async result =>{
                                 //console.log(result)
                                 await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                    parse_mode: 'HTML',
-                                    //reply_to_message_id: ctx.message.message_id
+                                    parse_mode: 'HTML'
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                    parse_mode: 'HTML'
+                                })
                             })
                         }
 
@@ -599,7 +603,9 @@ bot.command('ban',async(ctx)=>{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                            return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                parse_mode: 'HTML'
+                            })
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
@@ -618,10 +624,11 @@ bot.command('ban',async(ctx)=>{
                                 }).then(async result =>{
                                     //console.log(result)
                                     await ctx.reply(`[${userId}] blocked. ${caption2}`,{
-                                        parse_mode: 'HTML',
-                                        reply_to_message_id: ctx.message.message_id
+                                        parse_mode: 'HTML'
                                     })
-                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                        parse_mode: 'HTML'
+                                    })
                                 })
                             }
     
@@ -643,7 +650,9 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
+                                return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`{
+                                    parse_mode: 'HTML'
+                                })
                             })
                         }
                     }
@@ -675,9 +684,7 @@ bot.command('unban',async(ctx)=>{
                                 let args = ctx.message.text.split(" ").slice(1)
                                 await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
-                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
+                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`)
                                     return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                                 })
                             }
@@ -697,9 +704,7 @@ bot.command('unban',async(ctx)=>{
                             let args = ctx.message.text.split(" ").slice(1)
                             await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                 //console.log(result)
-                                await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
-                                    reply_to_message_id: ctx.message.message_id
-                                })
+                                await ctx.reply(`[${args[0]}] not blocked, can re-enter!`)
                                 return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                             })
                         }
@@ -719,9 +724,7 @@ bot.command('unban',async(ctx)=>{
                                 let args = ctx.message.text.split(" ").slice(1)
                                 await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(async result =>{
                                     //console.log(result)
-                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`,{
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
+                                    await ctx.reply(`[${args[0]}] not blocked, can re-enter!`)
                                     return await bot.telegram.sendMessage(args[0], `You are not blocked, you can re-enter at ${ctx.message.chat.title}`)
                                 })
                             }
