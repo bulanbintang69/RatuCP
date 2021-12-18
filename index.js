@@ -533,7 +533,7 @@ bot.command('ban',async(ctx)=>{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption2}`)
+                                    return await bot.telegram.sendMessage(userId, `You have been blocked on ${ctx.message.chat.title} ${caption}`)
                                 })
                             }
     
