@@ -562,6 +562,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML'
                                 })
                             })
+                        }
                     }else if(memberstatus.status == 'creator'){
                         await ctx.deleteMessage()
                         if(ctx.message.reply_to_message == undefined){
@@ -610,6 +611,7 @@ bot.command('ban',async(ctx)=>{
                                 parse_mode: 'HTML'
                             })
                          })
+                      }
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             await ctx.deleteMessage()
@@ -658,7 +660,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML'
                                 })
                             })
-                        
+                        }
                     }
                 }
             }
