@@ -1121,7 +1121,7 @@ bot.command('unbanchat', async(ctx) => {
     }
 })
 
-bot.on('hi', async(ctx) => ctx.deleteMessage())
+bot.hears('/hi', async(ctx) => await ctx.deleteMessage())
 
 //saving documents to db and generating link
 bot.on('document', async(ctx, next) => {
