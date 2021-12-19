@@ -404,12 +404,7 @@ bot.hears(/ping/i,async(ctx)=>{
             }else{
                 await ctx.deleteMessage()
                 let chatId = ctx.message.from.id;
-                let opts = {
-                    reply_markup:{
-                        inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
-                    }
-                }
-                return await bot.telegram.sendMessage(chatId, 'pong' , opts);
+                return await bot.telegram.sendMessage(chatId, 'pong');
             }
         })
     }
