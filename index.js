@@ -417,7 +417,7 @@ bot.hears(/ping/i,async(ctx)=>{
 
 bot.action('PONG',async(ctx)=>{
     await ctx.deleteMessage()
-    await.ctx.reply('pong')
+    await ctx.reply('pong')
 })
 
 //GROUP COMMAND
