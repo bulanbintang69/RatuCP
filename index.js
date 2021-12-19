@@ -1121,7 +1121,7 @@ bot.command('unbanchat', async(ctx) => {
     }
 })
 
-bot.on('/hi', async(ctx) => {
+bot.hears('/hi', async(ctx) => {
     await ctx.deleteMessage()
 })
 
