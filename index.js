@@ -202,7 +202,7 @@ bot.start(async(ctx)=>{
                     }
                 }catch(error){
                     await ctx.deleteMessage()
-                    await ctx.reply(`Media not found or has been removed`)
+                    await ctx.reply(`Media not found or has been removed.`)
                 }
             }
         }else{
@@ -373,7 +373,7 @@ bot.start(async(ctx)=>{
                                         }
                                     }else{
                                         await ctx.deleteMessage()
-                                        await ctx.reply(`Media not found or has been removed`)
+                                        await ctx.reply(`Media not found or has been removed.`)
                                     }
                                 })
                             }
