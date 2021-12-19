@@ -394,11 +394,11 @@ bot.start(async(ctx)=>{
 //TEST BOT
 bot.hears(/ping/i,async(ctx)=>{
     if(ctx.chat.type == 'private') {
-        await ctx.deleteMessage()
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
                 if(ctx.chat.type == 'private') {
+                    await ctx.deleteMessage()
                     await ctx.reply(`${messagebanned(ctx)}`)
                 }
             }else{
@@ -417,6 +417,7 @@ bot.hears(/ping/i,async(ctx)=>{
 
 bot.action('PONG',async(ctx)=>{
     await ctx.deleteMessage()
+    await.ctx.reply('pong')
 })
 
 //GROUP COMMAND
