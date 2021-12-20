@@ -1191,7 +1191,7 @@ bot.on('document', async(ctx, next) => {
                             }
                         })
                         if(ctx.chat.type == 'private') {
-                            fileDetails1 = {
+                            fileDetails2 = {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: document.file_id,
@@ -1201,7 +1201,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'document'
                             }
-                            await saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -1243,7 +1243,7 @@ bot.on('document', async(ctx, next) => {
                                 var exstension = document.file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
                                 var doctext = exstension.replace(regex, '');
-                                fileDetails2 = {
+                                fileDetails3 = {
                                     file_name: doctext,
                                     userId:ctx.from.id,
                                     file_id: document.file_id,
@@ -1253,7 +1253,7 @@ bot.on('document', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'document'
                                 }
-                                await saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails3)
                             }
                             return;
                         }
@@ -1272,7 +1272,7 @@ bot.on('document', async(ctx, next) => {
                             var exstension = document.file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
                             var doctext = exstension.replace(regex, '');
-                            fileDetails2 = {
+                            fileDetails4 = {
                                 file_name: doctext,
                                 userId:ctx.from.id,
                                 file_id: document.file_id,
@@ -1282,7 +1282,7 @@ bot.on('document', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'document'
                             }
-                            await saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails4)
                         }
                     }
                 })
@@ -1373,7 +1373,7 @@ bot.on('document', async(ctx, next) => {
                                         }
                                     })
                                     if(ctx.chat.type == 'private') {
-                                        fileDetails1 = {
+                                        fileDetails2 = {
                                             file_name: today2(ctx),
                                             userId:ctx.from.id,
                                             file_id: document.file_id,
@@ -1383,7 +1383,7 @@ bot.on('document', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'document'
                                         }
-                                        await saver.saveFile(fileDetails1)
+                                        await saver.saveFile(fileDetails2)
                                     }
                                 }
                             })
@@ -1432,7 +1432,7 @@ bot.on('document', async(ctx, next) => {
                                             var exstension = document.file_name;
                                             var regex = /\.[A-Za-z0-9]+$/gm
                                             var doctext = exstension.replace(regex, '');
-                                            fileDetails2 = {
+                                            fileDetails3 = {
                                                 file_name: doctext,
                                                 userId:ctx.from.id,
                                                 file_id: document.file_id,
@@ -1442,7 +1442,7 @@ bot.on('document', async(ctx, next) => {
                                                 messageId: data1.message_id,
                                                 type: 'document'
                                             }
-                                            await saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails3)
                                         }
                                         return;
                                     }
@@ -1461,7 +1461,7 @@ bot.on('document', async(ctx, next) => {
                                         var exstension = document.file_name;
                                         var regex = /\.[A-Za-z0-9]+$/gm
                                         var doctext = exstension.replace(regex, '');
-                                        fileDetails2 = {
+                                        fileDetails4 = {
                                             file_name: doctext,
                                             userId:ctx.from.id,
                                             file_id: document.file_id,
@@ -1471,7 +1471,7 @@ bot.on('document', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'document'
                                         }
-                                        await saver.saveFile2(fileDetails2)
+                                        await saver.saveFile2(fileDetails4)
                                     }
                                 }
                             })
@@ -1550,7 +1550,7 @@ bot.on('video', async(ctx, next) => {
                             }
                         })
                         if(ctx.chat.type == 'private') {
-                            fileDetails1 = {
+                            fileDetails2 = {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: video.file_id,
@@ -1560,7 +1560,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            await saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -1594,7 +1594,7 @@ bot.on('video', async(ctx, next) => {
                                 var exstension = video.file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
                                 var vidtext = exstension.replace(regex, '');
-                                fileDetails2 = {
+                                fileDetails3 = {
                                     file_name: vidtext,
                                     userId:ctx.from.id,
                                     file_id: video.file_id,
@@ -1604,7 +1604,7 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                await saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails3)
                             }
                             return;
                         }
@@ -1623,7 +1623,7 @@ bot.on('video', async(ctx, next) => {
                             var exstension = video.file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
                             var vidtext = exstension.replace(regex, '');
-                            fileDetails2 = {
+                            fileDetails4 = {
                                 file_name: vidtext,
                                 userId:ctx.from.id,
                                 file_id: video.file_id,
@@ -1633,7 +1633,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            await saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails4)
                         }
                     }
                 })
@@ -1724,7 +1724,7 @@ bot.on('video', async(ctx, next) => {
                                         }
                                     })
                                     if(ctx.chat.type == 'private') {
-                                        fileDetails1 = {
+                                        fileDetails2 = {
                                             file_name: today2(ctx),
                                             userId:ctx.from.id,
                                             file_id: video.file_id,
@@ -1734,7 +1734,7 @@ bot.on('video', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'video'
                                         }
-                                        await saver.saveFile(fileDetails1)
+                                        await saver.saveFile(fileDetails2)
                                     }
                                 }
                             })
@@ -1775,7 +1775,7 @@ bot.on('video', async(ctx, next) => {
                                             var exstension = video.file_name;
                                             var regex = /\.[A-Za-z0-9]+$/gm
                                             var vidtext = exstension.replace(regex, '');
-                                            fileDetails2 = {
+                                            fileDetails3 = {
                                                 file_name: vidtext,
                                                 userId:ctx.from.id,
                                                 file_id: video.file_id,
@@ -1785,7 +1785,7 @@ bot.on('video', async(ctx, next) => {
                                                 messageId: data1.message_id,
                                                 type: 'video'
                                             }
-                                            await saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails3)
                                         }
                                         return;
                                     }
@@ -1804,7 +1804,7 @@ bot.on('video', async(ctx, next) => {
                                         var exstension = video.file_name;
                                         var regex = /\.[A-Za-z0-9]+$/gm
                                         var vidtext = exstension.replace(regex, '');
-                                        fileDetails2 = {
+                                        fileDetails4 = {
                                             file_name: vidtext,
                                             userId:ctx.from.id,
                                             file_id: video.file_id,
@@ -1814,7 +1814,7 @@ bot.on('video', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'video'
                                         }
-                                        await saver.saveFile2(fileDetails2)
+                                        await saver.saveFile2(fileDetails4)
                                     }
                                 }
                             })
@@ -1893,7 +1893,7 @@ bot.on('photo', async(ctx, next) => {
                             }
                         })
                         if(ctx.chat.type == 'private') {
-                            fileDetails1 = {
+                            fileDetails2 = {
                                 file_name: today2(ctx),
                                 userId:ctx.from.id,
                                 file_id: photo.file_id,
@@ -1903,7 +1903,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
-                            await saver.saveFile(fileDetails1)
+                            await saver.saveFile(fileDetails2)
                         }
                     }
                 })
@@ -1937,7 +1937,7 @@ bot.on('photo', async(ctx, next) => {
                                 var exstension = photo.file_name;
                                 var regex = /\.[A-Za-z0-9]+$/gm
                                 var photext = exstension.replace(regex, '');
-                                fileDetails2 = {
+                                fileDetails3 = {
                                     file_name: photext,
                                     userId:ctx.from.id,
                                     file_id: photo.file_id,
@@ -1947,7 +1947,7 @@ bot.on('photo', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'photo'
                                 }
-                                await saver.saveFile2(fileDetails2)
+                                await saver.saveFile2(fileDetails3)
                             }
                             return;
                         }
@@ -1966,7 +1966,7 @@ bot.on('photo', async(ctx, next) => {
                             var exstension = photo.file_name;
                             var regex = /\.[A-Za-z0-9]+$/gm
                             var photext = exstension.replace(regex, '');
-                            fileDetails2 = {
+                            fileDetails4 = {
                                 file_name: photext,
                                 userId:ctx.from.id,
                                 file_id: photo.file_id,
@@ -1976,7 +1976,7 @@ bot.on('photo', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'photo'
                             }
-                            await saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails4)
                         }
                     }
                 })
@@ -2067,7 +2067,7 @@ bot.on('photo', async(ctx, next) => {
                                         }
                                     })
                                     if(ctx.chat.type == 'private') {
-                                        fileDetails1 = {
+                                        fileDetails2 = {
                                             file_name: today2(ctx),
                                             userId:ctx.from.id,
                                             file_id: photo.file_id,
@@ -2077,7 +2077,7 @@ bot.on('photo', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'photo'
                                         }
-                                        await saver.saveFile(fileDetails1)
+                                        await saver.saveFile(fileDetails2)
                                     }
                                 }
                             })
@@ -2118,7 +2118,7 @@ bot.on('photo', async(ctx, next) => {
                                             var exstension = photo.file_name;
                                             var regex = /\.[A-Za-z0-9]+$/gm
                                             var photext = exstension.replace(regex, '');
-                                            fileDetails2 = {
+                                            fileDetails3 = {
                                                 file_name: photext,
                                                 userId:ctx.from.id,
                                                 file_id: photo.file_id,
@@ -2128,7 +2128,7 @@ bot.on('photo', async(ctx, next) => {
                                                 messageId: data1.message_id,
                                                 type: 'photo'
                                             }
-                                            await saver.saveFile2(fileDetails2)
+                                            await saver.saveFile2(fileDetails3)
                                         }
                                         return;
                                     }
@@ -2147,7 +2147,7 @@ bot.on('photo', async(ctx, next) => {
                                         var exstension = photo.file_name;
                                         var regex = /\.[A-Za-z0-9]+$/gm
                                         var photext = exstension.replace(regex, '');
-                                        fileDetails2 = {
+                                        fileDetails4 = {
                                             file_name: photext,
                                             userId:ctx.from.id,
                                             file_id: photo.file_id,
@@ -2157,7 +2157,7 @@ bot.on('photo', async(ctx, next) => {
                                             messageId: data2.message_id,
                                             type: 'photo'
                                         }
-                                        await saver.saveFile2(fileDetails2)
+                                        await saver.saveFile2(fileDetails4)
                                     }
                                 }
                             })
