@@ -391,9 +391,9 @@ bot.start(async(ctx)=>{
     }
 })
 
-//TEST BOT
+TEST BOT
 bot.hears(/ping/i,async(ctx)=>{
-    if(ctx.chat.type == 'private') {
+    if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
@@ -404,7 +404,12 @@ bot.hears(/ping/i,async(ctx)=>{
             }else{
                 await ctx.deleteMessage()
                 let chatId = ctx.message.from.id;
-                return await bot.telegram.sendMessage(chatId, 'pong');
+                let opts = {
+                    reply_markup:{
+                        inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
+                    }
+                }
+                return await bot.telegram.sendMessage(chatId, 'pong' , opts);
             }
         })
     }
@@ -412,9 +417,7 @@ bot.hears(/ping/i,async(ctx)=>{
 
 bot.action('PONG',async(ctx)=>{
     await ctx.deleteMessage()
-    await ctx.reply('pong')
 })
-
 //GROUP COMMAND
 bot.command('reload',async(ctx)=>{
 
