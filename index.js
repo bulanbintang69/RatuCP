@@ -391,7 +391,7 @@ bot.start(async(ctx)=>{
     }
 })
 
-TEST BOT
+//TEST BOT
 bot.hears(/ping/i,async(ctx)=>{
     if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -418,6 +418,7 @@ bot.hears(/ping/i,async(ctx)=>{
 bot.action('PONG',async(ctx)=>{
     await ctx.deleteMessage()
 })
+
 //GROUP COMMAND
 bot.command('reload',async(ctx)=>{
 
