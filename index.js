@@ -1043,7 +1043,7 @@ bot.command('broadcast',async(ctx)=>{
             //broadcasting
             totalBroadCast = 0
             totalFail = []
-            
+
             //creating function for broadcasting and to know bot user status
             async function broadcast(text) {
                 for (const users of userId) {
