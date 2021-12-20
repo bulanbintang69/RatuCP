@@ -1141,7 +1141,7 @@ bot.on('document', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(document.file_name == undefined){
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -1213,13 +1213,13 @@ bot.on('document', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }else{
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -1305,9 +1305,9 @@ bot.on('document', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }
     }else{
@@ -1349,7 +1349,7 @@ bot.on('document', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -1421,9 +1421,9 @@ bot.on('document', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
@@ -1434,7 +1434,7 @@ bot.on('document', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -1520,9 +1520,9 @@ bot.on('document', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
@@ -1548,7 +1548,7 @@ bot.on('video', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(video.file_name == undefined){
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -1620,13 +1620,13 @@ bot.on('video', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }else{
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -1704,9 +1704,9 @@ bot.on('video', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }
     }else{
@@ -1748,7 +1748,7 @@ bot.on('video', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -1820,9 +1820,9 @@ bot.on('video', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
@@ -1833,7 +1833,7 @@ bot.on('video', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -1911,9 +1911,9 @@ bot.on('video', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
@@ -1939,7 +1939,7 @@ bot.on('photo', async(ctx, next) => {
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(photo[1].file_name == undefined){
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -2011,13 +2011,13 @@ bot.on('photo', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }else{
             if(ctx.chat.type == 'private'){
-                try{
+                //try{
                     var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                     var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                     //console.log(member);
@@ -2095,9 +2095,9 @@ bot.on('photo', async(ctx, next) => {
                             }
                         })
                     }
-                }catch(error){
-                    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                }
+                //}catch(error){
+                //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                //}
             }
         }
     }else{
@@ -2139,7 +2139,7 @@ bot.on('photo', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -2211,9 +2211,9 @@ bot.on('photo', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
@@ -2224,7 +2224,7 @@ bot.on('photo', async(ctx, next) => {
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            try{
+                            //try{
                                 var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                                 //console.log(member);
@@ -2302,9 +2302,9 @@ bot.on('photo', async(ctx, next) => {
                                         }
                                     })
                                 }
-                            }catch(error){
-                                await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                            }
+                            //}catch(error){
+                            //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                            //}
                         }
                     })
                 }
