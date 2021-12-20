@@ -202,7 +202,7 @@ bot.start(async(ctx)=>{
                     }
                 }catch(error){
                     await ctx.deleteMessage()
-                    await ctx.reply(`Media not found or has been removed.`)
+                    await ctx.reply(`Media not found or has been removed`)
                 }
             }
         }else{
@@ -369,12 +369,11 @@ bot.start(async(ctx)=>{
                                     //console.log(res);
                                     if(res == true) {
                                         if(ctx.chat.type == 'private') {
-                                            await ctx.deleteMessage()
                                             await ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
                                         await ctx.deleteMessage()
-                                        await ctx.reply(`Media not found or has been removed.`)
+                                        await ctx.reply(`Media not found or has been removed`)
                                     }
                                 })
                             }
