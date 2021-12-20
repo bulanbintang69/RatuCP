@@ -12,10 +12,6 @@ Replace the link with your github template.
 Click here to watch how to host
 </a>
 </br></br>
-Change the running mode from web to worker.
-</br>
-<a href="https://www.imagebam.com/view/ME5P87D" target="_blank"><img src="https://thumbs4.imagebam.com/8f/7e/1f/ME5P87D_t.jpg" alt="20211220_051345.jpg"/></a>
-</br></br>
 
 Required details.</br>
 <code>TOKEN</code> - Get bot token from botfather.</br>
