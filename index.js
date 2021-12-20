@@ -2350,5 +2350,3 @@ bot.launch({
         port:Number(process.env.PORT) 
     }
 })
-
-//bot.launch()
