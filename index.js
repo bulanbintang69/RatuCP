@@ -1489,7 +1489,7 @@ bot.on('video', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 1_000);
+        }, 2_000);
     });
     await next();
   
