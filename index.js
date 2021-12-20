@@ -369,6 +369,7 @@ bot.start(async(ctx)=>{
                                     //console.log(res);
                                     if(res == true) {
                                         if(ctx.chat.type == 'private') {
+                                            await ctx.deleteMessage()
                                             await ctx.reply(`${messagebanned(ctx)}`)
                                         }
                                     }else{
@@ -392,17 +393,18 @@ bot.start(async(ctx)=>{
 
 //TEST BOT
 bot.hears(/ping/i,async(ctx)=>{
-    if(ctx.chat.type == 'private') {
+    if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
                 if(ctx.chat.type == 'private') {
+                    await ctx.deleteMessage()
                     await ctx.reply(`${messagebanned(ctx)}`)
                 }
             }else{
+                await ctx.deleteMessage()
                 let chatId = ctx.message.from.id;
                 let opts = {
-                    reply_to_message_id: ctx.message.message_id,
                     reply_markup:{
                         inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
                     }
@@ -902,21 +904,23 @@ bot.command('getid',async(ctx)=>{
         }, 1_000);
     });
   
-    if(ctx.chat.type == 'private') {
-        await ctx.deleteMessage()
+    if(ctx.chat.type == 'private') {       
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
             if(res == true) {
                 if(ctx.chat.type == 'private') {
+                    await ctx.deleteMessage()
                     await ctx.reply(`${messagebanned(ctx)}`)
                 }
             }else{
                 if(!profile4 || profile4.total_count == 0){
+                    await ctx.deleteMessage()
                     await ctx.reply(`<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,{
                         parse_mode:'HTML'  
                     })
                 }else{
+                    await ctx.deleteMessage()
                     await ctx.replyWithPhoto(profile4.photos[0][0].file_id,{caption: `<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,
                         parse_mode:'HTML'
                     })
