@@ -1724,7 +1724,7 @@ bot.on('video', async(ctx, next) => {
                                         }
                                     })
                                     if(ctx.chat.type == 'private') {
-                                        fileDetails3 = {
+                                        fileDetails2 = {
                                             file_name: today2(ctx),
                                             userId:ctx.from.id,
                                             file_id: video.file_id,
