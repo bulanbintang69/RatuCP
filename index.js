@@ -1490,19 +1490,19 @@ bot.on('video', async(ctx, next) => {
 
         if(video2.file_name == undefined){
             if(ctx.chat.type == 'private'){
-                await saver.checkFile(`${video2.file_unique_id}`).then((res) => {
+                await saver.checkFile(`${video2.file_unique_id}`).then(async res => {
                     let result = `${video2.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${result}`)
+                        await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
+                        await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined){
-                            const data1 = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result}`, {
+                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1524,11 +1524,11 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data1.message_id,
                                     type: 'video'
                                 }
-                                saver.saveFile(fileDetails1)
+                                await saver.saveFile(fileDetails1)
                             }
                             return;
                         }
-                        const data2 = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result} \n\n${ctx.message.caption}`, {
+                        const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result} \n\n${ctx.message.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1550,26 +1550,26 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data2.message_id,
                                 type: 'video'
                             }
-                            saver.saveFile2(fileDetails2)
+                            await saver.saveFile2(fileDetails2)
                         }
                     }
                 })
             }
         }else{
             if(ctx.chat.type == 'private'){
-                saver.checkFile(`${video2.file_unique_id}`).then,((res) => {
+                await saver.checkFile(`${video2.file_unique_id}`).then(async res => {
                     let result = `${video2.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`File already exists. #file${result}`)
+                        await ctx.reply(`File already exists. #file${result}`)
                     }else{
-                        ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
+                        await ctx.reply(`✔️ Thank you for sending.\nSearch #file${result}`,{
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(ctx.message.caption == undefined){
-                            const data3 = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result}`, {
+                            const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1594,11 +1594,11 @@ bot.on('video', async(ctx, next) => {
                                     messageId: data3.message_id,
                                     type: 'video'
                                 }
-                                saver.saveFile3(fileDetails3)
+                                await saver.saveFile3(fileDetails3)
                             }
                             return;
                         }
-                        const data4 = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result} \n\n${ctx.message.caption}`, {
+                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video2.file_size} \n#file${result} \n\n${ctx.message.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1623,7 +1623,7 @@ bot.on('video', async(ctx, next) => {
                                 messageId: data4.message_id,
                                 type: 'video'
                             }
-                            saver.saveFile4(fileDetails4)
+                            await saver.saveFile4(fileDetails4)
                         }
                     }
                 })
