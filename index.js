@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.TOKEN)
+const Queue = require('bull');
 const mediaQueue = new Queue('media')
 
 process.env.TZ = "Asia/Jakarta";
