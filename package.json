@@ -4,6 +4,7 @@
   "description": "another way to share files",
   "main": "index.js",
   "dependencies": {
+    "bull": "^4.2.0",
     "dotenv": "^8.6.0",
     "mongodb": "^3.7.3",
     "nodemon": "^2.0.15",

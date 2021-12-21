@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.TOKEN)
+const mediaQueue = new Queue('media')
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1126,7 +1127,7 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 //document files
-bot.on('document', async(ctx, next) => {
+bot.on('video', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
@@ -1473,16 +1474,8 @@ bot.on('document', async(ctx, next) => {
 
 })
 
-//video files
-bot.on('video', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });
-    await next();
-  
-
+mediaQueue.process(async (ctx, done) => {
+    console.log(ctx)
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
             video2 = ctx.message.video
@@ -1818,8 +1811,13 @@ bot.on('video', async(ctx, next) => {
             }
         }
     }
+    done(result)
+  })
+  mediaQueue.on('completed', async (job, result) => {
+    console.log(result)
+  })
 
-})
+bot.on('video', ctx => mediaQueue.add(ctx))
 
 //photo files
 bot.on('photo', async(ctx, next) => {
