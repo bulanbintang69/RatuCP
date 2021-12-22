@@ -1208,7 +1208,7 @@ bot.on('document', async(ctx, next) => {
                                 caption: fileDetail.caption,
                                 file_size: fileDetail.file_size,
                                 uniqueId: fileDetail.uniqueId,
-                                messageId: data1.message_id,
+                                messageId: data2.message_id,
                                 type: 'document'
                             }
                             await saver.saveFile2(fileDetails2)
@@ -1586,7 +1586,7 @@ bot.on('video', async(ctx, next) => {
                                 caption: fileDetail.caption,
                                 file_size: fileDetail.file_size,
                                 uniqueId: fileDetail.uniqueId,
-                                messageId: data1.message_id,
+                                messageId: data2.message_id,
                                 type: 'video'
                             }
                             await saver.saveFile2(fileDetails2)
@@ -1964,7 +1964,7 @@ bot.on('photo', async(ctx, next) => {
                                 caption: fileDetail.caption,
                                 file_size: fileDetail.file_size,
                                 uniqueId: fileDetail.uniqueId,
-                                messageId: data1.message_id,
+                                messageId: data2.message_id,
                                 type: 'photo'
                             }
                             await saver.saveFile2(fileDetails2)
