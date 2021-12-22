@@ -76,6 +76,7 @@ bot.start(async(ctx)=>{
             return resolve("Result");
         }, 1_000);
     });
+
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1132,8 +1133,6 @@ bot.on('document', async(ctx, next) => {
             return resolve("Result");
         }, 2_000);
     });
-    await next();
-  
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
@@ -1500,7 +1499,7 @@ bot.on('document', async(ctx, next) => {
             }
         }
     }
-
+    await next();
 })
 
 //video files
@@ -1886,9 +1885,7 @@ bot.on('photo', async(ctx, next) => {
             return resolve("Result");
         }, 2_000);
     });
-    await next();
   
-
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
             photo = ctx.message.photo[1]
@@ -2254,7 +2251,7 @@ bot.on('photo', async(ctx, next) => {
             }
         }
     }
-
+    await next();
 })
 
 bot.command('stats',async(ctx)=>{
