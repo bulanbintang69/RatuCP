@@ -1512,7 +1512,6 @@ bot.on('video', async(ctx, next) => {
     });
     await next();
   
-
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
             video = ctx.message.video
