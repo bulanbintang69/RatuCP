@@ -1151,7 +1151,7 @@ bot.on('document', async(ctx, next) => {
                     uniqueId: document.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail.uniqueId}`).then(async res => {
                     let result = `${fileDetail.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1230,7 +1230,7 @@ bot.on('document', async(ctx, next) => {
                     uniqueId: document.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail2.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail2.uniqueId}`).then(async res => {
                     let result = `${fileDetail2.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1302,7 +1302,7 @@ bot.on('document', async(ctx, next) => {
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
             const profile2 = bot.telegram.getUserProfilePhotos(ctx.from.id)
-            await saver.checkBan(`${ctx.from.id}`).then((res) => {
+            await saver.checkBan(`${ctx.from.id}`).then(async res => {
                 //console.log(res);
                 if(res == true) {
                     if(ctx.chat.type == 'private') {
@@ -1338,13 +1338,13 @@ bot.on('document', async(ctx, next) => {
                         uniqueId: document2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail3.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail3.uniqueId}`).then(async res => {
                                 let result = `${fileDetail3.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
@@ -1425,12 +1425,12 @@ bot.on('document', async(ctx, next) => {
                         uniqueId: document2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail4.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail4.uniqueId}`).then(async res => {
                                 let result = `${fileDetail4.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
@@ -1529,7 +1529,7 @@ bot.on('video', async(ctx, next) => {
                     uniqueId: video.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail.uniqueId}`).then(async res => {
                     let result = `${fileDetail.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1608,7 +1608,7 @@ bot.on('video', async(ctx, next) => {
                     uniqueId: video.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail2.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail2.uniqueId}`).then(async res => {
                     let result = `${fileDetail2.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1680,7 +1680,7 @@ bot.on('video', async(ctx, next) => {
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
             const profile2 = bot.telegram.getUserProfilePhotos(ctx.from.id)
-            await saver.checkBan(`${ctx.from.id}`).then((res) => {
+            await saver.checkBan(`${ctx.from.id}`).then(async res => {
                 //console.log(res);
                 if(res == true) {
                     if(ctx.chat.type == 'private') {
@@ -1716,13 +1716,13 @@ bot.on('video', async(ctx, next) => {
                         uniqueId: video2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail3.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail3.uniqueId}`).then(async res => {
                                 let result = `${fileDetail3.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
@@ -1803,12 +1803,12 @@ bot.on('video', async(ctx, next) => {
                         uniqueId: video2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail4.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail4.uniqueId}`).then(async res => {
                                 let result = `${fileDetail4.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
@@ -1907,7 +1907,7 @@ bot.on('photo', async(ctx, next) => {
                     uniqueId: photo.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail.uniqueId}`).then(async res => {
                     let result = `${fileDetail.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -1986,7 +1986,7 @@ bot.on('photo', async(ctx, next) => {
                     uniqueId: photo.file_unique_id,
                 }
 
-                await saver.checkFile(`${fileDetail2.uniqueId}`).then((res) => {
+                await saver.checkFile(`${fileDetail2.uniqueId}`).then(async res => {
                     let result = `${fileDetail2.uniqueId}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
@@ -2058,7 +2058,7 @@ bot.on('photo', async(ctx, next) => {
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
             const profile2 = bot.telegram.getUserProfilePhotos(ctx.from.id)
-            await saver.checkBan(`${ctx.from.id}`).then((res) => {
+            await saver.checkBan(`${ctx.from.id}`).then(async res => {
                 //console.log(res);
                 if(res == true) {
                     if(ctx.chat.type == 'private') {
@@ -2094,13 +2094,13 @@ bot.on('photo', async(ctx, next) => {
                         uniqueId: photo2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail3.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail3.uniqueId}`).then(async res => {
                                 let result = `${fileDetail3.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
@@ -2181,12 +2181,12 @@ bot.on('photo', async(ctx, next) => {
                         uniqueId: photo2.file_unique_id,
                     }
 
-                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail4.uniqueId}`).then((res) => {
+                            await saver.checkFile(`${fileDetail4.uniqueId}`).then(async res => {
                                 let result = `${fileDetail4.uniqueId}`.replace(/-/g, '_');
                                 //console.log(res);
                                 if(res == true) {
