@@ -1046,7 +1046,7 @@ bot.command('broadcast',async(ctx)=>{
             //broadcasting
             totalBroadCast = 0
             totalFail = []
-            
+
             //creating function for broadcasting and to know bot user status
             async function broadcast(text) {
                 for (const users of userId) {
@@ -1094,7 +1094,7 @@ bot.command('banchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == process.env.ADMIN|| ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
+            if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
                 await ctx.deleteMessage()
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
