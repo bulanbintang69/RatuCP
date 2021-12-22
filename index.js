@@ -414,6 +414,7 @@ bot.hears(/ping/i,async(ctx)=>{
             }
         })
     }
+    return next();
 })
 
 bot.action('PONG',async(ctx)=>{
@@ -929,6 +930,7 @@ bot.command('getid',async(ctx)=>{
             }
         })
     }
+   return next();
 })
 
 //remove files with file_id
@@ -1499,7 +1501,7 @@ bot.on('document', async(ctx, next) => {
             }
         }
     }
-    await next();
+    return next();
 })
 
 //video files
@@ -1875,7 +1877,7 @@ bot.on('video', async(ctx, next) => {
             }
         }
     }
-    await next();
+    return next();
 })
 
 //photo files
@@ -2251,7 +2253,7 @@ bot.on('photo', async(ctx, next) => {
             }
         }
     }
-    await next();
+    return next();
 })
 
 bot.command('stats',async(ctx)=>{
