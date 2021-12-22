@@ -1130,7 +1130,7 @@ bot.on('document', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 3_000);
     });
     await next();
   
@@ -1508,7 +1508,7 @@ bot.on('video', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 3_000);
     });
     await next();
   
@@ -1886,7 +1886,7 @@ bot.on('photo', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 3_000);
     });
     await next();
   
