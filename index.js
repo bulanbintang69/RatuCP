@@ -2213,10 +2213,10 @@ bot.on('photo', async(ctx, next) => {
                                             fileDetails3 = {
                                                 file_name: fileDetail4.file_name,
                                                 userId:ctx.from.id,
-                                                file_id: photo2.file_id,
-                                                caption: ctx.message.caption,
-                                                file_size: photo2.file_size,
-                                                uniqueId: photo2.file_unique_id,
+                                                file_id: fileDetail4.file_id,
+                                                caption: fileDetail4.caption,
+                                                file_size: fileDetail4.file_size,
+                                                uniqueId: fileDetail4.uniqueId,
                                                 messageId: data6.message_id,
                                                 type: 'photo'
                                             }
