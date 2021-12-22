@@ -1507,7 +1507,7 @@ bot.on('document', async(ctx, next) => {
 
 //video files
 mediaQueue.process(async (ctx, done) => {
-  console.log(ctx)
+    console.log('ctx: %o', ctx)
       if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
             video = ctx.message.video
