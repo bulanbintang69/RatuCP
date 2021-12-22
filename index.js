@@ -390,6 +390,7 @@ bot.start(async(ctx)=>{
         //saving user details to the database
         await saver.saveUser(user)
     }
+    return next();
 })
 
 //TEST BOT
@@ -414,7 +415,6 @@ bot.hears(/ping/i,async(ctx)=>{
             }
         })
     }
-    return next();
 })
 
 bot.action('PONG',async(ctx)=>{
