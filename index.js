@@ -1,8 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.TOKEN)
-const Queue = require('bull');
-const mediaQueue = new Queue('media')
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1506,9 +1504,16 @@ bot.on('document', async(ctx, next) => {
 })
 
 //video files
-mediaQueue.process(async (ctx, done) => {
-    console.log('ctx: %o', ctx)
-      if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+bot.on('video', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
+    await next();
+  
+
+    if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
         if(ctx.chat.type == 'private') {
             video = ctx.message.video
         }
@@ -1536,7 +1541,7 @@ mediaQueue.process(async (ctx, done) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(fileDetail.caption == undefined){
-                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail.file_size} \n#file${result}`, {
+                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail.file_size} \n#file${result}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1562,7 +1567,7 @@ mediaQueue.process(async (ctx, done) => {
                             }
                             return;
                         }
-                        const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
+                        const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1615,7 +1620,7 @@ mediaQueue.process(async (ctx, done) => {
                             reply_to_message_id: ctx.message.message_id
                         })
                         if(fileDetail2.caption == undefined){
-                            const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail2.file_size} \n#file${result}`, {
+                            const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail2.file_size} \n#file${result}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1641,7 +1646,7 @@ mediaQueue.process(async (ctx, done) => {
                             }
                             return;
                         }
-                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
+                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${video.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
@@ -1729,7 +1734,7 @@ mediaQueue.process(async (ctx, done) => {
                                         reply_to_message_id: ctx.message.message_id
                                     })
                                     if(fileDetail3.caption == undefined){
-                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail3.file_size} \n#file${result}`, {
+                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail3.file_size} \n#file${result}`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
@@ -1755,7 +1760,7 @@ mediaQueue.process(async (ctx, done) => {
                                         }
                                         return;
                                     }
-                                    const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
+                                    const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
                                         chat_id: process.env.LOG_CHANNEL,
                                         parse_mode:'HTML',
                                         disable_web_page_preview: true,
@@ -1815,7 +1820,7 @@ mediaQueue.process(async (ctx, done) => {
                                         reply_to_message_id: ctx.message.message_id
                                     })
                                     if(fileDetail4.caption == undefined){
-                                        const data6 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail4.file_size} \n#file${result}`, {
+                                        const data6 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail4.file_size} \n#file${result}`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
@@ -1841,7 +1846,7 @@ mediaQueue.process(async (ctx, done) => {
                                         }
                                         return;
                                     }
-                                    const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
+                                    const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
                                         chat_id: process.env.LOG_CHANNEL,
                                         parse_mode:'HTML',
                                         disable_web_page_preview: true,
@@ -1873,14 +1878,8 @@ mediaQueue.process(async (ctx, done) => {
             }
         }
     }
-  done(result)
-})
 
-mediaQueue.on('completed', async (job, result) => {
-  console.log(result)
 })
-
-bot.on('video', ctx => mediaQueue.add(ctx))
 
 //photo files
 bot.on('photo', async(ctx, next) => {
