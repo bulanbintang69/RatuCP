@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const rateLimit = require('express-rate-limit')
+const rateLimit = require("express-rate-limit")
 const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
@@ -15,6 +15,14 @@ db.connect((err) => {
     if(err) { console.log('error connection db' + err); }
     else { console.log('db connected'); }
 })
+
+const limiter = rateLimit({
+    windowMs: 2000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
+  
+  //  apply to all requests
+  app.use(limiter);
 
 //ID Channel/Group
 const channelId = `${process.env.CHANNELJOIN}`;
@@ -1233,12 +1241,6 @@ bot.command('unbanchat', async(ctx, next) => {
     }
     return next();
 })
-
-const limiter = rateLimit({
-    max: 100,
-    windowMs: 2000,
-    message: 'too many requests sent by this account, please try again in a few seconds'
-});
   
 app.use('<routes>', limiter);
 
