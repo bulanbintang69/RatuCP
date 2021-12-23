@@ -17,8 +17,9 @@ db.connect((err) => {
 })
 
 const limiter = rateLimit({
-    windowMs: 2000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
+    max: 100,
+    windowMs: 2000,
+    message: 'Too many requests sent by this ip, please try again in a few seconds!'
 });
   
   //  apply to all requests
@@ -1241,8 +1242,6 @@ bot.command('unbanchat', async(ctx, next) => {
     }
     return next();
 })
-  
-app.use('<routes>', limiter);
 
 //document files
 bot.on('document', async(ctx, next) => {
