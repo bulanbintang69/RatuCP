@@ -1,7 +1,15 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const rateLimit = require("express-rate-limit")
+const rateLimit = require('telegraf-ratelimit')
+
+const limitConfig = {
+    window: 2000,
+    limit: 1,
+    onLimitExceeded: (ctx, next) => ctx.reply('Wait a few seconds')
+}
+
 const bot = new Telegraf(process.env.TOKEN)
+bot.use(rateLimit(limitConfig))
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -15,14 +23,6 @@ db.connect((err) => {
     if(err) { console.log('error connection db' + err); }
     else { console.log('db connected'); }
 })
-
-const limiter = rateLimit({
-    windowMs: 2000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
-});
-  
-  //  apply to all requests
-bot.use(limiter);
 
 //ID Channel/Group
 const channelId = `${process.env.CHANNELJOIN}`;
