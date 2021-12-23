@@ -1586,7 +1586,7 @@ bot.on('video', async(ctx, next) => {
             return resolve("Result");
         }, 2_000);
     });
-    console.log(ctx);
+    //console.log(ctx);
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
