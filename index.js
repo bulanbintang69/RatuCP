@@ -1611,7 +1611,7 @@ bot.on('document', async(ctx, next) => {
 
 //video files
 bot.on('video', async(ctx, next) => {
-    console.log(ctx)
+    console.log(ctx);
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
