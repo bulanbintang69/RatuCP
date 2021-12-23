@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const Queue = require('bull');
 const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
@@ -1580,14 +1581,15 @@ bot.on('document', async(ctx, next) => {
 })
 
 //video files
-bot.on('video', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });    
-  
-    if(ctx.chat.type == 'private') {
+const mediaQueue = new Queue('media')
+mediaQueue.process(async (ctx, done) => {
+  console.log(ctx)
+  // ...
+  done(result)
+})
+mediaQueue.on('completed', async (job, result) => {
+  console.log(result)
+      if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             video = ctx.message.video
             
@@ -1922,8 +1924,9 @@ bot.on('video', async(ctx, next) => {
             }
         }
     }
-    return next();
 })
+
+bot.on('video', ctx => mediaQueue.add(ctx))
 
 //photo files
 bot.on('photo', async(ctx, next) => {
