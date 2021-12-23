@@ -1593,7 +1593,7 @@ bot.on('video', async(ctx, next) => {
             
             if(video.file_name == undefined){
                 const file_name2 = `${today2(ctx)}`;
-                const caption2 = '' ? `\n\n${ctx.message.caption}` : '';
+                const caption2 = `\n\n${ctx.message.caption}` ? `\n\n${ctx.message.caption}` : '';
             
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1636,7 +1636,7 @@ bot.on('video', async(ctx, next) => {
                 const vidtext2 = exstension2.replace(regex2, '');
                 
                 const file_name3 = `${vidtext2}`;
-                const caption3 = '' ? `\n\n${ctx.message.caption}` : '';
+                const caption3 = `\n\n${ctx.message.caption}` ? `\n\n${ctx.message.caption}` : '';
                 
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
