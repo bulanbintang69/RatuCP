@@ -1235,9 +1235,15 @@ bot.command('unbanchat', async(ctx, next) => {
 })
 
 const limiter = rateLimit({
-    max: 100,
-    windowMs: 2000,
-    message: 'too many requests sent by this account, please try again in a few seconds'
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    
+    // max could also be an async function or return a promise
+    max: function(req, res) {
+      if (isPremium(req)) {
+        return 10;
+      }
+      return 5;
+    }
 });
   
 
