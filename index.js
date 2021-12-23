@@ -1590,13 +1590,9 @@ bot.on('video', async(ctx, next) => {
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             video = ctx.message.video
-
-            var exstension = video.file_name;
-            var regex = /\.[A-Za-z0-9]+$/gm
-            var vidtext = exstension.replace(regex, '');
             
             if(video.file_name == undefined){
-                const file_name2 = `${today2(ctx)}` ? `${vidtext}` : ``;
+                const file_name2 = `${today2(ctx)}`;
                 const caption2 = `` ? `\n\n${ctx.message.caption}` : ``;
             
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
@@ -1635,7 +1631,11 @@ bot.on('video', async(ctx, next) => {
                     }
                 })
             }else{
-                const file_name2 = `${today2(ctx)}` ? `${vidtext}` : ``;
+                var exstension = video.file_name;
+                var regex = /\.[A-Za-z0-9]+$/gm
+                var vidtext = exstension.replace(regex, '');
+
+                const file_name2 = `${vidtext}`;
                 const caption2 = `` ? `\n\n${ctx.message.caption}` : ``;
                 
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
