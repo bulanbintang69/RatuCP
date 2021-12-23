@@ -1235,7 +1235,7 @@ bot.command('unbanchat', async(ctx, next) => {
 })
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
+    windowMs: 2000, // 15 minutes
     
     // max could also be an async function or return a promise
     max: function(req, res) {
