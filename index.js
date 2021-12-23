@@ -1596,7 +1596,7 @@ bot.on('video', async(ctx, next) => {
             var vidtext = exstension.replace(regex, '');
             
             const file_name2 = `${today2(ctx)}` ? `${vidtext}` : ``;
-            const caption2 = `` ? `\n${ctx.message.caption}` : ``;
+            const caption2 = `` ? `\n\n${ctx.message.caption}` : ``;
             
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
