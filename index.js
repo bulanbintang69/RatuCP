@@ -1585,7 +1585,8 @@ bot.on('video', async(ctx, next) => {
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
-    });    
+    });
+    console.log(ctx);
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1624,6 +1625,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(data);
                             fileDetails1 = {
                                 file_name: fileDetail.file_name,
                                 userId: ctx.from.id,
@@ -1648,6 +1650,7 @@ bot.on('video', async(ctx, next) => {
                                 ]
                             }
                         })
+                        console.log(data1);
                         fileDetails2 = {
                             file_name: fileDetail.file_name,
                             userId: ctx.from.id,
@@ -1697,6 +1700,7 @@ bot.on('video', async(ctx, next) => {
                                     ]
                                 }
                             })
+                            console.log(data2);
                             fileDetails3 = {
                                 file_name: fileDetail2.file_name,
                                 userId: ctx.from.id,
@@ -1721,6 +1725,7 @@ bot.on('video', async(ctx, next) => {
                                 ]
                             }
                         })
+                        console.log(data3);
                         fileDetails4 = {
                             file_name: fileDetail2.file_name,
                             userId:ctx.from.id,
