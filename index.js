@@ -1597,7 +1597,7 @@ bot.on('video', async(ctx, next) => {
                 var vidtext = exstension.replace(regex, '');
             
                 const file_name2 = `${vidtext}`;
-                const caption2 = `` ? `\n${ctx.message.caption}` : ``;
+                const caption2 = `` ? `\n\n${ctx.message.caption}` : ``;
             
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1639,7 +1639,7 @@ bot.on('video', async(ctx, next) => {
             }
             
             const file_name3 = `${today2(ctx)}`;
-            const caption3 = `` ? `\n${ctx.message.caption}` : ``;
+            const caption3 = `` ? `\n\n${ctx.message.caption}` : ``;
             
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
