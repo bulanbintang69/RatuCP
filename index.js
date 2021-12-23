@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const rateLimit = require('express-rate-limit')
 const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
@@ -1233,6 +1234,13 @@ bot.command('unbanchat', async(ctx, next) => {
     return next();
 })
 
+const limiter = rateLimit({
+    max: 100,
+    windowMs: 2000,
+    message: 'too many requests sent by this account, please try again in a few seconds'
+});
+  
+
 //document files
 bot.on('document', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
@@ -1580,7 +1588,7 @@ bot.on('document', async(ctx, next) => {
 })
 
 //video files
-bot.on('video', async(ctx, next) => {
+bot.on('video', limiter, async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
