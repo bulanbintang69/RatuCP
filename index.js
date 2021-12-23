@@ -1592,8 +1592,8 @@ bot.on('video', async(ctx, next) => {
             video = ctx.message.video
             
             if(video.file_name == undefined){
-                var file_name2 = `${today2(ctx)}`;
-                var caption2 = '' ? `\n\n${ctx.message.caption}` : '';
+                const file_name2 = `${today2(ctx)}`;
+                const caption2 =  "" ? `\n\n${ctx.message.caption}` : "";
             
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1631,12 +1631,12 @@ bot.on('video', async(ctx, next) => {
                     }
                 })
             }else{
-                var exstension2 = video.file_name;
-                var regex2 = /\.[A-Za-z0-9]+$/gm
-                var vidtext2 = exstension2.replace(regex2, '');
+                const exstension2 = video.file_name;
+                const regex2 = /\.[A-Za-z0-9]+$/gm
+                const vidtext2 = exstension2.replace(regex2, '');
                 
-                var file_name3 = `${vidtext2}`;
-                var caption3 = '' ? `\n\n${ctx.message.caption}` : '';
+                const file_name3 = `${vidtext2}`;
+                const caption3 =  "" ? `\n\n${ctx.message.caption}` : "";
                 
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
