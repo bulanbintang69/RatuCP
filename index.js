@@ -1669,6 +1669,7 @@ bot.on('video', async(ctx, next) => {
                                 }
                                 await saver.saveFile(fileDetails1)
                             }
+                            return;
                         }
                         const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
@@ -1747,6 +1748,7 @@ bot.on('video', async(ctx, next) => {
                                 }
                                 await saver.saveFile3(fileDetails3)
                             }
+                            return;
                         }
                         const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
                             chat_id: process.env.LOG_CHANNEL,
