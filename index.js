@@ -22,7 +22,7 @@ const limiter = rateLimit({
 });
   
   //  apply to all requests
-  app.use(limiter);
+bot.use(limiter);
 
 //ID Channel/Group
 const channelId = `${process.env.CHANNELJOIN}`;
