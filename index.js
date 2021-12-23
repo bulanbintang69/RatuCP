@@ -1591,7 +1591,7 @@ bot.on('video', async(ctx, next) => {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             video = ctx.message.video
 
-            if(video2.file_name == undefined){
+            if(video.file_name == undefined){
                 var exstension = video.file_name;
                 var regex = /\.[A-Za-z0-9]+$/gm
                 var vidtext = exstension.replace(regex, '');
