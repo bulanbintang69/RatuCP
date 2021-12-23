@@ -1597,6 +1597,7 @@ bot.on('video', async(ctx, next) => {
             
             const file_name2 = `${today2(ctx)}` ? `${vidtext}` : ``;
             const caption2 = `` ? `\n\n${ctx.message.caption}` : ``;
+            const file_name3 = `file_name: ${today2(ctx)}` ? `file_name: ${vidtext}` : ``;
             
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1622,7 +1623,7 @@ bot.on('video', async(ctx, next) => {
                         }
                     })
                     fileDetails1 = {
-                        file_name: file_name2,
+                        file_name3,
                         userId: ctx.from.id,
                         file_id: video.file_id,
                         caption: ctx.message.caption,
