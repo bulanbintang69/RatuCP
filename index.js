@@ -1586,6 +1586,13 @@ mediaQueue.process(async (ctx, done) => {
     console.log(ctx)
     // ...
     done(result)
+  })
+  mediaQueue.on('completed', async (job, result) => {
+    console.log(result)
+  })
+  
+  bot.on('video', ctx => {
+      mediaQueue.add(ctx)
           if(ctx.chat.type == 'private') {
           if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
               video = ctx.message.video
@@ -1922,11 +1929,8 @@ mediaQueue.process(async (ctx, done) => {
           }
       }
   })
-  mediaQueue.on('completed', async (job, result) => {
-    console.log(result)
-  })
-  
-  bot.on('video', ctx => mediaQueue.add(ctx))
+
+bot.on('video', ctx => mediaQueue.add(ctx))
 
 //photo files
 bot.on('photo', async(ctx, next) => {
