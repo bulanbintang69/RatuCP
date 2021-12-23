@@ -1239,24 +1239,22 @@ bot.on('document', async(ctx, next) => {
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
-    });    
+    });
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             document = ctx.message.document
             
             if(document.file_name == undefined){
-                fileDetail = {
-                    file_name: today2(ctx),
-                    userId: ctx.from.id,
-                    file_id: document.file_id,
-                    caption: ctx.message.caption,
-                    file_size: document.file_size,
-                    uniqueId: document.file_unique_id,
+                const file_name2 = `${today2(ctx)}`;
+                if(ctx.message.caption == undefined){
+                    var caption2 =  ``;
+                }else{
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
-
-                await saver.checkFile(`${fileDetail.uniqueId}`).then(async res => {
-                    let result = `${fileDetail.uniqueId}`.replace(/-/g, '_');
+            
+                await saver.checkFile(`${document.file_unique_id}`).then(async res => {
+                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
@@ -1266,126 +1264,75 @@ bot.on('document', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        if(fileDetail.caption == undefined){
-                            const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail.file_size} \n#file${result}`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
-                                    ]
-                                }
-                            })
-                            fileDetails1 = {
-                                file_name: fileDetail.file_name,
-                                userId: ctx.from.id,
-                                file_id: fileDetail.file_id,
-                                caption: fileDetail.caption,
-                                file_size: fileDetail.file_size,
-                                uniqueId: fileDetail.uniqueId,
-                                messageId: data.message_id,
-                                type: 'document'
-                            }
-                            await saver.saveFile(fileDetails1)
-                            return;
-                        }
-                        const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
+                        const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             disable_notification: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
+                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
+                                ]
+                            }
+                        })
+                        fileDetails1 = {
+                            file_name: file_name2,
+                            userId: ctx.from.id,
+                            file_id: document.file_id,
+                            caption: ctx.message.caption,
+                            file_size: document.file_size,
+                            uniqueId: document.file_unique_id,
+                            messageId: data.message_id,
+                            type: 'document'
+                        }
+                        await saver.saveFile(fileDetails1)
+                    }
+                })
+            }else{
+                const exstension2 = document.file_name;
+                const regex2 = /\.[A-Za-z0-9]+$/gm
+                const doctext2 = exstension2.replace(regex2, '');
+                
+                const file_name3 = `${doctext2}`;
+                if(ctx.message.caption == undefined){
+                    var caption3 =  ``;
+                }else{
+                    var caption3 =  `\n\n${ctx.message.caption}`;
+                }
+                
+                await saver.checkFile(`${document.file_unique_id}`).then(async res => {
+                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
+                    //console.log(res);
+                    if(res == true) {
+                        await ctx.reply(`File already exists. #file${result}`)
+                    }else{
+                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                            parse_mode: 'HTML',
+                            disable_web_page_preview: true,
+                            reply_to_message_id: ctx.message.message_id
+                        })
+                        const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption3}`, {
+                            chat_id: process.env.LOG_CHANNEL,
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            disable_notification: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
                                 ]
                             }
                         })
                         fileDetails2 = {
-                            file_name: fileDetail.file_name,
+                            file_name: file_name3,
                             userId: ctx.from.id,
-                            file_id: fileDetail.file_id,
-                            caption: fileDetail.caption,
-                            file_size: fileDetail.file_size,
-                            uniqueId: fileDetail.uniqueId,
-                            messageId: data1.message_id,
+                            file_id: document.file_id,
+                            caption: ctx.message.caption,
+                            file_size: document.file_size,
+                            uniqueId: document.file_unique_id,
+                            messageId: data2.message_id,
                             type: 'document'
                         }
                         await saver.saveFile2(fileDetails2)
-                    }
-                })
-            }else{
-                var exstension = document.file_name;
-                var regex = /\.[A-Za-z0-9]+$/gm
-                var doctext = exstension.replace(regex, '');
-                fileDetail2 = {
-                    file_name: doctext,
-                    userId:ctx.from.id,
-                    file_id: document.file_id,
-                    caption: ctx.message.caption,
-                    file_size: document.file_size,
-                    uniqueId: document.file_unique_id,
-                }
-
-                await saver.checkFile(`${fileDetail2.uniqueId}`).then(async res => {
-                    let result = `${fileDetail2.uniqueId}`.replace(/-/g, '_');
-                    //console.log(res);
-                    if(res == true) {
-                        await ctx.reply(`File already exists. #file${result}`)
-                    }else{
-                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                            parse_mode: 'HTML',
-                            disable_web_page_preview: true,
-                            reply_to_message_id: ctx.message.message_id
-                        })
-                        if(fileDetail2.caption == undefined){
-                            const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail2.file_size} \n#file${result}`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
-                                    ]
-                                }
-                            })
-                            fileDetails3 = {
-                                file_name: fileDetail2.file_name,
-                                userId: ctx.from.id,
-                                file_id: fileDetail2.file_id,
-                                caption: fileDetail2.caption,
-                                file_size: fileDetail2.file_size,
-                                uniqueId: fileDetail2.uniqueId,
-                                messageId: data2.message_id,
-                                type: 'document'
-                            }
-                            await saver.saveFile3(fileDetails3)
-                            return;
-                        }
-                        const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
-                            chat_id: process.env.LOG_CHANNEL,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            disable_notification: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
-                                ]
-                            }
-                        })
-                        fileDetails4 = {
-                            file_name: fileDetail2.file_name,
-                            userId:ctx.from.id,
-                            file_id: fileDetail2.file_id,
-                            caption: fileDetail2.caption,
-                            file_size: fileDetail2.file_size,
-                            uniqueId: fileDetail2.unique_Id,
-                            messageId: data3.message_id,
-                            type: 'document'
-                        }
-                        await saver.saveFile4(fileDetails4)
                     }
                 })
             }
@@ -1412,166 +1359,136 @@ bot.on('document', async(ctx, next) => {
                     }
                 })
             }else{
-                document2 = ctx.message.document
-
-                if(document2.file_name == undefined){
-                    fileDetail3 = {
-                        file_name: today2(ctx),
-                        userId:ctx.from.id,
-                        file_id: document2.file_id,
-                        caption: ctx.message.caption,
-                        file_size: document2.file_size,
-                        uniqueId: document2.file_unique_id,
-                    }
-
+                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                //console.log(member);
+                if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
+                    const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                     await saver.checkBan(`${ctx.from.id}`).then(async res => {
-                        let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail3.uniqueId}`).then(async res => {
-                                let result = `${fileDetail3.uniqueId}`.replace(/-/g, '_');
-                                //console.log(res);
-                                if(res == true) {
-                                    await ctx.reply(`File already exists. #file${result}`)
-                                }else{
-                                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                                        parse_mode: 'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
-                                    if(fileDetail3.caption == undefined){
-                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail3.file_size} \n#file${result}`, {
-                                            chat_id: process.env.LOG_CHANNEL,
-                                            parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            disable_notification: true,
-                                            reply_markup:{
-                                                inline_keyboard:[
-                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}`}]
-                                                ]
-                                            }
-                                        })
-                                        fileDetails1 = {
-                                            file_name: fileDetail3.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail3.file_id,
-                                            caption: fileDetail3.caption,
-                                            file_size: fileDetail3.file_size,
-                                            uniqueId: fileDetail3.file_unique_id,
-                                            messageId: data4.message_id,
-                                            type: 'document'
-                                        }
-                                        await saver.saveFile(fileDetails1)
-                                        return;
-                                    }
-                                    const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail3.uniqueId}`}]
-                                            ]
-                                        }
-                                    })
-                                    fileDetails2 = {
-                                        file_name: fileDetail3.file_name,
-                                        userId:ctx.from.id,
-                                        file_id: fileDetail3.file_id,
-                                        caption: fileDetail3.caption,
-                                        file_size: fileDetail3.file_size,
-                                        uniqueId: fileDetail3.uniqueId,
-                                        messageId: data5.message_id,
-                                        type: 'document'
-                                    }
-                                    await saver.saveFile2(fileDetails2)
-                                }
-                            })
+                            if(!profile2 || profile2.total_count == 0)
+                                return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                    parse_mode:'HTML',
+                                    disable_web_page_preview: true
+                                })
+                                await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                    parse_mode:'HTML',
+                                    disable_web_page_preview: true
+                                })
                         }
                     })
                 }else{
-                    var exstension2 = document2.file_name;
-                    var regex2 = /\.[A-Za-z0-9]+$/gm
-                    var doctext2 = exstension2.replace(regex2, '');
-                    fileDetail4 = {
-                        file_name: doctext2,
-                        userId:ctx.from.id,
-                        file_id: document2.file_id,
-                        caption: ctx.message.caption,
-                        file_size: document2.file_size,
-                        uniqueId: document2.file_unique_id,
-                    }
-
-                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
-                        //console.log(res);
-                        if(res == true) {
-                            await ctx.reply(`${messagebanned(ctx)}`)
+                    document = ctx.message.document
+                                
+                    if(document.file_name == undefined){
+                        const file_name2 = `${today2(ctx)}`;
+                        if(ctx.message.caption == undefined){
+                            var caption2 =  ``;
                         }else{
-                            await saver.checkFile(`${fileDetail4.uniqueId}`).then(async res => {
-                                let result = `${fileDetail4.uniqueId}`.replace(/-/g, '_');
-                                //console.log(res);
-                                if(res == true) {
-                                    await ctx.reply(`File already exists. #file${result}`)
-                                }else{
-                                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                                        parse_mode: 'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
-                                    if(fileDetail4.caption == undefined){
-                                        const data6 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail4.file_size} \n#file${result}`, {
+                            var caption2 =  `\n\n${ctx.message.caption}`;
+                        }
+            
+                        await saver.checkBan(`${ctx.from.id}`).then(async res => {
+                            let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
+                            //console.log(res);
+                            if(res == true) {
+                                await ctx.reply(`${messagebanned(ctx)}`)
+                            }else{
+                                await saver.checkFile(`${document.file_unique_id}`).then(async res => {
+                                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
+                                    //console.log(res);
+                                    if(res == true) {
+                                        await ctx.reply(`File already exists. #file${result}`)
+                                    }else{
+                                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
+                                        const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
                                             disable_notification: true,
                                             reply_markup:{
                                                 inline_keyboard:[
-                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
                                                 ]
                                             }
                                         })
                                         fileDetails3 = {
-                                            file_name: fileDetail4.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail4.file_id,
-                                            caption: fileDetail4.caption,
-                                            file_size: fileDetail4.file_size,
-                                            uniqueId: fileDetail4.uniqueId,
-                                            messageId: data6.message_id,
+                                            file_name: file_name2,
+                                            userId: ctx.from.id,
+                                            file_id: document.file_id,
+                                            caption: ctx.message.caption,
+                                            file_size: document.file_size,
+                                            uniqueId: document.file_unique_id,
+                                            messageId: data3.message_id,
                                             type: 'document'
                                         }
                                         await saver.saveFile3(fileDetails3)
-                                        return;
                                     }
-                                    const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
-                                            ]
-                                        }
-                                    })
-                                    fileDetails4 = {
-                                        file_name: fileDetail4.file_name,
-                                        userId:ctx.from.id,
-                                        file_id: fileDetail4.file_id,
-                                        caption: fileDetail4.caption,
-                                        file_size: fileDetail4.file_size,
-                                        uniqueId: fileDetail4.uniqueId,
-                                        messageId: data7.message_id,
-                                        type: 'document'
-                                    }
-                                    await saver.saveFile4(fileDetails4)
-                                }
-                            })
+                                })
+                            }
+                        })
+                    }else{
+                        const exstension2 = document.file_name;
+                        const regex2 = /\.[A-Za-z0-9]+$/gm
+                        const doctext2 = exstension2.replace(regex2, '');
+                        
+                        const file_name3 = `${doctext2}`;
+                        if(ctx.message.caption == undefined){
+                            var caption3 =  ``;
+                        }else{
+                            var caption3 =  `\n\n${ctx.message.caption}`;
                         }
-                    })
+                        
+                        await saver.checkBan(`${ctx.from.id}`).then(async res => {
+                            //console.log(res);
+                            if(res == true) {
+                                await ctx.reply(`${messagebanned(ctx)}`)
+                            }else{
+                                await saver.checkFile(`${document.file_unique_id}`).then(async res => {
+                                    let result = `${document.file_unique_id}`.replace(/-/g, '_');
+                                    //console.log(res);
+                                    if(res == true) {
+                                        await ctx.reply(`File already exists. #file${result}`)
+                                    }else{
+                                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
+                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption3}`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${document.file_unique_id}`}]
+                                                ]
+                                            }
+                                        })
+                                        fileDetails4 = {
+                                            file_name: file_name3,
+                                            userId: ctx.from.id,
+                                            file_id: document.file_id,
+                                            caption: ctx.message.caption,
+                                            file_size: document.file_size,
+                                            uniqueId: document.file_unique_id,
+                                            messageId: data4.message_id,
+                                            type: 'document'
+                                        }
+                                        await saver.saveFile4(fileDetails4)
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -1848,24 +1765,22 @@ bot.on('photo', async(ctx, next) => {
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
-    });    
+    });
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             photo = ctx.message.photo[1]
             
             if(photo.file_name == undefined){
-                fileDetail = {
-                    file_name: today2(ctx),
-                    userId: ctx.from.id,
-                    file_id: photo.file_id,
-                    caption: ctx.message.caption,
-                    file_size: photo.file_size,
-                    uniqueId: photo.file_unique_id,
+                const file_name2 = `${today2(ctx)}`;
+                if(ctx.message.caption == undefined){
+                    var caption2 =  ``;
+                }else{
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
-
-                await saver.checkFile(`${fileDetail.uniqueId}`).then(async res => {
-                    let result = `${fileDetail.uniqueId}`.replace(/-/g, '_');
+            
+                await saver.checkFile(`${photo.file_unique_id}`).then(async res => {
+                    let result = `${photo.file_unique_id}`.replace(/-/g, '_');
                     //console.log(res);
                     if(res == true) {
                         await ctx.reply(`File already exists. #file${result}`)
@@ -1875,126 +1790,75 @@ bot.on('photo', async(ctx, next) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        if(fileDetail.caption == undefined){
-                            const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail.file_size} \n#file${result}`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
-                                    ]
-                                }
-                            })
-                            fileDetails1 = {
-                                file_name: fileDetail.file_name,
-                                userId: ctx.from.id,
-                                file_id: fileDetail.file_id,
-                                caption: fileDetail.caption,
-                                file_size: fileDetail.file_size,
-                                uniqueId: fileDetail.uniqueId,
-                                messageId: data.message_id,
-                                type: 'photo'
-                            }
-                            await saver.saveFile(fileDetails1)
-                            return;
-                        }
-                        const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
+                        const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${photo.file_size} \n#file${result} ${caption2}`, {
                             chat_id: process.env.LOG_CHANNEL,
                             parse_mode:'HTML',
                             disable_web_page_preview: true,
                             disable_notification: true,
                             reply_markup:{
                                 inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
+                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo.file_unique_id}`}]
+                                ]
+                            }
+                        })
+                        fileDetails1 = {
+                            file_name: file_name2,
+                            userId: ctx.from.id,
+                            file_id: photo.file_id,
+                            caption: ctx.message.caption,
+                            file_size: photo.file_size,
+                            uniqueId: photo.file_unique_id,
+                            messageId: data.message_id,
+                            type: 'photo'
+                        }
+                        await saver.saveFile(fileDetails1)
+                    }
+                })
+            }else{
+                const exstension2 = photo.file_name;
+                const regex2 = /\.[A-Za-z0-9]+$/gm
+                const photext2 = exstension2.replace(regex2, '');
+                
+                const file_name3 = `${photext2}`;
+                if(ctx.message.caption == undefined){
+                    var caption3 =  ``;
+                }else{
+                    var caption3 =  `\n\n${ctx.message.caption}`;
+                }
+                
+                await saver.checkFile(`${photo.file_unique_id}`).then(async res => {
+                    let result = `${photo.file_unique_id}`.replace(/-/g, '_');
+                    //console.log(res);
+                    if(res == true) {
+                        await ctx.reply(`File already exists. #file${result}`)
+                    }else{
+                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                            parse_mode: 'HTML',
+                            disable_web_page_preview: true,
+                            reply_to_message_id: ctx.message.message_id
+                        })
+                        const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${photo.file_size} \n#file${result} ${caption3}`, {
+                            chat_id: process.env.LOG_CHANNEL,
+                            parse_mode:'HTML',
+                            disable_web_page_preview: true,
+                            disable_notification: true,
+                            reply_markup:{
+                                inline_keyboard:[
+                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo.file_unique_id}`}]
                                 ]
                             }
                         })
                         fileDetails2 = {
-                            file_name: fileDetail.file_name,
+                            file_name: file_name3,
                             userId: ctx.from.id,
-                            file_id: fileDetail.file_id,
-                            caption: fileDetail.caption,
-                            file_size: fileDetail.file_size,
-                            uniqueId: fileDetail.uniqueId,
-                            messageId: data1.message_id,
+                            file_id: photo.file_id,
+                            caption: ctx.message.caption,
+                            file_size: photo.file_size,
+                            uniqueId: photo.file_unique_id,
+                            messageId: data2.message_id,
                             type: 'photo'
                         }
                         await saver.saveFile2(fileDetails2)
-                    }
-                })
-            }else{
-                var exstension = photo.file_name;
-                var regex = /\.[A-Za-z0-9]+$/gm
-                var photext = exstension.replace(regex, '');
-                fileDetail2 = {
-                    file_name: photext,
-                    userId:ctx.from.id,
-                    file_id: photo.file_id,
-                    caption: ctx.message.caption,
-                    file_size: photo.file_size,
-                    uniqueId: photo.file_unique_id,
-                }
-
-                await saver.checkFile(`${fileDetail2.uniqueId}`).then(async res => {
-                    let result = `${fileDetail2.uniqueId}`.replace(/-/g, '_');
-                    //console.log(res);
-                    if(res == true) {
-                        await ctx.reply(`File already exists. #file${result}`)
-                    }else{
-                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                            parse_mode: 'HTML',
-                            disable_web_page_preview: true,
-                            reply_to_message_id: ctx.message.message_id
-                        })
-                        if(fileDetail2.caption == undefined){
-                            const data2 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail2.file_size} \n#file${result}`, {
-                                chat_id: process.env.LOG_CHANNEL,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                disable_notification: true,
-                                reply_markup:{
-                                    inline_keyboard:[
-                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
-                                    ]
-                                }
-                            })
-                            fileDetails3 = {
-                                file_name: fileDetail2.file_name,
-                                userId: ctx.from.id,
-                                file_id: fileDetail2.file_id,
-                                caption: fileDetail2.caption,
-                                file_size: fileDetail2.file_size,
-                                uniqueId: fileDetail2.uniqueId,
-                                messageId: data2.message_id,
-                                type: 'photo'
-                            }
-                            await saver.saveFile3(fileDetails3)
-                            return;
-                        }
-                        const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${photo.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
-                            chat_id: process.env.LOG_CHANNEL,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            disable_notification: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
-                                ]
-                            }
-                        })
-                        fileDetails4 = {
-                            file_name: fileDetail2.file_name,
-                            userId:ctx.from.id,
-                            file_id: fileDetail2.file_id,
-                            caption: fileDetail2.caption,
-                            file_size: fileDetail2.file_size,
-                            uniqueId: fileDetail2.unique_Id,
-                            messageId: data3.message_id,
-                            type: 'photo'
-                        }
-                        await saver.saveFile4(fileDetails4)
                     }
                 })
             }
@@ -2021,166 +1885,136 @@ bot.on('photo', async(ctx, next) => {
                     }
                 })
             }else{
-                photo2 = ctx.message.photo[1]
-
-                if(photo2.file_name == undefined){
-                    fileDetail3 = {
-                        file_name: today2(ctx),
-                        userId:ctx.from.id,
-                        file_id: photo2.file_id,
-                        caption: ctx.message.caption,
-                        file_size: photo2.file_size,
-                        uniqueId: photo2.file_unique_id,
-                    }
-
+                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                //console.log(member);
+                if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
+                    const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                     await saver.checkBan(`${ctx.from.id}`).then(async res => {
-                        let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             await ctx.reply(`${messagebanned(ctx)}`)
                         }else{
-                            await saver.checkFile(`${fileDetail3.uniqueId}`).then(async res => {
-                                let result = `${fileDetail3.uniqueId}`.replace(/-/g, '_');
-                                //console.log(res);
-                                if(res == true) {
-                                    await ctx.reply(`File already exists. #file${result}`)
-                                }else{
-                                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                                        parse_mode: 'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
-                                    if(fileDetail3.caption == undefined){
-                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail3.file_size} \n#file${result}`, {
-                                            chat_id: process.env.LOG_CHANNEL,
-                                            parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            disable_notification: true,
-                                            reply_markup:{
-                                                inline_keyboard:[
-                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo2.file_unique_id}`}]
-                                                ]
-                                            }
-                                        })
-                                        fileDetails1 = {
-                                            file_name: fileDetail3.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail3.file_id,
-                                            caption: fileDetail3.caption,
-                                            file_size: fileDetail3.file_size,
-                                            uniqueId: fileDetail3.file_unique_id,
-                                            messageId: data4.message_id,
-                                            type: 'photo'
-                                        }
-                                        await saver.saveFile(fileDetails1)
-                                        return;
-                                    }
-                                    const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail3.uniqueId}`}]
-                                            ]
-                                        }
-                                    })
-                                    fileDetails2 = {
-                                        file_name: fileDetail3.file_name,
-                                        userId:ctx.from.id,
-                                        file_id: fileDetail3.file_id,
-                                        caption: fileDetail3.caption,
-                                        file_size: fileDetail3.file_size,
-                                        uniqueId: fileDetail3.uniqueId,
-                                        messageId: data5.message_id,
-                                        type: 'photo'
-                                    }
-                                    await saver.saveFile2(fileDetails2)
-                                }
-                            })
+                            if(!profile2 || profile2.total_count == 0)
+                                return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                    parse_mode:'HTML',
+                                    disable_web_page_preview: true
+                                })
+                                await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                    parse_mode:'HTML',
+                                    disable_web_page_preview: true
+                                })
                         }
                     })
                 }else{
-                    var exstension2 = photo2.file_name;
-                    var regex2 = /\.[A-Za-z0-9]+$/gm
-                    var photext2 = exstension2.replace(regex2, '');
-                    fileDetail4 = {
-                        file_name: photext2,
-                        userId:ctx.from.id,
-                        file_id: photo2.file_id,
-                        caption: ctx.message.caption,
-                        file_size: photo2.file_size,
-                        uniqueId: photo2.file_unique_id,
-                    }
-
-                    await saver.checkBan(`${ctx.from.id}`).then(async res => {
-                        //console.log(res);
-                        if(res == true) {
-                            await ctx.reply(`${messagebanned(ctx)}`)
+                    photo = ctx.message.photo[1]
+                                
+                    if(photo.file_name == undefined){
+                        const file_name2 = `${today2(ctx)}`;
+                        if(ctx.message.caption == undefined){
+                            var caption2 =  ``;
                         }else{
-                            await saver.checkFile(`${fileDetail4.uniqueId}`).then(async res => {
-                                let result = `${fileDetail4.uniqueId}`.replace(/-/g, '_');
-                                //console.log(res);
-                                if(res == true) {
-                                    await ctx.reply(`File already exists. #file${result}`)
-                                }else{
-                                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                                        parse_mode: 'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
-                                    if(fileDetail4.caption == undefined){
-                                        const data6 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail4.file_size} \n#file${result}`, {
+                            var caption2 =  `\n\n${ctx.message.caption}`;
+                        }
+            
+                        await saver.checkBan(`${ctx.from.id}`).then(async res => {
+                            let result = `${fileDetail3.file_uniqueId}`.replace(/-/g, '_');
+                            //console.log(res);
+                            if(res == true) {
+                                await ctx.reply(`${messagebanned(ctx)}`)
+                            }else{
+                                await saver.checkFile(`${photo.file_unique_id}`).then(async res => {
+                                    let result = `${photo.file_unique_id}`.replace(/-/g, '_');
+                                    //console.log(res);
+                                    if(res == true) {
+                                        await ctx.reply(`File already exists. #file${result}`)
+                                    }else{
+                                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
+                                        const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${photo.file_size} \n#file${result} ${caption2}`, {
                                             chat_id: process.env.LOG_CHANNEL,
                                             parse_mode:'HTML',
                                             disable_web_page_preview: true,
                                             disable_notification: true,
                                             reply_markup:{
                                                 inline_keyboard:[
-                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo.file_unique_id}`}]
                                                 ]
                                             }
                                         })
                                         fileDetails3 = {
-                                            file_name: fileDetail4.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail4.file_id,
-                                            caption: fileDetail4.caption,
-                                            file_size: fileDetail4.file_size,
-                                            uniqueId: fileDetail4.uniqueId,
-                                            messageId: data6.message_id,
+                                            file_name: file_name2,
+                                            userId: ctx.from.id,
+                                            file_id: photo.file_id,
+                                            caption: ctx.message.caption,
+                                            file_size: photo.file_size,
+                                            uniqueId: photo.file_unique_id,
+                                            messageId: data3.message_id,
                                             type: 'photo'
                                         }
                                         await saver.saveFile3(fileDetails3)
-                                        return;
                                     }
-                                    const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
-                                            ]
-                                        }
-                                    })
-                                    fileDetails4 = {
-                                        file_name: fileDetail4.file_name,
-                                        userId:ctx.from.id,
-                                        file_id: fileDetail4.file_id,
-                                        caption: fileDetail4.caption,
-                                        file_size: fileDetail4.file_size,
-                                        uniqueId: fileDetail4.uniqueId,
-                                        messageId: data7.message_id,
-                                        type: 'photo'
-                                    }
-                                    await saver.saveFile4(fileDetails4)
-                                }
-                            })
+                                })
+                            }
+                        })
+                    }else{
+                        const exstension2 = photo.file_name;
+                        const regex2 = /\.[A-Za-z0-9]+$/gm
+                        const photext2 = exstension2.replace(regex2, '');
+                        
+                        const file_name3 = `${photext2}`;
+                        if(ctx.message.caption == undefined){
+                            var caption3 =  ``;
+                        }else{
+                            var caption3 =  `\n\n${ctx.message.caption}`;
                         }
-                    })
+                        
+                        await saver.checkBan(`${ctx.from.id}`).then(async res => {
+                            //console.log(res);
+                            if(res == true) {
+                                await ctx.reply(`${messagebanned(ctx)}`)
+                            }else{
+                                await saver.checkFile(`${photo.file_unique_id}`).then(async res => {
+                                    let result = `${photo.file_unique_id}`.replace(/-/g, '_');
+                                    //console.log(res);
+                                    if(res == true) {
+                                        await ctx.reply(`File already exists. #file${result}`)
+                                    }else{
+                                        await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
+                                        const data4 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${photo.file_size} \n#file${result} ${caption3}`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${photo.file_unique_id}`}]
+                                                ]
+                                            }
+                                        })
+                                        fileDetails4 = {
+                                            file_name: file_name3,
+                                            userId: ctx.from.id,
+                                            file_id: photo.file_id,
+                                            caption: ctx.message.caption,
+                                            file_size: photo.file_size,
+                                            uniqueId: photo.file_unique_id,
+                                            messageId: data4.message_id,
+                                            type: 'photo'
+                                        }
+                                        await saver.saveFile4(fileDetails4)
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             }
         }
