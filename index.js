@@ -697,7 +697,7 @@ bot.command('ban',async(ctx)=>{
         }
         ban()
     })
-    return (next);
+    return next();
 })
 
 bot.command('unban',async(ctx, next)=>{
@@ -1200,7 +1200,7 @@ bot.command('banchat', async(ctx, next) => {
             }
         }
     }
-    return (next); 
+    return next(); 
 })
 
 //unban user with user id
