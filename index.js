@@ -1,15 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const rateLimit = require('telegraf-ratelimit')
-
-const limitConfig = {
-    window: 2000,
-    limit: 1,
-    onLimitExceeded: (ctx, next) => ctx.reply('Wait a few seconds')
-}
-
 const bot = new Telegraf(process.env.TOKEN)
-bot.use(rateLimit(limitConfig))
 
 process.env.TZ = "Asia/Jakarta";
 
