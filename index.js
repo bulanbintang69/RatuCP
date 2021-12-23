@@ -1669,31 +1669,31 @@ bot.on('video', async(ctx, next) => {
                                 }
                                 await saver.saveFile(fileDetails1)
                             }
-                            return;
-                        }
-                        const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
-                            chat_id: process.env.LOG_CHANNEL,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            disable_notification: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
-                                ]
+                        }else{
+                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail.file_size} \n#file${result} \n\n${fileDetail.caption}`, {
+                                chat_id: process.env.LOG_CHANNEL,
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                disable_notification: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail.uniqueId}`}]
+                                    ]
+                                }
+                            })
+                            if(ctx.chat.type == 'private') {
+                                fileDetails2 = {
+                                    file_name: fileDetail.file_name,
+                                    userId: ctx.from.id,
+                                    file_id: fileDetail.file_id,
+                                    caption: fileDetail.caption,
+                                    file_size: fileDetail.file_size,
+                                    uniqueId: fileDetail.uniqueId,
+                                    messageId: data1.message_id,
+                                    type: 'video'
+                                }
+                                await saver.saveFile2(fileDetails2)
                             }
-                        })
-                        if(ctx.chat.type == 'private') {
-                            fileDetails2 = {
-                                file_name: fileDetail.file_name,
-                                userId: ctx.from.id,
-                                file_id: fileDetail.file_id,
-                                caption: fileDetail.caption,
-                                file_size: fileDetail.file_size,
-                                uniqueId: fileDetail.uniqueId,
-                                messageId: data1.message_id,
-                                type: 'video'
-                            }
-                            await saver.saveFile2(fileDetails2)
                         }
                     }
                 })
@@ -1748,31 +1748,31 @@ bot.on('video', async(ctx, next) => {
                                 }
                                 await saver.saveFile3(fileDetails3)
                             }
-                            return;
-                        }
-                        const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
-                            chat_id: process.env.LOG_CHANNEL,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            disable_notification: true,
-                            reply_markup:{
-                                inline_keyboard:[
-                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
-                                ]
+                        }else{
+                            const data3 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} \n\n${fileDetail2.caption}`, {
+                                chat_id: process.env.LOG_CHANNEL,
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                disable_notification: true,
+                                reply_markup:{
+                                    inline_keyboard:[
+                                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail2.uniqueId}`}]
+                                    ]
+                                }
+                            })
+                            if(ctx.chat.type == 'private') {
+                                fileDetails4 = {
+                                    file_name: fileDetail2.file_name,
+                                    userId:ctx.from.id,
+                                    file_id: fileDetail2.file_id,
+                                    caption: fileDetail2.caption,
+                                    file_size: fileDetail2.file_size,
+                                    uniqueId: fileDetail2.unique_Id,
+                                    messageId: data3.message_id,
+                                    type: 'video'
+                                }
+                                await saver.saveFile4(fileDetails4)
                             }
-                        })
-                        if(ctx.chat.type == 'private') {
-                            fileDetails4 = {
-                                file_name: fileDetail2.file_name,
-                                userId:ctx.from.id,
-                                file_id: fileDetail2.file_id,
-                                caption: fileDetail2.caption,
-                                file_size: fileDetail2.file_size,
-                                uniqueId: fileDetail2.unique_Id,
-                                messageId: data3.message_id,
-                                type: 'video'
-                            }
-                            await saver.saveFile4(fileDetails4)
                         }
                     }
                 })
@@ -1862,31 +1862,31 @@ bot.on('video', async(ctx, next) => {
                                             }
                                             await saver.saveFile(fileDetails1)
                                         }
-                                        return;
-                                    }
-                                    const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail3.uniqueId}`}]
-                                            ]
+                                    }else{
+                                        const data5 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail3.file_size} \n#file${result} \n\n${fileDetail3.caption}`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail3.uniqueId}`}]
+                                                ]
+                                            }
+                                        })
+                                        if(ctx.chat.type == 'private') {
+                                            fileDetails2 = {
+                                                file_name: fileDetail3.file_name,
+                                                userId:ctx.from.id,
+                                                file_id: fileDetail3.file_id,
+                                                caption: fileDetail3.caption,
+                                                file_size: fileDetail3.file_size,
+                                                uniqueId: fileDetail3.uniqueId,
+                                                messageId: data5.message_id,
+                                                type: 'video'
+                                            }
+                                            await saver.saveFile2(fileDetails2)
                                         }
-                                    })
-                                    if(ctx.chat.type == 'private') {
-                                        fileDetails2 = {
-                                            file_name: fileDetail3.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail3.file_id,
-                                            caption: fileDetail3.caption,
-                                            file_size: fileDetail3.file_size,
-                                            uniqueId: fileDetail3.uniqueId,
-                                            messageId: data5.message_id,
-                                            type: 'video'
-                                        }
-                                        await saver.saveFile2(fileDetails2)
                                     }
                                 }
                             })
@@ -1948,31 +1948,31 @@ bot.on('video', async(ctx, next) => {
                                             }
                                             await saver.saveFile3(fileDetails3)
                                         }
-                                        return;
-                                    }
-                                    const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
-                                        chat_id: process.env.LOG_CHANNEL,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        disable_notification: true,
-                                        reply_markup:{
-                                            inline_keyboard:[
-                                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
-                                            ]
+                                    }else{
+                                        const data7 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${fileDetail4.file_size} \n#file${result} \n\n${fileDetail4.caption}`, {
+                                            chat_id: process.env.LOG_CHANNEL,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            disable_notification: true,
+                                            reply_markup:{
+                                                inline_keyboard:[
+                                                    [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetail4.uniqueId}`}]
+                                                ]
+                                            }
+                                        })
+                                        if(ctx.chat.type == 'private') {
+                                            fileDetails4 = {
+                                                file_name: fileDetail4.file_name,
+                                                userId:ctx.from.id,
+                                                file_id: fileDetail4.file_id,
+                                                caption: fileDetail4.caption,
+                                                file_size: fileDetail4.file_size,
+                                                uniqueId: fileDetail4.uniqueId,
+                                                messageId: data7.message_id,
+                                                type: 'video'
+                                            }
+                                            await saver.saveFile4(fileDetails4)
                                         }
-                                    })
-                                    if(ctx.chat.type == 'private') {
-                                        fileDetails4 = {
-                                            file_name: fileDetail4.file_name,
-                                            userId:ctx.from.id,
-                                            file_id: fileDetail4.file_id,
-                                            caption: fileDetail4.caption,
-                                            file_size: fileDetail4.file_size,
-                                            uniqueId: fileDetail4.uniqueId,
-                                            messageId: data7.message_id,
-                                            type: 'video'
-                                        }
-                                        await saver.saveFile4(fileDetails4)
                                     }
                                 }
                             })
