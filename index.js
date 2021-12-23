@@ -1590,10 +1590,11 @@ bot.on('video', async(ctx, next) => {
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             video = ctx.message.video
+            caption = ctx.message.caption
             
             if(video.file_name == undefined){
                 const file_name2 = `${today2(ctx)}`;
-                const caption2 = `\n\n${ctx.message.caption}` ? `\n\n${ctx.message.caption}` : '';
+                const caption2 = '' ? `\n\n${caption}` : '';
             
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
@@ -1636,7 +1637,7 @@ bot.on('video', async(ctx, next) => {
                 const vidtext2 = exstension2.replace(regex2, '');
                 
                 const file_name3 = `${vidtext2}`;
-                const caption3 = `\n\n${ctx.message.caption}` ? `\n\n${ctx.message.caption}` : '';
+                const caption3 = '' ? `\n\n${caption}` : '';
                 
                 await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                     let result = `${video.file_unique_id}`.replace(/-/g, '_');
