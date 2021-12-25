@@ -29,10 +29,6 @@
             "description": "Create private channel and enter channel id to monitor files and get user and file data.",
             "value":""
         },
-        "CAPTIONLINK":{
-            "description": "Caption when the media link sent is pressed.",
-            "value":""
-        },
         "WELCOMEJOINBOT":{
             "description": "Enter a message before the user joins.",
             "value":""
