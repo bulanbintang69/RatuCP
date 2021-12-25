@@ -1391,13 +1391,15 @@ bot.on('document', async(ctx, next) => {
     return next();
 })
 
+bot.use(async (ctx, next) => {
+  console.time(`Processing update ${ctx.update.update_id}`)
+  await next() // runs next middleware
+  // runs after next middleware finishes
+  console.timeEnd(`Processing update ${ctx.update.update_id}`)
+})
+
 //video files
-bot.on('video', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });
+bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1571,7 +1573,6 @@ bot.on('video', async(ctx, next) => {
             }
         }
     }
-    return next();
 })
 
 //photo files
