@@ -7,36 +7,6 @@ const bot = new Telegraf(process.env.TOKEN)
 const throttler = telegrafThrottler();
 bot.use(throttler);
 
-// Outgoing Group Throttler
-const groupConfig = {
-    maxConcurrent: 1,                // Only 1 job at a time
-    minTime: 333,                    // Wait this many milliseconds to be ready, after a job
-    reservoir: 20,                   // Number of new jobs that throttler will accept at start
-    reservoirRefreshAmount: 20,      // Number of jobs that throttler will accept after refresh
-    reservoirRefreshInterval: 60000, // Interval in milliseconds where reservoir will refresh
-  };
-  
-  // Incoming Throttler
-  const inConfig = {
-    highWater: 3,                       // Trigger strategy if throttler is not ready for a new job
-    maxConcurrent: 1,                   // Only 1 job at a time
-    minTime: 333,                       // Wait this many milliseconds to be ready, after a job
-    strategy: Bottleneck.strategy.LEAK, // Drop jobs if throttler is not ready
-  }
-  
-  // Outgoing Private Throttler
-  const outConfig = {
-    minTime: 25,                    // Wait this many milliseconds to be ready, after a job
-    reservoir: 30,                  // Number of new jobs that throttler will accept at start
-    reservoirRefreshAmount: 30,     // Number of jobs that throttler will accept after refresh
-    reservoirRefreshInterval: 1000, // Interval in milliseconds where reservoir will refresh
-  };
-  
-  // Default Error Handler
-  const defaultErrorHandler = async (ctx, next, error) => {
-    return console.warn(`Inbound ${ctx.from?.id || ctx.chat?.id} | ${error.message}`)
-  };
-
 process.env.TZ = "Asia/Jakarta";
 
 //database
