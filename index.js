@@ -1,6 +1,41 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const { telegrafThrottler } = require('telegraf-throttler')
+
 const bot = new Telegraf(process.env.TOKEN)
+
+const throttler = telegrafThrottler();
+bot.use(throttler);
+
+// Outgoing Group Throttler
+const groupConfig = {
+    maxConcurrent: 1,                // Only 1 job at a time
+    minTime: 333,                    // Wait this many milliseconds to be ready, after a job
+    reservoir: 20,                   // Number of new jobs that throttler will accept at start
+    reservoirRefreshAmount: 20,      // Number of jobs that throttler will accept after refresh
+    reservoirRefreshInterval: 60000, // Interval in milliseconds where reservoir will refresh
+  };
+  
+  // Incoming Throttler
+  const inConfig = {
+    highWater: 3,                       // Trigger strategy if throttler is not ready for a new job
+    maxConcurrent: 1,                   // Only 1 job at a time
+    minTime: 333,                       // Wait this many milliseconds to be ready, after a job
+    strategy: Bottleneck.strategy.LEAK, // Drop jobs if throttler is not ready
+  }
+  
+  // Outgoing Private Throttler
+  const outConfig = {
+    minTime: 25,                    // Wait this many milliseconds to be ready, after a job
+    reservoir: 30,                  // Number of new jobs that throttler will accept at start
+    reservoirRefreshAmount: 30,     // Number of jobs that throttler will accept after refresh
+    reservoirRefreshInterval: 1000, // Interval in milliseconds where reservoir will refresh
+  };
+  
+  // Default Error Handler
+  const defaultErrorHandler = async (ctx, next, error) => {
+    return console.warn(`Inbound ${ctx.from?.id || ctx.chat?.id} | ${error.message}`)
+  };
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -68,12 +103,6 @@ function messagebotnoaddgroup(ctx){
 
 //BOT START
 bot.start(async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -365,17 +394,10 @@ bot.start(async(ctx, next)=>{
         //saving user details to the database
         await saver.saveUser(user)
     }
-    return next();
 })
 
 //TEST BOT
 bot.hears(/ping/i,async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
@@ -396,27 +418,13 @@ bot.hears(/ping/i,async(ctx, next)=>{
             }
         })
     }
-    return next();
 })
 
 bot.action('PONG',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    await ctx.deleteMessage()
-    return next();
 })
 
 //GROUP COMMAND
 bot.command('reload',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-
     var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
     var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
     //console.log(memberstatus);
@@ -435,16 +443,9 @@ bot.command('reload',async(ctx, next)=>{
             await saver.saveGroup(group)
         }
     }
-    return next();
 })
 
 bot.command('kick',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
@@ -501,16 +502,9 @@ bot.command('kick',async(ctx, next)=>{
         }
         kick()
     })
-    return next();
 })
 
 bot.command('ban',async(ctx)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
@@ -672,16 +666,9 @@ bot.command('ban',async(ctx)=>{
         }
         ban()
     })
-    return next();
 })
 
 bot.command('unban',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
@@ -762,16 +749,9 @@ bot.command('unban',async(ctx, next)=>{
         }
         unban()
     })
-    return next();
 })
 
 bot.command('pin',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
@@ -816,16 +796,9 @@ bot.command('pin',async(ctx, next)=>{
         }
         pin()
     })
-    return next();
 })
 
 bot.command('unpin',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then( async res=>{
         n = res.length
         groupId = []
@@ -864,16 +837,9 @@ bot.command('unpin',async(ctx, next)=>{
         }
         unpin()
     })
-    return next();
 })
 
 bot.command('send',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
@@ -930,18 +896,11 @@ bot.command('send',async(ctx, next)=>{
         }
         send()
     })
-    return next();
 })
 //END
 
 //check account
 bot.command('getid',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-  
     if(ctx.chat.type == 'private') {       
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -966,17 +925,10 @@ bot.command('getid',async(ctx, next)=>{
             }
         })
     }
-    return next();
 })
 
 //remove files with file_id
 bot.command('rem', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -990,17 +942,10 @@ bot.command('rem', async(ctx, next) => {
             await ctx.reply('❌ 1 media deleted successfully')
         }
     }
-    return next();
 })
 
 //remove whole collection(remove all files)
 bot.command('clear', async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             await ctx.deleteMessage()
@@ -1008,17 +953,10 @@ bot.command('clear', async(ctx, next)=>{
             await ctx.reply('❌ All media deleted successfully')
         }
     }
-    return next();
 })
 
 //removing all files sent by a user
 bot.command('remall', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1032,16 +970,9 @@ bot.command('remall', async(ctx, next) => {
             await ctx.reply('❌ Delete all user media successfully')
         }
     }
-    return next();
 })
 
 bot.command('sendchat',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
@@ -1086,17 +1017,10 @@ bot.command('sendchat',async(ctx, next)=>{
             sendchat()
         }
     })
-    return next();
 })
 
 //broadcasting message to bot users(from last joined to first)
 bot.command('broadcast',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1145,17 +1069,10 @@ bot.command('broadcast',async(ctx, next)=>{
 
         })
     }
-    return next();
 })
 
 //ban user with user id
 bot.command('banchat', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1175,17 +1092,10 @@ bot.command('banchat', async(ctx, next) => {
             }
         }
     }
-    return next(); 
 })
 
 //unban user with user id
 bot.command('unbanchat', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1205,17 +1115,10 @@ bot.command('unbanchat', async(ctx, next) => {
             }
         }
     }
-    return next();
 })
 
 //document files
 bot.on('document', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });
-  
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             document = ctx.message.document
@@ -1365,17 +1268,10 @@ bot.on('document', async(ctx, next) => {
             }
         }
     }
-    return next();
 })
 
 //video files
 bot.on('video', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });
-  
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             video = ctx.message.video
@@ -1525,17 +1421,10 @@ bot.on('video', async(ctx, next) => {
             }
         }
     }
-    await next();
 })
 
 //photo files
 bot.on('photo', async(ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 2_000);
-    });
-  
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             photo = ctx.message.photo[1]
@@ -1685,16 +1574,9 @@ bot.on('photo', async(ctx, next) => {
             }
         }
     }
-    return next();
 })
 
 bot.command('stats',async(ctx, next)=>{
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 1_000);
-    });
-    
     await ctx.deleteMessage()
     stats = await saver.getUser().then(async res=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
@@ -1720,7 +1602,6 @@ bot.command('stats',async(ctx, next)=>{
         }
         
     })
-    return next();
 })
  
 //heroku config
