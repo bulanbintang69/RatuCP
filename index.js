@@ -1304,7 +1304,6 @@ bot.on('video', async(ctx) => {
                 }
             }
             
-            try{
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
                 //console.log(res);
@@ -1341,9 +1340,6 @@ bot.on('video', async(ctx) => {
                     await saver.saveFile(fileDetails1)
                 }
             })
-            }catch(error){
-                await ctx.reply(`No process`)
-            }
         }else{
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
