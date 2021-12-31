@@ -23,24 +23,24 @@ db.connect((err) => {
 const channelId = `${process.env.CHANNELJOIN}`;
 
 function today(ctx){
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
-    const hours = today.getHours();
-    const minutes = today.getMinutes();
-    const seconds = today.getSeconds();
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    var seconds = today.getSeconds();
     return today = mm + '/' + dd + '/' + yyyy + ' ' + hours + ':' + minutes + ':' + seconds;
 }
 
 function today2(ctx){
-    const today2 = new Date();
-    const dd2 = String(today2.getDate()).padStart(2, '0');
-    const mm2 = String(today2.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy2 = today2.getFullYear();
-    const hours2 = today2.getHours();
-    const minutes2 = today2.getMinutes();
-    const seconds2 = today2.getSeconds();
+    var today2 = new Date();
+    var dd2 = String(today2.getDate()).padStart(2, '0');
+    var mm2 = String(today2.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy2 = today2.getFullYear();
+    var hours2 = today2.getHours();
+    var minutes2 = today2.getMinutes();
+    var seconds2 = today2.getSeconds();
     return today2 = mm2 + '/' + dd2 + '/' + yyyy2 + '-' + hours2 + ':' + minutes2 + ':' + seconds2;
 }
 
@@ -193,8 +193,8 @@ bot.start(async(ctx)=>{
             }
         }else{
             try {
-                const botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                const member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                 //console.log(member);
                 if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                     const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -401,8 +401,8 @@ bot.action('PONG',async(ctx)=>{
 //GROUP COMMAND
 bot.command('reload',async(ctx)=>{
 
-    const botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
-    const memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
+    var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
+    var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
     //console.log(memberstatus);
     group = {
         groupId:ctx.chat.id
@@ -432,8 +432,8 @@ bot.command('kick',async(ctx)=>{
         }
         async function kick() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -493,8 +493,8 @@ bot.command('ban',async(ctx)=>{
         }
         async function ban() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -659,8 +659,8 @@ bot.command('unban',async(ctx)=>{
         }
         async function unban() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -744,8 +744,8 @@ bot.command('pin',async(ctx)=>{
         }
         async function pin() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -793,8 +793,8 @@ bot.command('unpin',async(ctx)=>{
         }
         async function unpin() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -836,8 +836,8 @@ bot.command('send',async(ctx)=>{
         }
         async function send() {
             for (const group of groupId) {
-                const botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -979,7 +979,7 @@ bot.command('sendchat',async(ctx)=>{
         }
         async function sendchat() {
             for (const group of groupId) {
-                const memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
@@ -1127,25 +1127,25 @@ bot.on('document', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const document = ctx.message.document
+            var document = ctx.message.document
             
             if(document.file_name == undefined){
-                const file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                const exstension2 = document.file_name;
-                const regex2 = /\.[A-Za-z0-9]+$/gm
-                const doctext2 = exstension2.replace(regex2, '');
+                var exstension2 = document.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var doctext2 = exstension2.replace(regex2, '');
                 
-                const file_name2 = `${doctext2}`;
+                var file_name2 = `${doctext2}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
             
@@ -1185,8 +1185,8 @@ bot.on('document', async(ctx) => {
                 }
             })
         }else{
-            const botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            const member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -1207,25 +1207,25 @@ bot.on('document', async(ctx) => {
                     }
                 })
             }else{
-                const document = ctx.message.document
+                var document = ctx.message.document
                             
                 if(document.file_name == undefined){
-                    const file_name2 = `${today2(ctx)}`;
+                    var file_name2 = `${today2(ctx)}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }else{
-                    const exstension2 = document.file_name;
-                    const regex2 = /\.[A-Za-z0-9]+$/gm
-                    const doctext2 = exstension2.replace(regex2, '');
+                    var exstension2 = document.file_name;
+                    var regex2 = /\.[A-Za-z0-9]+$/gm
+                    var doctext2 = exstension2.replace(regex2, '');
                     
-                    const file_name2 = `${doctext2}`;
+                    var file_name2 = `${doctext2}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }
         
@@ -1282,25 +1282,25 @@ bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const video = ctx.message.video
+            var video = ctx.message.video
             
             if(video.file_name == undefined){
-                const file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                const exstension2 = video.file_name;
-                const regex2 = /\.[A-Za-z0-9]+$/gm
-                const vidtext2 = exstension2.replace(regex2, '');
+                var exstension2 = video.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var vidtext2 = exstension2.replace(regex2, '');
                 
-                const file_name2 = `${vidtext2}`;
+                var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
             
@@ -1340,8 +1340,8 @@ bot.on('video', async(ctx) => {
                 }
             })
         }else{
-            const botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            const member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -1362,25 +1362,25 @@ bot.on('video', async(ctx) => {
                     }
                 })
             }else{
-                const video = ctx.message.video
+                var video = ctx.message.video
                             
                 if(video.file_name == undefined){
-                    const file_name2 = `${today2(ctx)}`;
+                    var file_name2 = `${today2(ctx)}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }else{
-                    const exstension2 = video.file_name;
-                    const regex2 = /\.[A-Za-z0-9]+$/gm
-                    const vidtext2 = exstension2.replace(regex2, '');
+                    var exstension2 = video.file_name;
+                    var regex2 = /\.[A-Za-z0-9]+$/gm
+                    var vidtext2 = exstension2.replace(regex2, '');
                     
-                    const file_name2 = `${vidtext2}`;
+                    var file_name2 = `${vidtext2}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }
         
@@ -1437,25 +1437,25 @@ bot.on('photo', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const photo = ctx.message.photo[1]
+            var photo = ctx.message.photo[1]
             
             if(photo.file_name == undefined){
-                const file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                const exstension2 = photo.file_name;
-                const regex2 = /\.[A-Za-z0-9]+$/gm
-                const photext2 = exstension2.replace(regex2, '');
+                var exstension2 = photo.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var photext2 = exstension2.replace(regex2, '');
                 
-                const file_name2 = `${photext2}`;
+                var file_name2 = `${photext2}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
             
@@ -1495,8 +1495,8 @@ bot.on('photo', async(ctx) => {
                 }
             })
         }else{
-            const botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            const member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -1520,22 +1520,22 @@ bot.on('photo', async(ctx) => {
                 const photo = ctx.message.photo[1]
                             
                 if(photo.file_name == undefined){
-                    const file_name2 = `${today2(ctx)}`;
+                    var file_name2 = `${today2(ctx)}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }else{
-                    const exstension2 = photo.file_name;
-                    const regex2 = /\.[A-Za-z0-9]+$/gm
-                    const photext2 = exstension2.replace(regex2, '');
+                    var exstension2 = photo.file_name;
+                    var regex2 = /\.[A-Za-z0-9]+$/gm
+                    var photext2 = exstension2.replace(regex2, '');
                     
-                    const file_name2 = `${photext2}`;
+                    var file_name2 = `${photext2}`;
                     if(ctx.message.caption == undefined){
-                        const caption2 =  ``;
+                        var caption2 =  ``;
                     }else{
-                        const caption2 =  `\n\n${ctx.message.caption}`;
+                        var caption2 =  `\n\n${ctx.message.caption}`;
                     }
                 }
         
