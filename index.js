@@ -1046,7 +1046,7 @@ bot.command('broadcast',async(ctx)=>{
                             disable_web_page_preview: true
                           }
                         )
-                    }catch (err) {
+                    } catch (err) {
                         await saver.updateUser(users)
                         totalFail.push(users)
 
@@ -1279,6 +1279,7 @@ bot.on('document', async(ctx) => {
 
 //video files
 bot.on('video', async(ctx) => {
+  
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
             var video = ctx.message.video
@@ -1303,14 +1304,14 @@ bot.on('video', async(ctx) => {
                 }
             }
             
+            try{
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
                 //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
-                }else if(res == false) {
+                }else{
                     await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                        chat_id: ctx.from.id,
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
@@ -1339,6 +1340,9 @@ bot.on('video', async(ctx) => {
                     await saver.saveFile(fileDetails1)
                 }
             })
+            }catch(error){
+                await ctx.reply(`No process`)
+            }
         }else{
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
@@ -1625,8 +1629,3 @@ bot.launch({
         port:Number(process.env.PORT) 
     }
 })
-
-
-// Enable graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))
