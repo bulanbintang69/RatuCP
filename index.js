@@ -14,9 +14,9 @@ const groupThrottler = telegrafThrottler({
   inKey: 'chat', // Throttle inbound messages by chat.id instead
 });
 
-const partitioningMiddleware = (ctx, next) => {
+const partitioningMiddleware = (ctx) => {
   const chatId = Number(ctx.chat?.id);
-  return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx, next);
+  return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx);
 };
 bot.use(partitioningMiddleware);
 
@@ -85,7 +85,7 @@ function messagebotnoaddgroup(ctx){
 }
 
 //BOT START
-bot.start(async(ctx, next)=>{
+bot.start(async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -382,7 +382,7 @@ bot.start(async(ctx, next)=>{
 })
 
 //TEST BOT
-bot.hears(/ping/i,async(ctx, next)=>{
+bot.hears(/ping/i,async(ctx)=>{
     
     if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -407,13 +407,13 @@ bot.hears(/ping/i,async(ctx, next)=>{
     
 })
 
-bot.action('PONG',async(ctx, next)=>{
+bot.action('PONG',async(ctx)=>{
     await ctx.deleteMessage()
     
 })
 
 //GROUP COMMAND
-bot.command('reload',async(ctx, next)=>{
+bot.command('reload',async(ctx)=>{
 
     var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
     var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
@@ -436,7 +436,7 @@ bot.command('reload',async(ctx, next)=>{
     
 })
 
-bot.command('kick',async(ctx, next)=>{
+bot.command('kick',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then(async res=>{
         const n = res.length
@@ -663,7 +663,7 @@ bot.command('ban',async(ctx)=>{
     
 })
 
-bot.command('unban',async(ctx, next)=>{
+bot.command('unban',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then(async res => {
         const n = res.length
@@ -748,7 +748,7 @@ bot.command('unban',async(ctx, next)=>{
     
 })
 
-bot.command('pin',async(ctx, next)=>{
+bot.command('pin',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then(async res =>{
         const n = res.length
@@ -797,7 +797,7 @@ bot.command('pin',async(ctx, next)=>{
     
 })
 
-bot.command('unpin',async(ctx, next)=>{
+bot.command('unpin',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then( async res=>{
         const n = res.length
@@ -840,7 +840,7 @@ bot.command('unpin',async(ctx, next)=>{
     
 })
 
-bot.command('send',async(ctx, next)=>{
+bot.command('send',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then(async res =>{
         const n = res.length
@@ -903,7 +903,7 @@ bot.command('send',async(ctx, next)=>{
 //END
 
 //check account
-bot.command('getid',async(ctx, next)=>{
+bot.command('getid',async(ctx)=>{
   
     if(ctx.chat.type == 'private') {       
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -933,7 +933,7 @@ bot.command('getid',async(ctx, next)=>{
 })
 
 //remove files with file_id
-bot.command('rem', async(ctx, next) => {
+bot.command('rem', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -952,7 +952,7 @@ bot.command('rem', async(ctx, next) => {
 })
 
 //remove whole collection(remove all files)
-bot.command('clear', async(ctx, next)=>{
+bot.command('clear', async(ctx)=>{
     
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
@@ -965,7 +965,7 @@ bot.command('clear', async(ctx, next)=>{
 })
 
 //removing all files sent by a user
-bot.command('remall', async(ctx, next) => {
+bot.command('remall', async(ctx) => {
     
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -983,7 +983,7 @@ bot.command('remall', async(ctx, next) => {
     
 })
 
-bot.command('sendchat',async(ctx, next)=>{
+bot.command('sendchat',async(ctx)=>{
     
     const groupDetails = await saver.getGroup().then(async res=>{
         const n = res.length
@@ -1033,7 +1033,7 @@ bot.command('sendchat',async(ctx, next)=>{
 })
 
 //broadcasting message to bot users(from last joined to first)
-bot.command('broadcast',async(ctx, next)=>{
+bot.command('broadcast',async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -1087,7 +1087,7 @@ bot.command('broadcast',async(ctx, next)=>{
 })
 
 //ban user with user id
-bot.command('banchat', async(ctx, next) => {
+bot.command('banchat', async(ctx) => {
     
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -1112,7 +1112,7 @@ bot.command('banchat', async(ctx, next) => {
 })
 
 //unban user with user id
-bot.command('unbanchat', async(ctx, next) => {
+bot.command('unbanchat', async(ctx) => {
     
     if(ctx.chat.type == 'private') {
         const msg = ctx.message.text
@@ -1137,7 +1137,7 @@ bot.command('unbanchat', async(ctx, next) => {
 })
 
 //document files
-bot.on('document', async(ctx, next) => {
+bot.on('document', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
@@ -1292,7 +1292,7 @@ bot.on('document', async(ctx, next) => {
 })
 
 //video files
-bot.on('video', async(ctx, next) => {
+bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
@@ -1447,7 +1447,7 @@ bot.on('video', async(ctx, next) => {
 })
 
 //photo files
-bot.on('photo', async(ctx, next) => {
+bot.on('photo', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
@@ -1601,7 +1601,7 @@ bot.on('photo', async(ctx, next) => {
     
 })
 
-bot.command('stats',async(ctx, next)=>{
+bot.command('stats',async(ctx)=>{
     
     await ctx.deleteMessage()
     const stats = await saver.getUser().then(async res=>{
