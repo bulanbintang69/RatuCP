@@ -1309,7 +1309,7 @@ bot.on('video', async(ctx) => {
                 //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
-                }else{
+                }else if(res == false) {
                     await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
