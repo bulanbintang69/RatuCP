@@ -14,7 +14,7 @@ const groupThrottler = telegrafThrottler({
   inKey: 'chat', // Throttle inbound messages by chat.id instead
 });
 
-const partitioningMiddleware = (ctx) => {
+const partitioningMiddleware = (ctx, next) => {
   const chatId = Number(ctx.chat?.id);
   return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx);
 };
