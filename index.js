@@ -4,7 +4,8 @@ const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-bot.use(telegrafThrottler());
+const throttler = telegrafThrottler();
+bot.use(throttler);
 
 process.env.TZ = "Asia/Jakarta";
 
