@@ -1333,7 +1333,7 @@ bot.on('video', async(ctx) => {
                         caption: ctx.message.caption,
                         file_size: video.file_size,
                         uniqueId: video.file_unique_id,
-                        messageId: media.message_id,
+                        messageId: data.message_id,
                         type: 'video'
                     }
                     await saver.saveFile(fileDetails1)
