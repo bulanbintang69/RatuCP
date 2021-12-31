@@ -16,7 +16,7 @@ const groupThrottler = telegrafThrottler({
 
 const partitioningMiddleware = (ctx, next) => {
   const chatId = Number(ctx.chat?.id);
-  return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx);
+  return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx, next);
 };
 bot.use(partitioningMiddleware);
 
