@@ -4,8 +4,21 @@ const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-const throttler = telegrafThrottler();
-bot.use(throttler);
+const privateThrottler = telegrafThrottler();
+const groupThrottler = telegrafThrottler({
+  in: { // Aggresively drop inbound messages
+    highWater: 0,                       // Trigger strategy if throttler is not ready for a new job
+    maxConcurrent: 1,                   // Only 1 job at a time
+    minTime: 30000,                      // Wait this many milliseconds to be ready, after a job
+  },
+  inKey: `${process.env.CHANNELJOIN}`, // Throttle inbound messages by chat.id instead
+});
+
+const partitioningMiddleware = (ctx, next) => {
+  const chatId = Number(ctx.chat?.id);
+  return Composer.optional(() => chatId < 0, groupThrottler, privateThrottler)(ctx, next);
+};
+bot.use(partitioningMiddleware);
 
 process.env.TZ = "Asia/Jakarta";
 
