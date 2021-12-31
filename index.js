@@ -1312,6 +1312,7 @@ bot.on('video', async(ctx) => {
                     await ctx.reply(`File already exists. #file${result}`)
                 }else{
                     await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                        chat_id: ctx.chat.id,
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
