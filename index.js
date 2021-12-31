@@ -1304,7 +1304,7 @@ bot.on('video', async(ctx) => {
                 }
             }
             
-            await saver.checkFile(`${video.file_unique_id}`).then(res => {
+            await saver.checkFile(`${video.file_unique_id}`).then((res) => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
                 //console.log(res);
                 if(res == true) {
