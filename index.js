@@ -1127,7 +1127,7 @@ bot.on('document', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            var document = ctx.message.document
+            const document = ctx.message.document
             
             if(document.file_name == undefined){
                 var file_name2 = `${today2(ctx)}`;
@@ -1304,18 +1304,18 @@ bot.on('video', async(ctx) => {
                 }
             }
             
-            await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+            await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                 let result = `${video.file_unique_id}`.replace(/-/g, '_');
                 //console.log(res);
                 if(res == true) {
-                    ctx.reply(`File already exists. #file${result}`)
+                    await ctx.reply(`File already exists. #file${result}`)
                 }else{
-                    ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
-                    const data = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
@@ -1336,7 +1336,7 @@ bot.on('video', async(ctx) => {
                         messageId: data.message_id,
                         type: 'video'
                     }
-                    saver.saveFile(fileDetails1)
+                    await saver.saveFile(fileDetails1)
                 }
             })
         }else{
@@ -1345,17 +1345,17 @@ bot.on('video', async(ctx) => {
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then(async res => {
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`${messagebanned(ctx)}`)
+                        await ctx.reply(`${messagebanned(ctx)}`)
                     }else{
                         if(!profile2 || profile2.total_count == 0)
-                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                            return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
-                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                            await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true
                             })
@@ -1387,20 +1387,20 @@ bot.on('video', async(ctx) => {
                 await saver.checkBan(`${ctx.from.id}`).then(async res => {
                     //console.log(res);
                     if(res == true) {
-                        ctx.reply(`${messagebanned(ctx)}`)
+                        await ctx.reply(`${messagebanned(ctx)}`)
                     }else{
-                        await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                        await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                             let result = `${video.file_unique_id}`.replace(/-/g, '_');
                             //console.log(res);
                             if(res == true) {
-                                ctx.reply(`File already exists. #file${result}`)
+                                await ctx.reply(`File already exists. #file${result}`)
                             }else{
-                                ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                                await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                                     parse_mode: 'HTML',
                                     disable_web_page_preview: true,
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                const data = ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                                const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true,
@@ -1421,7 +1421,7 @@ bot.on('video', async(ctx) => {
                                     messageId: data.message_id,
                                     type: 'video'
                                 }
-                                saver.saveFile(fileDetails1)
+                                await saver.saveFile(fileDetails1)
                             }
                         })
                     }
