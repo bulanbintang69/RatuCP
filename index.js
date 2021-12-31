@@ -1338,7 +1338,6 @@ bot.on('video', async(ctx) => {
                     }
                     await saver.saveFile(fileDetails1)
                 }
-            }
         }else{
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
