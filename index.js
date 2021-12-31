@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Composer, Context, Middleware, Telegraf } = require('telegraf');
+const { Telegraf } = require('telegraf');
 const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
