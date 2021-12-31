@@ -404,7 +404,7 @@ bot.command('reload',async(ctx)=>{
     var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
     var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
     //console.log(memberstatus);
-    group = {
+    const group = {
         groupId:ctx.chat.id
     }
     if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
