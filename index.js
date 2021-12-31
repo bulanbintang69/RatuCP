@@ -1305,7 +1305,7 @@ bot.on('video', async(ctx) => {
             }
             
             let result2 = await saver.checkFile(`${video.file_unique_id}`).then(async res => {
-                let result = `${video.file_unique_id}`.replace(/-/g, '_');
+                let result = `${result2}`.replace(/-/g, '_');
                 //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
