@@ -1,6 +1,11 @@
-require('dotenv').config()
-const { Telegraf } = require('telegraf')
-const bot = new Telegraf(process.env.TOKEN)
+require('dotenv').config();
+const { Telegraf } = require('telegraf');
+const { telegrafThrottler } = require('telegraf-throttler');
+
+const bot = new Telegraf(process.env.TOKEN);
+
+const throttler = telegrafThrottler();
+bot.use(throttler);
 
 process.env.TZ = "Asia/Jakarta";
 
