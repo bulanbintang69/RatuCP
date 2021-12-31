@@ -4,7 +4,15 @@ const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-const privateThrottler = telegrafThrottler();
+const privateThrottler = telegrafThrottler({
+in: { // Aggresively drop inbound messages
+    highWater: 0,                       // Trigger strategy if throttler is not ready for a new job
+    maxConcurrent: 1,                   // Only 1 job at a time
+    minTime: 1000,                      // Wait this many milliseconds to be ready, after a job
+},
+inKey: 'chat', // Throttle inbound messages by chat.id instead
+});
+
 const groupThrottler = telegrafThrottler({
   in: { // Aggresively drop inbound messages
     highWater: 0,                       // Trigger strategy if throttler is not ready for a new job
