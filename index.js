@@ -10,7 +10,7 @@ const privateThrottler = telegrafThrottler({
       maxConcurrent: 1,                   // Only 1 job at a time
       minTime: 2000,                      // Wait this many milliseconds to be ready, after a job
     },
-    inKey: `${ctx.from.id}`, // Throttle inbound messages by chat.id instead
+    inKey: `5081397718`, // Throttle inbound messages by chat.id instead
 });
 const groupThrottler = telegrafThrottler({
   in: { // Aggresively drop inbound messages
