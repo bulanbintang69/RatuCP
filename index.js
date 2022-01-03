@@ -1283,10 +1283,9 @@ bot.on('video', async(ctx) => {
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
             var video = ctx.message.video
-            
-            if(video.file_name == undefined){
+            if(video.file_name == `undefined`){
                 var file_name2 = `${today2(ctx)}`;
-                if(ctx.message.caption == undefined){
+                if(ctx.message.caption == `undefined`){
                     var caption2 =  ``;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
@@ -1297,7 +1296,7 @@ bot.on('video', async(ctx) => {
                 var vidtext2 = exstension2.replace(regex2, '');
                 
                 var file_name2 = `${vidtext2}`;
-                if(ctx.message.caption == undefined){
+                if(ctx.message.caption == `undefined`){
                     var caption2 =  ``;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
