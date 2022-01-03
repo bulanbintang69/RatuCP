@@ -1284,15 +1284,15 @@ bot.on('video', async(ctx) => {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
             var video = ctx.message.video
             
-            if(video.file_name == null){
+            if(video.file_name == undefined){
                 var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
-                    return true;
+                    return false;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
-                return true;
+                return false;
             }else{
                 var exstension2 = video.file_name;
                 var regex2 = /\.[A-Za-z0-9]+$/gm
@@ -1301,7 +1301,7 @@ bot.on('video', async(ctx) => {
                 var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
-                    return true;
+                    return false;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
