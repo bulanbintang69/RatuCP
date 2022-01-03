@@ -1287,7 +1287,7 @@ bot.on('video', async(ctx) => {
             if(video.file_name == undefined){
                 var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    var caption2 =  ``;
+                    var caption2 =  ` `;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
@@ -1298,7 +1298,7 @@ bot.on('video', async(ctx) => {
                 
                 var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
-                    var caption2 =  ``;
+                    var caption2 =  ` `;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
