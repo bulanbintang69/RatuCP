@@ -1288,10 +1288,8 @@ bot.on('video', async(ctx) => {
                 var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
-                    var caption3 =  ``;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
-                    var caption3 =  `caption: ${ctx.message.caption}`;
                 }
             }else{
                 var exstension2 = video.file_name;
@@ -1301,10 +1299,8 @@ bot.on('video', async(ctx) => {
                 var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
-                    var caption3 =  ``;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
-                    var caption3 =  `caption: ${ctx.message.caption}`;
                 }
             }
             
@@ -1335,7 +1331,7 @@ bot.on('video', async(ctx) => {
                         file_name: file_name2,
                         userId: ctx.from.id,
                         file_id: video.file_id,
-                        caption3,
+                        caption: ctx.message.caption,
                         file_size: video.file_size,
                         uniqueId: video.file_unique_id,
                         messageId: data.message_id,
