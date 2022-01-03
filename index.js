@@ -1288,9 +1288,11 @@ bot.on('video', async(ctx) => {
                 var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == null){
                     var caption2 =  ``;
+                    return false;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
+                return false;
             }else{
                 var exstension2 = video.file_name;
                 var regex2 = /\.[A-Za-z0-9]+$/gm
@@ -1299,6 +1301,7 @@ bot.on('video', async(ctx) => {
                 var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == null){
                     var caption2 =  ``;
+                    return false;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
