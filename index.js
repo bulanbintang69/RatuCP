@@ -1303,13 +1303,19 @@ bot.on('video', async(ctx) => {
                 }
             }
             
-                    await ctx.reply(`Thank you for sending.\nSearch #file`,{
+            await saver.checkFile(`${video.file_unique_id}`).then(async res => {
+                let result = `${video.file_unique_id}`.replace(/-/g, '_');
+                //console.log(res);
+                if(res == true) {
+                    await ctx.reply(`File already exists. #file${result}`)
+                }else{
+                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                         chat_id: ctx.chat.id,
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
-                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file ${caption2}`, {
+                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
@@ -1331,6 +1337,8 @@ bot.on('video', async(ctx) => {
                         type: 'video'
                     }
                     await saver.saveFile(fileDetails1)
+                }
+            })
         }else{
             var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
