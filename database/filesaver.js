@@ -139,9 +139,9 @@ module.exports={
         })
     },
 
-    checkFile:(uniqueId)=>{
+    checkFile:(file_unique_id)=>{
         return new Promise(async(resolve,reject)=>{
-            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:uniqueId}).then((res)=>{
+            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:file_unique_id}).then((res)=>{
                 console.log(res);
                 if(res){
                     resolve(true)
