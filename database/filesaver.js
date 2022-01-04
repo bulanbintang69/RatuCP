@@ -128,7 +128,7 @@ module.exports={
 
     checkBan:(id)=>{
         return new Promise(async(resolve,reject)=>{
-            await db.get().collection(collection.BANNED_COLLECTION).findOne({id:id}).then((res)=>{
+            await db.get().collection(collection.BANNED_COLLECTION).findOne({id:id}).then(async res =>{
                 console.log(res);
                 if(res){
                     resolve(true)
@@ -141,7 +141,7 @@ module.exports={
 
     checkFile:(uniqueId)=>{
         return new Promise(async(resolve,reject)=>{
-            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:uniqueId}).then((res)=>{
+            await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:uniqueId}).then(async res =>{
                 console.log(res);
                 if(res){
                     resolve(true)
