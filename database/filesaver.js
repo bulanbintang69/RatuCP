@@ -129,7 +129,7 @@ module.exports={
     checkBan:(id)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection(collection.BANNED_COLLECTION).findOne({id:id}).then((res)=>{
-                console.log(res);
+                //console.log(res);
                 if(res){
                     resolve(true)
                 }else{
@@ -142,7 +142,7 @@ module.exports={
     checkFile:(uniqueId)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection(collection.FILE_COLLECTION).findOne({uniqueId:uniqueId}).then((res)=>{
-                console.log(res);
+                //console.log(res);
                 if(res){
                     resolve(true)
                 }else{
