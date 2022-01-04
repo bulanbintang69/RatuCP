@@ -3,7 +3,7 @@ const collection = require('./collection')
 require('dotenv').config()
 
 const state = {
-    db: undefined
+    db: null
 }
 
 module.exports.connect = function (done) {
