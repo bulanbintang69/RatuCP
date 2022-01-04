@@ -1309,6 +1309,12 @@ bot.on('video', async(ctx) => {
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
                 }else{
+                    await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                        chat_id: ctx.chat.id,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: true,
+                        reply_to_message_id: ctx.message.message_id
+                    })
                     const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
