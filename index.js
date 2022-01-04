@@ -1304,11 +1304,12 @@ bot.on('video', async(ctx) => {
             }
             
             await saver.checkFile(`${video.file_unique_id}`).then(async res => {
-                let result = `${video.file_unique_id}`.replace(/-/g, '_');
                 //console.log(res);
                 if(res == true) {
+                    let result = `${video.file_unique_id}`.replace(/-/g, '_');
                     await ctx.reply(`File already exists. #file${result}`)
                 }else{
+                    let result = `${video.file_unique_id}`.replace(/-/g, '_');
                     await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                         chat_id: ctx.chat.id,
                         parse_mode: 'HTML',
