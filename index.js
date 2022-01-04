@@ -1160,7 +1160,7 @@ bot.on('document', async(ctx) => {
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
-                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
+                    const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
@@ -1178,7 +1178,7 @@ bot.on('document', async(ctx) => {
                         caption: ctx.message.caption,
                         file_size: document.file_size,
                         uniqueId: document.file_unique_id,
-                        messageId: data.message_id,
+                        messageId: data1.message_id,
                         type: 'document'
                     }
                     await saver.saveFile(fileDetails1)
@@ -1245,7 +1245,7 @@ bot.on('document', async(ctx) => {
                                     disable_web_page_preview: true,
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
+                                const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#document #size${document.file_size} \n#file${result} ${caption2}`, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true,
@@ -1263,7 +1263,7 @@ bot.on('document', async(ctx) => {
                                     caption: ctx.message.caption,
                                     file_size: document.file_size,
                                     uniqueId: document.file_unique_id,
-                                    messageId: data.message_id,
+                                    messageId: data1.message_id,
                                     type: 'document'
                                 }
                                 await saver.saveFile(fileDetails1)
@@ -1315,7 +1315,7 @@ bot.on('video', async(ctx) => {
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
-                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                    const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
@@ -1333,7 +1333,7 @@ bot.on('video', async(ctx) => {
                         caption: ctx.message.caption,
                         file_size: video.file_size,
                         uniqueId: video.file_unique_id,
-                        messageId: data.message_id,
+                        messageId: data1.message_id,
                         type: 'video'
                     }
                     await saver.saveFile(fileDetails1)
@@ -1400,7 +1400,7 @@ bot.on('video', async(ctx) => {
                                     disable_web_page_preview: true,
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                                const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true,
@@ -1418,7 +1418,7 @@ bot.on('video', async(ctx) => {
                                     caption: ctx.message.caption,
                                     file_size: video.file_size,
                                     uniqueId: video.file_unique_id,
-                                    messageId: data.message_id,
+                                    messageId: data1.message_id,
                                     type: 'video'
                                 }
                                 await saver.saveFile(fileDetails1)
@@ -1470,7 +1470,7 @@ bot.on('photo', async(ctx) => {
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
-                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${photo.file_size} \n#file${result} ${caption2}`, {
+                    const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${photo.file_size} \n#file${result} ${caption2}`, {
                         chat_id: process.env.LOG_CHANNEL,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
@@ -1488,7 +1488,7 @@ bot.on('photo', async(ctx) => {
                         caption: ctx.message.caption,
                         file_size: photo.file_size,
                         uniqueId: photo.file_unique_id,
-                        messageId: data.message_id,
+                        messageId: data1.message_id,
                         type: 'photo'
                     }
                     await saver.saveFile(fileDetails1)
@@ -1555,7 +1555,7 @@ bot.on('photo', async(ctx) => {
                                     disable_web_page_preview: true,
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${photo.file_size} \n#file${result} ${caption2}`, {
+                                const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#photo #size${photo.file_size} \n#file${result} ${caption2}`, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     parse_mode:'HTML',
                                     disable_web_page_preview: true,
@@ -1573,7 +1573,7 @@ bot.on('photo', async(ctx) => {
                                     caption: ctx.message.caption,
                                     file_size: photo.file_size,
                                     uniqueId: photo.file_unique_id,
-                                    messageId: data.message_id,
+                                    messageId: data1.message_id,
                                     type: 'photo'
                                 }
                                 await saver.saveFile(fileDetails1)
