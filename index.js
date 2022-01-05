@@ -1284,18 +1284,18 @@ bot.on('video', async(ctx) => {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
             var { file_name, file_id, file_unique_id, file_size } = ctx.message.video // <-- store data in temporary varibles 
             if(file_name == undefined){
-                const file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
                 }else{
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                const exstension2 = file_name;
-                const regex2 = /\.[A-Za-z0-9]+$/gm
-                const vidtext2 = exstension2.replace(regex2, '');
+                var exstension2 = file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var vidtext2 = exstension2.replace(regex2, '');
                 
-                const file_name2 = `${vidtext2}`;
+                var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
                 }else{
