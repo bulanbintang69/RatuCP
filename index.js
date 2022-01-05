@@ -1352,7 +1352,7 @@ bot.on('video', async(ctx) => {
                                     ]
                                 }
                             })
-                            const fileDetails1 = {
+                            const fileDetails1 = await {
                                 file_name: file_name2,
                                 userId: ctx.from.id,
                                 file_id: video.file_id,
