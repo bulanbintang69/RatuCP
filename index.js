@@ -1282,8 +1282,8 @@ bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const { file_name, file_id, file_unique_id, file_size } = ctx.message.video
-            if(file_name == undefined){
+            var video = ctx.message.video
+            if(video.file_name == undefined){
                 var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
                     var caption2 =  ``;
@@ -1291,7 +1291,7 @@ bot.on('video', async(ctx) => {
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                var exstension2 = file_name;
+                var exstension2 = video.file_name;
                 var regex2 = /\.[A-Za-z0-9]+$/gm
                 var vidtext2 = exstension2.replace(regex2, '');
                 
@@ -1302,39 +1302,39 @@ bot.on('video', async(ctx) => {
                     var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
-              
-            await saver.checkFile(`${file_unique_id}`).then(async res => {
-                const result = `${file_unique_id}`.replace(/-/g, '_');
-                  //console.log(res);
+            
+            await saver.checkFile(`${video.file_unique_id}`).then(async res => {
+                let result = `${video.file_unique_id}`.replace(/-/g, '_');
+                //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
                 }else{
                     await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
-                      chat_id: ctx.chat.id,
-                      parse_mode: 'HTML',
-                      disable_web_page_preview: true,
-                      reply_to_message_id: ctx.message.message_id
+                        chat_id: ctx.chat.id,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: true,
+                        reply_to_message_id: ctx.message.message_id
                     })
-                    const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${file_size} \n#file${result} ${caption2}`, {
-                      chat_id: process.env.LOG_CHANNEL,
-                      parse_mode:'HTML',
-                      disable_web_page_preview: true,
-                      disable_notification: true,
-                      reply_markup:{
-                        inline_keyboard:[
-                        [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${file_unique_id}`}]
-                        ]
-                      }
+                    const data = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                        chat_id: process.env.LOG_CHANNEL,
+                        parse_mode:'HTML',
+                        disable_web_page_preview: true,
+                        disable_notification: true,
+                        reply_markup:{
+                            inline_keyboard:[
+                                [{text: `View File`, url: `https://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`}]
+                            ]
+                        }
                     })
                     const fileDetails1 = {
-                      file_id,
-                      file_name: file_name2,
-                      userId: ctx.from.id,
-                      caption: ctx.message.caption,
-                      file_size,
-                      uniqueId: file_unique_id,
-                      messageId: data1.message_id,
-                      type: 'video'
+                        file_name: file_name2,
+                        userId: ctx.from.id,
+                        file_id: video.file_id,
+                        caption: ctx.message.caption,
+                        file_size: video.file_size,
+                        uniqueId: video.file_unique_id,
+                        messageId: data1.message_id,
+                        type: 'video'
                     }
                     await saver.saveFile(fileDetails1)
                 }
