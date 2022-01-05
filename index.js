@@ -20,10 +20,10 @@ db.connect((err) => {
 })
 
 bot.use(async (ctx, next) => {
-  console.time(`Processing update ${ctx.update.update_id}`)
+  console.time(`Processing update jalan`)
   await next() // runs next middleware
   // runs after next middleware finishes
-  console.timeEnd(`Processing update ${ctx.update.update_id}`)
+  console.timeEnd(`Processing update selesai`)
 })
 
 //ID Channel/Group
