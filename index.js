@@ -1282,7 +1282,7 @@ bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            let { file_id, file_unique_id, file_size } = ctx.message.video
+            const { file_id, file_unique_id, file_size } = ctx.message.video
             var { file_name } = ctx.message.video // <-- store data in temporary varibles 
             if(file_name == undefined){
                 var file_name2 = `${today2(ctx)}`;
@@ -1305,7 +1305,7 @@ bot.on('video', async(ctx) => {
             }
               
             await saver.checkFile(`${file_unique_id}`).then(async res => {
-                let result = `${file_unique_id}`.replace(/-/g, '_');
+                const result = `${file_unique_id}`.replace(/-/g, '_');
                   //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
