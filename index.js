@@ -1282,13 +1282,14 @@ bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const { file_name, file_id, file_unique_id, file_size } = ctx.message.video // <-- store data in temporary varibles 
+            const { file_name, file_id, file_unique_id, file_size } = ctx.message.video
+            const { caption } = ctx.message.caption // <-- store data in temporary varibles 
             if(file_name == undefined){
                 const file_name2 = `${today2(ctx)}`;
-                if(ctx.message.caption == undefined){
+                if(caption == undefined){
                     const caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    const caption2 =  `\n\n${caption}`;
                 }
             }else{
                 const exstension2 = file_name;
@@ -1296,15 +1297,15 @@ bot.on('video', async(ctx) => {
                 const vidtext2 = exstension2.replace(regex2, '');
                 
                 const file_name2 = `${vidtext2}`;
-                if(ctx.message.caption == undefined){
+                if(caption == undefined){
                     const caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    const caption2 =  `\n\n${caption}`;
                 }
             }
               
             await saver.checkFile(`${file_unique_id}`).then(async res => {
-                let result = `${file_unique_id}`.replace(/-/g, '_');
+                const result = `${file_unique_id}`.replace(/-/g, '_');
                   //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
@@ -1330,7 +1331,7 @@ bot.on('video', async(ctx) => {
                       file_id,
                       file_name: file_name2,
                       userId: ctx.from.id,
-                      caption: ctx.message.caption,
+                      caption,
                       file_size,
                       uniqueId: file_unique_id,
                       messageId: data1.message_id,
