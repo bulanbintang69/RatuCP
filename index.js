@@ -1315,7 +1315,7 @@ bot.on('video', async(ctx) => {
                       disable_web_page_preview: true,
                       reply_to_message_id: ctx.message.message_id
                     })
-                    const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${file_size} \n#file${result} ${caption2}`, {
+                    var data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${file_size} \n#file${result} ${caption2}`, {
                       chat_id: process.env.LOG_CHANNEL,
                       parse_mode:'HTML',
                       disable_web_page_preview: true,
@@ -1326,7 +1326,7 @@ bot.on('video', async(ctx) => {
                         ]
                       }
                     })
-                    const fileDetails1 = {
+                    var fileDetails1 = {
                       file_id,
                       file_name: file_name2,
                       userId: ctx.from.id,
