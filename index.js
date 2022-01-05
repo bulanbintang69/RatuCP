@@ -1331,7 +1331,7 @@ bot.on('video', async(ctx) => {
                     await ctx.reply(`${messagebanned(ctx)}`)
                 }else{
                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
-                        let result = `${video.file_unique_id}`.replace(/-/g, '_');
+                        var result = `${video.file_unique_id}`.replace(/-/g, '_');
                         //console.log(res);
                         if(res == true) {
                             await ctx.reply(`File already exists. #file${result}`)
@@ -1341,7 +1341,7 @@ bot.on('video', async(ctx) => {
                                 disable_web_page_preview: true,
                                 reply_to_message_id: ctx.message.message_id
                             })
-                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
+                            var data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1352,7 +1352,7 @@ bot.on('video', async(ctx) => {
                                     ]
                                 }
                             })
-                            const fileDetails1 = await {
+                            var fileDetails1 = {
                                 file_name: file_name2,
                                 userId: ctx.from.id,
                                 file_id: video.file_id,
