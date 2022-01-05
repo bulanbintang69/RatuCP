@@ -1304,13 +1304,25 @@ bot.on('video', async(ctx) => {
             })
         }else{
             var video = ctx.message.video
-
-            function caption2(ctx){
-                return ctx.message.caption ? `\n\n${ctx.message.caption}` : "";
-            }
-
-            function file_name2(ctx){
-                return video.file_name ? `${video.file_name.replace(/\.[A-Za-z0-9]+$/gm, '')}` : `${today2(ctx)}`;
+                        
+            if(video.file_name == undefined){
+                var file_name2 = `${today2(ctx)}`;
+                if(ctx.message.caption == undefined){
+                    var caption2 =  ``;
+                }else{
+                    var caption2 =  `\n\n${ctx.message.caption}`;
+                }
+            }else{
+                var exstension2 = video.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var vidtext2 = exstension2.replace(regex2, '');
+                
+                var file_name2 = `${vidtext2}`;
+                if(ctx.message.caption == undefined){
+                    var caption2 =  ``;
+                }else{
+                    var caption2 =  `\n\n${ctx.message.caption}`;
+                }
             }
     
             await saver.checkBan(`${ctx.from.id}`).then(async res => {
@@ -1324,12 +1336,12 @@ bot.on('video', async(ctx) => {
                         if(res == true) {
                             await ctx.reply(`File already exists. #file${result}`)
                         }else{
-                            await ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
+                            ctx.reply(`Thank you for sending.\nSearch #file${result}`,{
                                 parse_mode: 'HTML',
                                 disable_web_page_preview: true,
                                 reply_to_message_id: ctx.message.message_id
                             })
-                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2(ctx)}`, {
+                            const data1 = await ctx.reply(`<a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n#video #size${video.file_size} \n#file${result} ${caption2}`, {
                                 chat_id: process.env.LOG_CHANNEL,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -1341,10 +1353,10 @@ bot.on('video', async(ctx) => {
                                 }
                             })
                             const fileDetails1 = {
-                                file_name: file_name2(ctx),
+                                file_name: file_name2,
                                 userId: ctx.from.id,
                                 file_id: video.file_id,
-                                caption: caption2(ctx),
+                                caption: ctx.message.caption,
                                 file_size: video.file_size,
                                 uniqueId: video.file_unique_id,
                                 messageId: data1.message_id,
