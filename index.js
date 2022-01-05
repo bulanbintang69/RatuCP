@@ -1303,25 +1303,25 @@ bot.on('video', async(ctx) => {
                 }
             })
         }else{
-            const video = ctx.message.video
+            var video = ctx.message.video
                         
             if(video.file_name == undefined){
-                const file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                const exstension2 = video.file_name;
-                const regex2 = /\.[A-Za-z0-9]+$/gm
-                const vidtext2 = exstension2.replace(regex2, '');
+                var exstension2 = video.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var vidtext2 = exstension2.replace(regex2, '');
                 
-                const file_name2 = `${vidtext2}`;
+                var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
-                    const caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    const caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
     
