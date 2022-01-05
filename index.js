@@ -1304,17 +1304,13 @@ bot.on('video', async(ctx) => {
             })
         }else{
             var video = ctx.message.video
-                        
-            var exstension2 = video.file_name;
-            var regex2 = /\.[A-Za-z0-9]+$/gm
-            var vidtext2 = exstension2.replace(regex2, '');
 
             function caption2(ctx){
                 return ctx.message.caption ? `\n\n${ctx.message.caption}` : "";
             }
 
             function file_name2(ctx){
-                return `${today2(ctx)}` ? `${vidtext2}` : "";
+                return video.file_name ? `${video.file_name.replace(/\.[A-Za-z0-9]+$/gm, '')}` : `${today2(ctx)}`;
             }
     
             await saver.checkBan(`${ctx.from.id}`).then(async res => {
