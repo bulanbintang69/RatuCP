@@ -1314,7 +1314,7 @@ bot.on('video', async(ctx) => {
             }
 
             function file_name2(ctx){
-                return video.file_name ? `${vidtext2}` : `${today2(ctx)}`;
+                return `${today2(ctx)}` ? `${vidtext2}` : "";
             }
     
             await saver.checkBan(`${ctx.from.id}`).then(async res => {
