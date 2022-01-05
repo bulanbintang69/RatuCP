@@ -4,8 +4,6 @@ const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-
 const privateThrottler = telegrafThrottler();
 const groupThrottler = telegrafThrottler({
   in: { // Aggresively drop inbound messages
