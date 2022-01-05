@@ -1282,14 +1282,13 @@ bot.on('video', async(ctx) => {
   
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
-            const { file_name, file_id, file_unique_id, file_size } = ctx.message.video
-            var { caption } = ctx.message.caption // <-- store data in temporary varibles 
+            const { file_name, file_id, file_unique_id, file_size } = ctx.message.video // <-- store data in temporary varibles 
             if(file_name == undefined){
                 const file_name2 = `${today2(ctx)}`;
-                if(caption == undefined){
-                    var caption2 =  ``;
+                if(ctx.message.caption == undefined){
+                    const caption2 =  ``;
                 }else{
-                    var caption2 =  `\n\n${caption}`;
+                    const caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
                 const exstension2 = file_name;
@@ -1297,15 +1296,15 @@ bot.on('video', async(ctx) => {
                 const vidtext2 = exstension2.replace(regex2, '');
                 
                 const file_name2 = `${vidtext2}`;
-                if(caption == undefined){
-                    var caption2 =  ``;
+                if(ctx.message.caption == undefined){
+                    const caption2 =  ``;
                 }else{
-                    var caption2 =  `\n\n${caption}`;
+                    const caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
               
             await saver.checkFile(`${file_unique_id}`).then(async res => {
-                const result = `${file_unique_id}`.replace(/-/g, '_');
+                let result = `${file_unique_id}`.replace(/-/g, '_');
                   //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists. #file${result}`)
@@ -1331,7 +1330,7 @@ bot.on('video', async(ctx) => {
                       file_id,
                       file_name: file_name2,
                       userId: ctx.from.id,
-                      caption,
+                      caption: ctx.message.caption,
                       file_size,
                       uniqueId: file_unique_id,
                       messageId: data1.message_id,
