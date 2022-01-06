@@ -1,20 +1,10 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-//const { telegrafThrottler } = require('telegraf-throttler');
-var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser')
-var express = require('express')
-var timeout = require('connect-timeout')
-
+const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-//bot.use(telegrafThrottler());
-bot.use(timeout('5s'))
-bot.use(bodyParser())
-bot.use(haltOnTimedout)
-bot.use(cookieParser())
-bot.use(haltOnTimedout)
+bot.use(telegrafThrottler());
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -28,10 +18,6 @@ db.connect((err) => {
     if(err) { console.log('error connection db' + err); }
     else { console.log('db connected'); }
 })
-
-function haltOnTimedout (req, res, next) {
-    if (!req.timedout) next()
-}
 
 //ID Channel/Group
 const channelId = `${process.env.CHANNELJOIN}`;
@@ -1570,7 +1556,7 @@ bot.command('stats',async(ctx)=>{
     })
     
 })
-
+ 
 //heroku config
 const domain = `${process.env.DOMAIN}.herokuapp.com`
 bot.launch({
