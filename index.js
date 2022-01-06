@@ -1,10 +1,10 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const { telegrafThrottler } = require('telegraf-throttler');
+//const { telegrafThrottler } = require('telegraf-throttler');
 
 const bot = new Telegraf(process.env.TOKEN);
 
-bot.use(telegrafThrottler());
+//bot.use(telegrafThrottler());
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1278,8 +1278,14 @@ bot.on('document', async(ctx) => {
 })
 
 //video files
-bot.on('video', async(ctx) => {
-  
+bot.on('video', async(ctx, next) => {
+
+    await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          return resolve("Result");
+        }, 10_000);
+    });
+
     if(ctx.chat.type == 'private') {
         var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
         var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
@@ -1369,7 +1375,7 @@ bot.on('video', async(ctx) => {
             })
         }
     }
-    
+    return next();
 })
 
 //photo files
