@@ -1306,22 +1306,22 @@ bot.on('video', async(ctx) => {
             let video = ctx.message.video
                         
             if(video.file_name == undefined){
-                let file_name2 = `${today2(ctx)}`;
+                var file_name2 = `${today2(ctx)}`;
                 if(ctx.message.caption == undefined){
-                    let caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    let caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }else{
-                let exstension2 = video.file_name;
-                let regex2 = /\.[A-Za-z0-9]+$/gm
-                let vidtext2 = exstension2.replace(regex2, '');
+                var exstension2 = video.file_name;
+                var regex2 = /\.[A-Za-z0-9]+$/gm
+                var vidtext2 = exstension2.replace(regex2, '');
                 
-                let file_name2 = `${vidtext2}`;
+                var file_name2 = `${vidtext2}`;
                 if(ctx.message.caption == undefined){
-                    let caption2 =  ``;
+                    var caption2 =  ``;
                 }else{
-                    let caption2 =  `\n\n${ctx.message.caption}`;
+                    var caption2 =  `\n\n${ctx.message.caption}`;
                 }
             }
     
