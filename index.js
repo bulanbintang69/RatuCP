@@ -10,7 +10,6 @@ var timeout = require('connect-timeout')
 const bot = new Telegraf(process.env.TOKEN);
 
 //bot.use(telegrafThrottler());
-var bot = express()
 bot.use(timeout('5s'))
 bot.use(bodyParser())
 bot.use(haltOnTimedout)
