@@ -1570,8 +1570,6 @@ bot.command('stats',async(ctx)=>{
     })
     
 })
- 
-bot.listen(3000)
 
 //heroku config
 const domain = `${process.env.DOMAIN}.herokuapp.com`
