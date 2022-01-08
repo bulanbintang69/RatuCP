@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
+const { fileTypeFromBuffer } = require('file-type');
 
 const bot = new Telegraf(process.env.TOKEN);
 
@@ -1117,6 +1118,22 @@ bot.command('unbanchat', async(ctx) => {
         }
     }
     
+})
+
+bot.entity('url', async ctx => {
+    const [, url] = ctx.match;
+    const buffer = await got(url).buffer()
+    const { mime } = await fileTypeFromBuffer(buffer)
+    if (mime.startsWith('video')) {
+      ctx.replyWithVideo({
+        source: buffer,
+        filename: 'My funny video.mp4'
+      }, {
+        caption: 'Uploading video...'
+      })
+    } else {
+      ctx.reply('This is not a video ')
+    }
 })
 
 //document files
