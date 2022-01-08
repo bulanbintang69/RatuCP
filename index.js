@@ -1126,7 +1126,7 @@ bot.entity('url', async ctx => {
     if (!url.length) return ctx.reply('No valid url found ')
     
     const buffer = await got(url).buffer()
-    const { mime } = await FileType(buffer)
+    const { mime } = await type.fromBuffer(buffer)
     if (mime.startsWith('video')) {
       ctx.replyWithVideo({
         source: buffer,
