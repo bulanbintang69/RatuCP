@@ -1121,7 +1121,7 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.entity('url', async ctx => {
-    const url = ctx.message.replace('/url', '').trim()
+    const url = ctx.message.text.replace('/url', '').trim()
     if (!url.length) return ctx.reply('No valid url found ')
     
     const buffer = await got(url).buffer()
