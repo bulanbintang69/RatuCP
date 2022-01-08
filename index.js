@@ -1123,7 +1123,7 @@ bot.command('unbanchat', async(ctx) => {
 bot.entity('url', async ctx => {
     const [, url] = ctx.match;
     const buffer = await got(url).buffer()
-    const { mime } = await fileTypeFromBuffer(buffer)
+    const { mime } = await FileType.fromBuffer(buffer)
     if (mime.startsWith('video')) {
       ctx.replyWithVideo({
         source: buffer,
