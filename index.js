@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const { fileTypeFromBuffer } = require('file-type');
+const FileType = require('file-type')
 const got = require('got');
 
 const bot = new Telegraf(process.env.TOKEN);
@@ -1138,7 +1138,7 @@ bot.command('url', async ctx => {
       ctx.reply('This is not a video ')
     }
   })
-  
+
 //document files
 bot.on('document', async(ctx, next) => {
 
