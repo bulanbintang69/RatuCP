@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const { fileTypeFromBuffer } = require('file-type');
+const fileType = require('file-type');
 const got = require('got');
 
 const bot = new Telegraf(process.env.TOKEN);
@@ -1125,7 +1125,7 @@ bot.command('url', async ctx => {
     const url = ctx.message.text.replace('/url', '').trim();
     if (!url.length) return ctx.reply('No valid url found ')
     const buffer = await got(url).buffer()
-    const { mime } = await fileTypeFromBuffer.fromBuffer(buffer)
+    const { mime } = await fileType.fromBuffer(buffer)
     if (mime.startsWith('video')) {
       await ctx.replyWithVideo({
         source: buffer,
