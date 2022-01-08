@@ -1126,10 +1126,10 @@ bot.command('url', async ctx => {
     if (!url.length) return ctx.reply('No valid url found ')
     const buffer = await got(url).buffer()
     const { mime } = await fileType.fromBuffer(buffer)
-    if (mime.startsWith('photo')) {
-      await ctx.replyWithPhoto({
+    if (mime.startsWith('video')) {
+      await ctx.replyWithVideo({
         source: buffer,
-        filename: 'My funny video.jpg'
+        filename: 'My funny video.mp4'
       }, {
         caption: 'Uploading video...'
       })
