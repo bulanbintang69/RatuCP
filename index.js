@@ -1121,24 +1121,24 @@ bot.command('unbanchat', async(ctx) => {
     
 })
 
-bot.entity('url', async ctx => {
-    const url = ctx.message.text.replace('/url', '').trim()
+bot.command('url', async ctx => {
+    const url = ctx.message.text.replace('/url', '').trim();
     if (!url.length) return ctx.reply('No valid url found ')
-    
     const buffer = await got(url).buffer()
-    const { mime } = await type.fromBuffer(buffer)
+    const { mime } = await FileType.fromBuffer(buffer)
     if (mime.startsWith('video')) {
-      ctx.replyWithVideo({
+      await ctx.replyWithVideo({
         source: buffer,
         filename: 'My funny video.mp4'
       }, {
         caption: 'Uploading video...'
       })
+     await ctx.reply('Upload successful')
     } else {
       ctx.reply('This is not a video ')
     }
-})
-
+  })
+  
 //document files
 bot.on('document', async(ctx, next) => {
 
