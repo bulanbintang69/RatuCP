@@ -68,22 +68,6 @@ function messagebotnoaddgroup(ctx){
     return `The bot has not yet entered the owner's channel/group.`;
 }
 
-bot.entity('url', async ctx => {
-    const [, url] = ctx.match;
-    const buffer = await got(url).buffer()
-    const { mime } = await fileTypeFromBuffer(buffer)
-    if (mime.startsWith('video')) {
-      ctx.replyWithVideo({
-        source: buffer,
-        filename: 'My funny video.mp4'
-      }, {
-        caption: 'Uploading video...'
-      })
-    } else {
-      ctx.reply('This is not a video ')
-    }
-})
-
 //BOT START
 bot.start(async(ctx)=>{
 
@@ -1136,6 +1120,21 @@ bot.command('unbanchat', async(ctx) => {
     
 })
 
+bot.entity('url', async ctx => {
+    const [, url] = ctx.match;
+    const buffer = await got(url).buffer()
+    const { mime } = await fileTypeFromBuffer(buffer)
+    if (mime.startsWith('video')) {
+      ctx.replyWithVideo({
+        source: buffer,
+        filename: 'My funny video.mp4'
+      }, {
+        caption: 'Uploading video...'
+      })
+    } else {
+      ctx.reply('This is not a video ')
+    }
+})
 
 //document files
 bot.on('document', async(ctx, next) => {
