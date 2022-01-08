@@ -1131,7 +1131,6 @@ bot.command('url', async ctx => {
         source: buffer,
         filename: 'My funny video.mp4'
       }, {
-        caption: 'Uploading video...'
       })
      await ctx.reply('Upload successful')
     } else {
