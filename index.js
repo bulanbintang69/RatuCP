@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const fileType = require('file-type');
+const FileType = require('file-type');
 const got = require('got');
 
 const bot = new Telegraf(process.env.TOKEN);
