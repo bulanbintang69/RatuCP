@@ -1122,41 +1122,38 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.command('url', async ctx => {
-    const url = ctx.message.text.replace('/url', '').trim();
-    if (!url.length) return ctx.reply('No valid url found ')
-    const buffer = await got(url).buffer()
-    const { mime } = await fileType.fromBuffer(buffer)
-    let filename2 = ``;
-    try {
-      filename2 = new URL(url).pathname.split('/').pop();
-    } catch (e) {
-      console.error(e);
-    }
-    if (mime.startsWith('video')) {
-      await ctx.replyWithDocument({
-        source: buffer,
-        filename: 'filename2' + ext
-      }, {
-      })
-     await ctx.reply('Upload successful')
-    } else if (mime.startsWith('photo')) {
-      await ctx.replyWithDocument({
-        source: buffer,
-        filename: 'filename2' + ext
-      }, {
-      })
-    await ctx.reply('Upload successful')
-    } else if (mime.startsWith('document')) {
-      await ctx.replyWithDocument({
-        source: buffer,
-        filename: 'filename2' + ext
-      }, {
-      })
-     await ctx.reply('Upload successful')
-    } else {
-     await ctx.reply('Media not found')
-    }
-  })
+  const url = ctx.message.text.replace('/url', '').trim();
+  if (!url.length) return ctx.reply('No valid url found ')
+  const buffer = await got(url).buffer()
+  const { mime, ext } = await FileType.fromBuffer(buffer)
+  let filename2 = ``;
+  try {
+    filename2 = new URL(url).pathname.split('/').pop();
+  } catch (e) {
+    console.error(e);
+  }
+  if (mime.startsWith('video')) {
+    await ctx.replyWithVideo({
+      source: buffer,
+      filename: `${filename2}` + ext
+    }, {
+      caption: 'Uploading video...'
+    })
+   await ctx.reply('Upload successful')
+  } else if (mime.startsWith('image')) {
+    ctx.replyWithPhoto({
+      source: buffer,
+      filename: `${filename2}` + ext
+    })
+  } else if (mime.startsWith('audio')) {
+    ctx.replyWithAudio({
+      source: buffer,
+      filename: `${filename2}` + ext
+    })
+  } else {
+    ctx.reply('Unsupported file type')
+  }
+})
 
 //document files
 bot.on('document', async(ctx, next) => {
