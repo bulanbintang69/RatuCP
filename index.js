@@ -1139,17 +1139,17 @@ bot.command('url', async ctx => {
     })
    await ctx.reply('Upload successful')
   } else if (mime.startsWith('image')) {
-    ctx.replyWithDocument({
+    await ctx.replyWithDocument({
       source: buffer,
       filename: `${filename2}`
     })
   } else if (mime.startsWith('audio')) {
-    ctx.replyWithDocument({
+    await ctx.replyWithDocument({
       source: buffer,
       filename: `${filename2}`
     })
   } else {
-    ctx.reply('Unsupported file type')
+    await ctx.reply('Unsupported file type')
   }
 })
 
