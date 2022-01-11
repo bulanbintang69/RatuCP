@@ -1139,8 +1139,22 @@ bot.command('url', async ctx => {
       }, {
       })
      await ctx.reply('Upload successful')
+    } else if (mime.startsWith('photo')) {
+      await ctx.replyWithDocument({
+        source: buffer,
+        filename: `${filename2}`
+      }, {
+      })
+    await ctx.reply('Upload successful')
+    } else if (mime.startsWith('video')) {
+      await ctx.replyWithDocument({
+        source: buffer,
+        filename: `${filename2}`
+      }, {
+      })
+     await ctx.reply('Upload successful')
     } else {
-      ctx.reply('This is not a video ')
+     await ctx.reply('Media not found')
     }
   })
 
