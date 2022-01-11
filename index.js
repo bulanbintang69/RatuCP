@@ -1136,8 +1136,6 @@ bot.command('url', async ctx => {
     await ctx.replyWithVideo({
       source: buffer,
       filename: `${filename2}`
-    }, {
-      caption: 'Uploading video...'
     })
    await ctx.reply('Upload successful')
   } else if (mime.startsWith('image')) {
