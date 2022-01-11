@@ -1135,21 +1135,21 @@ bot.command('url', async ctx => {
     if (mime.startsWith('video')) {
       await ctx.replyWithDocument({
         source: buffer,
-        filename: `${filename2}`
+        filename: 'filename2' + ext
       }, {
       })
      await ctx.reply('Upload successful')
     } else if (mime.startsWith('photo')) {
       await ctx.replyWithDocument({
         source: buffer,
-        filename: `${filename2}`
+        filename: 'filename2' + ext
       }, {
       })
     await ctx.reply('Upload successful')
     } else if (mime.startsWith('video')) {
       await ctx.replyWithDocument({
         source: buffer,
-        filename: `${filename2}`
+        filename: 'filename2' + ext
       }, {
       })
      await ctx.reply('Upload successful')
