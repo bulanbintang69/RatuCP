@@ -1122,36 +1122,41 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.command('url', async ctx => {
-  const url = ctx.message.text.replace('/url', '').trim();
-  if (!url.length) return ctx.reply('No valid url found ')
-  const buffer = await got(url).buffer()
-  const { mime} = await FileType.fromBuffer(buffer)
-  let filename2 = ``;
-  try {
-    filename2 = new URL(url).pathname.split('/').pop();
-  } catch (e) {
-    console.error(e);
-  }
-  if (mime.startsWith('video')) {
-    await ctx.replyWithDocument({
-      source: buffer,
-      filename: `${filename2}`
-    })
-   await ctx.reply('Upload successful')
-  } else if (mime.startsWith('image')) {
-    await ctx.replyWithDocument({
-      source: buffer,
-      filename: `${filename2}`
-    })
-  } else if (mime.startsWith('audio')) {
-    await ctx.replyWithDocument({
-      source: buffer,
-      filename: `${filename2}`
-    })
-  } else {
-    await ctx.reply('Unsupported file type')
-  }
-})
+    const url = ctx.message.text.replace('/url', '').trim();
+    if (!url.length) return ctx.reply('No valid url found ')
+    const buffer = await got(url).buffer()
+    const { mime } = await fileType.fromBuffer(buffer)
+    let filename2 = ``;
+    try {
+      filename2 = new URL(url).pathname.split('/').pop();
+    } catch (e) {
+      console.error(e);
+    }
+    if (mime.startsWith('video')) {
+      await ctx.replyWithDocument({
+        source: buffer,
+        filename: `${filename2}`
+      }, {
+      })
+      await ctx.reply('Upload successful')
+    } else if (mime.startsWith('image')) {
+      await ctx.replyWithDocument({
+        source: buffer,
+        filename: `${filename2}`
+      }, {
+      })
+      await ctx.reply('Upload successful')
+    } else if (mime.startsWith('video')) {
+      await ctx.replyWithDocument({
+        source: buffer,
+        filename: `${filename2}`
+      }, {
+      })
+      await ctx.reply('Upload successful')
+    } else {
+     await ctx.reply('Type not found')
+    }
+  })
 
 //document files
 bot.on('document', async(ctx, next) => {
