@@ -1133,18 +1133,18 @@ bot.command('url', async ctx => {
     console.error(e);
   }
   if (mime.startsWith('video')) {
-    await ctx.replyWithVideo({
+    await ctx.replyWithDocument({
       source: buffer,
       filename: `${filename2}`
     })
    await ctx.reply('Upload successful')
   } else if (mime.startsWith('image')) {
-    ctx.replyWithPhoto({
+    ctx.replyWithDocument({
       source: buffer,
       filename: `${filename2}`
     })
   } else if (mime.startsWith('audio')) {
-    ctx.replyWithAudio({
+    ctx.replyWithDocument({
       source: buffer,
       filename: `${filename2}`
     })
