@@ -1125,7 +1125,7 @@ bot.command('url', async ctx => {
     const url = ctx.message.text.replace('/url', '').trim();
     if (!url.length) return ctx.reply('No valid url found ')
     const buffer = await got(url).buffer()
-    const { mime } = await fileType.fromBuffer(buffer)
+    const { mime } = await FileType.fromBuffer(buffer)
     let filename2 = ``;
     try {
       filename2 = new URL(url).pathname.split('/').pop();
