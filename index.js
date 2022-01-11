@@ -1125,7 +1125,7 @@ bot.command('url', async ctx => {
   const url = ctx.message.text.replace('/url', '').trim();
   if (!url.length) return ctx.reply('No valid url found ')
   const buffer = await got(url).buffer()
-  const { mime, ext } = await FileType.fromBuffer(buffer)
+  const { mime} = await FileType.fromBuffer(buffer)
   let filename2 = ``;
   try {
     filename2 = new URL(url).pathname.split('/').pop();
@@ -1135,7 +1135,7 @@ bot.command('url', async ctx => {
   if (mime.startsWith('video')) {
     await ctx.replyWithVideo({
       source: buffer,
-      filename: `${filename2}` + ext
+      filename: `${filename2}`
     }, {
       caption: 'Uploading video...'
     })
@@ -1143,12 +1143,12 @@ bot.command('url', async ctx => {
   } else if (mime.startsWith('image')) {
     ctx.replyWithPhoto({
       source: buffer,
-      filename: `${filename2}` + ext
+      filename: `${filename2}`
     })
   } else if (mime.startsWith('audio')) {
     ctx.replyWithAudio({
       source: buffer,
-      filename: `${filename2}` + ext
+      filename: `${filename2}`
     })
   } else {
     ctx.reply('Unsupported file type')
