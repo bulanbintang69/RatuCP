@@ -1122,41 +1122,43 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.command('url', async ctx => {
-    const url = ctx.message.text.replace('/url', '').trim();
-    if (!url.length) return ctx.reply('No valid url found ')
-    const buffer = await got(url).buffer()
-    const { mime } = await FileType.fromBuffer(buffer)
-    let filename2 = ``;
-    try {
-      filename2 = new URL(url).pathname.split('/').pop();
-    } catch (e) {
-      console.error(e);
+    if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+        const url = ctx.message.text.replace('/url', '').trim();
+        if (!url.length) return ctx.reply('No valid url found ')
+        const buffer = await got(url).buffer()
+        const { mime } = await FileType.fromBuffer(buffer)
+        let filename2 = ``;
+        try {
+            filename2 = new URL(url).pathname.split('/').pop();
+        } catch (e) {
+            console.error(e);
+        }
+        if (mime.startsWith('video')) {
+            await ctx.replyWithVideo({
+            source: buffer,
+            filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else if (mime.startsWith('image')) {
+            await ctx.replyWithDocument({
+            source: buffer,
+            filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else if (mime.startsWith('document')) {
+            await ctx.replyWithDocument({
+            source: buffer,
+            filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else {
+            await ctx.reply('Type not found')
+        }
     }
-    if (mime.startsWith('video')) {
-      await ctx.replyWithVideo({
-        source: buffer,
-        filename: `${filename2}`
-      }, {
-      })
-      await ctx.reply('Upload successful')
-    } else if (mime.startsWith('image')) {
-      await ctx.replyWithDocument({
-        source: buffer,
-        filename: `${filename2}`
-      }, {
-      })
-      await ctx.reply('Upload successful')
-    } else if (mime.startsWith('document')) {
-      await ctx.replyWithDocument({
-        source: buffer,
-        filename: `${filename2}`
-      }, {
-      })
-      await ctx.reply('Upload successful')
-    } else {
-     await ctx.reply('Type not found')
-    }
-  })
+})
 
 //document files
 bot.on('document', async(ctx, next) => {
