@@ -1146,7 +1146,7 @@ bot.command('url', async ctx => {
       }, {
       })
       await ctx.reply('Upload successful')
-    } else if (mime.startsWith('video')) {
+    } else if (mime.startsWith('document')) {
       await ctx.replyWithDocument({
         source: buffer,
         filename: `${filename2}`
