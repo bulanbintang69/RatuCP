@@ -1133,7 +1133,7 @@ bot.command('url', async ctx => {
       console.error(e);
     }
     if (mime.startsWith('video')) {
-      await ctx.replyWithDocument({
+      await ctx.replyWithVideo({
         source: buffer,
         filename: `${filename2}`
       }, {
