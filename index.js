@@ -1148,7 +1148,7 @@ bot.command('url', async ctx => {
             }, {
             })
             await ctx.reply('Upload successful')
-        } else if (mime.startsWith('document')) {
+        } else if (mime.startsWith('application')) {
             await ctx.replyWithDocument({
                 source: buffer,
                 filename: `${filename2}`
