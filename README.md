@@ -2,7 +2,7 @@
 The bot generates shareable links in Telegram for videos, photos, documents and can be shared in groups.
 <hr>
 
-<a href="https://heroku.com/deploy?template=https://github.com/BimoSora/RatuCP">
+<a href="https://heroku.com/deploy?template=https://github.com//RatuCP">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 <br>
